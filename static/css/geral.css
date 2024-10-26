@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter Tight", sans-serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+main{
+    height: 100%;
+}
+
+nav{
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #7ed957;
+
+    & #hd-logo{
+        display: flex;
+        align-items: center;
+        width: 15%;
+
+        & a{
+            width: 60%;
+        }
+
+        & img{
+            width: 100%;
+        }
+    }   
+    
+    & #hd-links{
+        display: flex;
+        width: 50%;
+
+        & ul{
+            list-style: none;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+         & li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 10%;
+            height: 2rem;
+            margin: 10px;
+            border-radius: 5px;
+            background: rgb(255, 255, 255);
+            transition: background-color 0.3s;
+         }
+
+         & li:hover{
+            background-color: transparent;
+            border: 0.5px solid white;
+
+         }
+
+            & a{
+                text-decoration: none;
+                color: rgb(0, 0, 0);
+                transition: color 0.3s;
+            }
+
+            & a:hover{
+                color: white;
+             }
+
+    }
+
+    & #hd-perfil{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 20%;
+
+        & h1{
+            font-size: 1rem;
+            color: white;
+        }
+
+        & img{
+            width: 13%;
+            border-radius: 100%;
+            margin: 10px;
+        }
+    }
+
+}
+
+
+footer{
+    background-color: #7ed957;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 15%;
+    padding: 1rem;
+
+    & #ft-infos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & p{
+            width: 70%;
+            margin-bottom: 10px;
+        }
+    
+        & a{
+            color: #36791a;
+        }
+    }
+
+    & #ft-contato{
+        background-color: white;
+        width: 20%;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        & img{
+            width: 50%;
+            margin-bottom: 0.5rem;
+        }
+
+        & #ft-mail{
+            display: flex;
+            align-items: center;
+
+            & span{
+                font-size: 1.2rem;
+                color: #36791a;
+            }
+        }
+    }
+}
+
+
+
