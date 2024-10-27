@@ -9,3 +9,7 @@ def index():
 @app.route('/inicio')
 def dashboard():
     return render_template('pages/inicio.html')
+
+@app.route('/laboratorios')
+def laboratorios():
+    return render_template('pages/laboratorios.html')
