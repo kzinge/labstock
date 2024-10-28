@@ -32,3 +32,4 @@ def visualizar_aluno():
     return render_template('pages/visualizar_aluno.html')
 
 #teste de commit
+#testando commit dnv
