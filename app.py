@@ -31,5 +31,12 @@ def visualizar_prof():
 def visualizar_aluno():
     return render_template('pages/visualizar_aluno.html')
 
-#teste de commit
-#testando commit dnv
+
+@app.route('/cadastrar_material')
+def cadastrar_material():
+    return render_template('pages/cadastrar_material.html')
+
+
+@app.route('/cadastrar_lab')
+def cadastrar_lab():
+    return render_template('pages/cadastrar_lab.html')
