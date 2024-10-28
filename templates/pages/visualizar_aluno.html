@@ -1,0 +1,88 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/visualizar_aluno.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do material</th>
+                <th>Descrição do material</th>
+                <th>Quantidade a ser usada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>Material A</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>Material B</td>
+                <td>30</td>
+
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>Material C</td>
+                <td>10</td>
+        
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data da aula</th>
+                <th>Horario da aula</th>
+                <th>Nome da aula</th>
+                <th>Local da aula</th>
+                <th>Professor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>22/03/2025</td>
+                <td>07:00 - 08:30</td>
+                <td>teste</td>
+                <td>Lab quimica</td>
+                <td>Jandu</td>
+            </tr>
+            <tr>
+                <td>07/06/2025</td>
+                <td>08:50 - 10:20</td>
+                <td>teste</td>
+                <td>Lab fisica</td>
+                <td>Cicero</td>
+
+            </tr>
+            <tr>
+                <td>29/06/2025</td>
+                <td>10:30 - 12:00</td>
+                <td>teste</td>
+                <td>Lab quimica</td>
+                <td>Jandu</td>
+        
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

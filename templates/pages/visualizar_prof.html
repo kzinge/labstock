@@ -1,0 +1,121 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/visualizar_prof.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <table>
+        <thead>
+            <tr>
+                <th>Data da reserva</th>
+                <th>Laboratorio</th>
+                <th>Tipo da reserva</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>22/03/2025</td>
+                <td>Lab1</td>
+                <td>semanal</td>
+                <td>comfirmada</td>
+            </tr>
+            <tr>
+                <td>07/06/2025</td>
+                <td>Lab2</td>
+                <td>bimestral</td>
+                <td>negada</td>
+
+            </tr>
+            <tr>
+                <td>29/06/2025</td>
+                <td>Lab3</td>
+                <td>semestral</td>
+                <td>pendente</td>
+        
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do material</th>
+                <th>Quantidade</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>teste</td>
+                <td>15</td>
+                <td>comfirmada</td>
+            </tr>
+            <tr>
+                <td>teste</td>
+                <td>20</td>
+                <td>negada</td>
+
+            </tr>
+            <tr>
+                <td>teste</td>
+                <td>50</td>
+                <td>em falta</td>
+        
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data da aula</th>
+                <th>Horario da aula</th>
+                <th>Nome da aula</th>
+                <th>Local da aula</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>22/03/2025</td>
+                <td>07:00 - 08:30</td>
+                <td>teste</td>
+                <td>Lab quimica</td>
+                
+            </tr>
+            <tr>
+                <td>07/06/2025</td>
+                <td>08:50 - 10:20</td>
+                <td>teste</td>
+                <td>Lab fisica</td>
+
+
+            </tr>
+            <tr>
+                <td>29/06/2025</td>
+                <td>10:30 - 12:00</td>
+                <td>teste</td>
+                <td>Lab quimica</td>
+    
+        
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
