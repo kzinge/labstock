@@ -1,0 +1,41 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cadastrar_lab.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<form action="{{url_for('cadastrar_lab')}}" method="POST" id="form-lab">
+    <label for="nome_lab">Nome do laboratório:</label>
+    <input type="text" name="nome_lab" id="nome-lab">
+
+    <label for="especialidade_lab">Especialidade:</label>
+    <input type="text" name="especialidade_lab" id="especialidade-lab">
+
+    <label for="local_lab">Local:</label>
+    <input type="text" name="local_lab" id="local-lab">
+
+
+    <div class="conteiner-labels">
+        <label for="capacidade_lab">Capacidade:</label>
+    </div>
+    <div class="conteiner-inputs">
+        <input type="number" name="capacidade_lab" id="capacidade-lab">
+        <button type="submit" class="botao-cadastrar">Cadastrar</button>
+    </div>
+
+</form>
+{% endblock %}
