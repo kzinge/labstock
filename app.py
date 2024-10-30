@@ -6,10 +6,17 @@ app = Flask(__name__)
 def index():
     return render_template('pages/index.html')
 
+@app.route('/login')
+def login():
+    return render_template('pages/login.html')
 
 @app.route('/inicio')
 def dashboard():
     return render_template('pages/inicio.html')
+
+@app.route('/sobre')
+def sobre():
+    return render_template('pages/sobre.html')
 
 
 @app.route('/laboratorios')

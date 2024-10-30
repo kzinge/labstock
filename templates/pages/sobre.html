@@ -1,0 +1,80 @@
+{% extends "modIndex.html"%}
+{% block head_extras %}
+<script src="https://kit.fontawesome.com/4dbfde8f41.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
+{% endblock %}
+
+
+
+{% block content %}
+<div id="conteudo-sobre">
+    <div id="lab-sobre">
+        <img src="../../static/assets/vertical.png" alt="Logo Labstock">
+        <div id="info-sobre">
+            <p>O labstock tem como objetivo desenvolver um sistema de gerenciamento de estoque virtual para o laboratório de química do IFRN Campus Caicó, visando otimizar a gestão de recursos e melhorar a organização dos materiais. Para isso, foi feito um levantamento com usuários, como professores e técnicos, para identificar as principais dificuldades enfrentadas na gestão do estoque. Com isso, a metodologia incluiu a definição de requisitos funcionais e não funcionais, além da utilização de ferramentas como Figma para design da interface, HTML e CSS para estrutura, JavaScript para interatividade, e Python com Flask para o backend, utilizando MySQL como banco de dados. Os resultados indicam que a implementação do sistema permitirá um controle eficiente de materiais, reagentes e equipamentos, assegurando a disponibilidade dos recursos e facilitando o trabalho dos usuários. A ferramenta não só otimizará a organização do estoque, mas também possibilitará a publicação e compartilhamento de dados, promovendo transparência e colaboração. Portanto, concluímos que a criação do almoxarifado virtual não apenas moderniza a gestão de laboratórios, mas também promove um ambiente de trabalho mais integrado. Além disso, a proteção legal das inovações é essencial para garantir que possam ser reconhecidas e exploradas de forma segura, contribuindo para o avanço tecnológico na área.</p>
+        </div>
+    </div>
+    <div id="devs-sobre">
+        <div class="dev">
+            <img src="../../static/assets/devs/george.png" alt="George">
+            <div class="info-dev">
+                <h1>George Kauan</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>      
+            </div>
+        </div>
+        <div class="dev">
+            <img src="../../static/assets/devs/hiandro.png" alt="Hiandro">
+            <div class="info-dev">
+                <h1>Hiandro Alex</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="dev">
+            <img src="../../static/assets/devs/italo.png" alt="Ítalo">
+            <div class="info-dev">
+                <h1>Ítalo Lima</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>  
+            </div>
+        </div>
+        <div class="dev">
+            <img src="../../static/assets/devs/joaomarcos.png" alt="João Marcos">
+            <div class="info-dev">
+                <h1>João Marcos</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="dev">
+            <img src="../../static/assets/devs/joaovictor.png" alt="João Victor">
+            <div class="info-dev">
+                <h1>João Victor</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="dev">
+            <img src="../../static/assets/devs/ruan.png" alt="Ruan">
+            <div class="info-dev">
+                <h1>Ruan Allyson</h1>
+                <div class="git-sobre">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

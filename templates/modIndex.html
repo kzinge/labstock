@@ -7,14 +7,13 @@
     <title>{% block title %}LabStock{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/geral.css') }}">
+    {% block head_extras %}
+    {% endblock %}
 </head>
 <body>
-
     <main>
             {% block content %}
             {% endblock %}
     </main>
-
-    <script src="script.js"></script> <!-- Link para JavaScript -->
 </body>
 </html>

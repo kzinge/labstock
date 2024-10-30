@@ -1,0 +1,16 @@
+{% extends 'modIndex.html' %}
+
+{% block head_extras %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div id="login">
+        <form action="{{ url_for('login' ) }}" method="post">
+            <img src="../../static/assets/vertical.png" alt="" id="img-login">
+            <button type="button" id="login-btt">
+                <a href="" id="a-login">Fazer login com o SUAP</a>
+            </button>
+        </form>
+    </div>
+{% endblock %}

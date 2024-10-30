@@ -1,0 +1,142 @@
+body{
+    height: 100%;
+    background: rgb(220,255,196);
+}
+
+#conteudo-sobre{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#lab-sobre{
+    width: 70%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    margin: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    & #info-sobre{
+        width: 70%;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #7ed957;;
+
+        & p{
+            font-size: 1rem;
+            text-align: justify;
+        }
+    }
+
+    & img{
+        margin-right: 1rem;
+        width: 30%;
+    }
+}
+
+#devs-sobre{
+    height: 50%;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 70%;
+    gap: 30px;
+
+    & .dev{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: white;
+        border-radius: 10px;
+        width: 25%;
+        height: 90%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        & img{
+            border-radius: 100%;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+            width: 50%;
+        }
+
+        & .info-dev{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #7ed957;
+            border-radius: 10px;
+            width: 85%;
+            padding: 0.5rem;
+
+            & h1{
+                color: rgb(241, 241, 241);
+            }
+
+            & .git-sobre{
+                display: flex;
+                margin-top: 1rem;
+                width: 40%;
+                align-items: center;
+                justify-content: space-around;
+    
+                & i{
+                    font-size: 1.3rem;
+                }
+    
+                & a{
+                    color: #395a2b;
+                    text-decoration: none;
+                    transition: color 0.3s;
+                }
+    
+                & a:hover{
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #lab-sobre {
+
+        flex-direction: column;
+        height: auto;
+    }
+
+    #lab-sobre #info-sobre {
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    #lab-sobre img {
+        display: none;
+    }
+
+    #devs-sobre .dev {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    #lab-sobre {
+        width: 90%;
+        overflow-y: scroll;
+    }
+
+    #devs-sobre {
+        width: 90%;
+    }
+
+    #devs-sobre .dev {
+        width: 100%;
+    }
+}

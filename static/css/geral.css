@@ -7,13 +7,20 @@
     font-family: "Inter Tight", sans-serif;
 }
 
-body{
-    width: 100vw;
-    height: 100vh;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-main{
-    height: 100%;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    height: 100%; /* Faz com que o main ocupe todo o espaço disponível */
 }
 
 nav{
