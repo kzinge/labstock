@@ -1,6 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
+from os import getenv
+from dotenv import load_dotenv
+from .database import db
+
+load_dotenv('.env')
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'ultramegadificil'
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f"mysql://{getenv('MYSQL_USER')}:{getenv('MYSQL_SENHA')}@"
+    f"{getenv('MYSQL_HOST')}/{getenv('MYSQL_DB')}"
+)
+
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():

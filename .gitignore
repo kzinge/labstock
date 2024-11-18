@@ -2,3 +2,4 @@ vlab/
 *.log
 __pycache__/
 env/
+*.env
