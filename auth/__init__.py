@@ -29,9 +29,9 @@ def oauth2_authorize(provider):
     # Cria uma string de consulta com todos os parâmetros do OAuth2
     qs = urlencode({
         'client_id': provider_data.SOCIAL_AUTH_SUAP_KEY,
-        'redirect_uri': url_for('auth.oauth2_callback', provider=provider, _external=True),
+        'redirect_uri': 'http://localhost:5000/callback/suap',
         'response_type': 'code',
-        'scope': ' '.join(provider_data.SOCIAL_AUTH_SUAP_SECRET),
+        'scope': ' '.join(provider_data.USER_DATA_URL),
         'state': session['oauth2_state'],
     })
 
@@ -78,7 +78,7 @@ def oauth2_callback(provider):
     if not oauth2_token:
         abort(401)
 
-    user_response = response.json().get('access_token')
+    user_response = response.json().get(oauth2_token)
 
     if 'error' in user_response:
         abort(401)
