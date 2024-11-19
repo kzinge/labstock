@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_login import LoginManager
 from os import getenv
 from dotenv import load_dotenv
 from .database import db
 from .auth import auth_bp
+from .models.usuarios import User
 from .controllers import lab_bp, materias_bp, usu_bp
 
 load_dotenv('.env')
@@ -13,6 +15,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
     f"mysql://{getenv('MYSQL_USER')}:{getenv('MYSQL_SENHA')}@"
     f"{getenv('MYSQL_HOST')}/{getenv('MYSQL_DB')}"
 )
+
+#login_manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.get(User, user_id)
 
 #registrar os bps
 app.register_blueprint(lab_bp)
