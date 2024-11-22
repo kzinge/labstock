@@ -9,8 +9,9 @@
 {% endblock %}
 
 {% block perfil %}
-<h1>Fulano</h1>
+<h1>{{nome}}</h1>
 <img src="../../static/assets/perfil.jpg" alt="perfil">
+<a href="{{url_for('logout')}}">Sair</a>
 {% endblock %}
 
 {% block content %}

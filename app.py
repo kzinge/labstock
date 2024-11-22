@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, logout_user, login_required, current_user
 from os import getenv
 from dotenv import load_dotenv
 from .database import db
@@ -43,9 +43,11 @@ def index():
 def login():
     return render_template('pages/login.html')
 
+@login_required
 @app.route('/inicio')
 def dashboard():
-    return render_template('pages/inicio.html')
+    usuario = db.session.scalar(db.select(User).where(User.usu_id == current_user.usu_id))
+    return render_template('pages/inicio.html', nome = usuario.usu_nome)
 
 @app.route('/sobre')
 def sobre():
@@ -90,3 +92,9 @@ def cadastrar_lab():
         capacidade_lab = request.form['capacidade_lab']
         return f"<h1> metodo post nome: {nome_lab} especialidade: {especialidade_lab} local: {local_lab} quantidade: {capacidade_lab}</h1>"
     return render_template('pages/cadastrar_lab.html')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Você foi desconectado com sucesso.')
+    return redirect(url_for('index'))
