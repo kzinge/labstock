@@ -10,7 +10,7 @@
 
 {% block perfil %}
 <h1>{{nome}}</h1>
-<img src="../../static/assets/perfil.jpg" alt="perfil">
+<img src="{{foto}}" alt="perfil">
 <a href="{{url_for('logout')}}">Sair</a>
 {% endblock %}
 

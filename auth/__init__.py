@@ -87,9 +87,17 @@ def oauth2_callback(provider):
     user = db.session.scalar(db.select(User).where(User.usu_matricula == user_infos['matricula']))
 
     if user is None:
-        user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['tipo_vinculo'])
-        db.session.add(user)
-        db.session.commit()
+        
+        if user_infos['tipo_vinculo'] == 'Servidor':
+            user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['vinculo']['cargo'], foto = user_infos['url_foto_75x100'])
+            db.session.add(user)
+            db.session.commit()
+        
+        else:
+            user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['tipo_vinculo'], foto = user_infos['url_foto_75x100'])
+            db.session.add(user)
+            db.session.commit()
+
 
     login_user(user)
     return redirect(url_for('dashboard'))

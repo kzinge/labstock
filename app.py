@@ -47,7 +47,7 @@ def login():
 @app.route('/inicio')
 def dashboard():
     usuario = db.session.scalar(db.select(User).where(User.usu_id == current_user.usu_id))
-    return render_template('pages/inicio.html', nome = usuario.usu_nome)
+    return render_template('pages/inicio.html', nome = usuario.usu_nome, foto = usuario.usu_foto)
 
 @app.route('/sobre')
 def sobre():
@@ -98,3 +98,6 @@ def logout():
     logout_user()
     flash('Você foi desconectado com sucesso.')
     return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(host='10.146.6.4', port=5000)
