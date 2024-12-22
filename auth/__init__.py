@@ -6,6 +6,10 @@ from ..suap_beckend.beckend import SuapOAuth2
 from ..database import db
 from ..models.usuarios import User
 import secrets, requests
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv('.env')
 
 
 auth_bp = Blueprint(name ='auth', 
@@ -29,7 +33,7 @@ def oauth2_authorize(provider):
     # Cria uma string de consulta com todos os parâmetros do OAuth2
     qs = urlencode({
         'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
-        'redirect_uri': 'http://localhost:5000/auth/callback/suap',
+        'redirect_uri': getenv('AUTH_REDIRECT'),
         'response_type': 'code',
         'scope': 'email',
         'state': session['oauth2_state'],
@@ -89,9 +93,16 @@ def oauth2_callback(provider):
     if user is None:
         
         if user_infos['tipo_vinculo'] == 'Servidor':
-            user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['vinculo']['cargo'], foto = user_infos['url_foto_75x100'])
-            db.session.add(user)
-            db.session.commit()
+
+            if 'PROFESSOR' in user_infos['vinculo']['cargo']:
+                user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= 'Professor', foto = user_infos['url_foto_75x100'])
+                db.session.add(user)
+                db.session.commit()
+            
+            elif 'TECNICO' in user_infos['vinculo']['cargo']:
+                user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= 'Técnico', foto = user_infos['url_foto_75x100'])
+                db.session.add(user)
+                db.session.commit()
         
         else:
             user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['tipo_vinculo'], foto = user_infos['url_foto_75x100'])

@@ -6,12 +6,15 @@
 <li><a href="#">Teste</a></li>
 <li><a href="#">Teste</a></li>
 <li><a href="#">Teste</a></li>
+<form action="{{url_for('logout')}}" method="post">
+    <button type="submit">Sair</button>
+</form>
 {% endblock %}
 
 {% block perfil %}
-<h1>{{nome}}</h1>
 <img src="{{foto}}" alt="perfil">
-<a href="{{url_for('logout')}}">Sair</a>
+<h1>{{nome}}</h1>
+<i class="fa-solid fa-user"></i>
 {% endblock %}
 
 {% block content %}

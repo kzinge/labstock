@@ -1,23 +1,32 @@
-{% extends "modIndex.html"%}
-
-{% block content %}
-<div id="conteudo-inicial">
-    <aside>
-        <img src="../../static/assets/vertical.png" alt="Logo LabStock">
-        <span>Gerencie seu laboratório conosco!</span>
-    </aside>
-    <section>
-        <div id="index-conteudo">
-            <div id="texto">
-                <h1>LabStock</h1>
-                <img src="../../static/assets/horizontal.png    " alt="Logo LabStock">
-                <p>Bem-Vindo ao LabStock, seu gerenciador de estoques de laboratórios!</p>
-            </div>
-            <div id="botoes">
-                <button><a href="{{url_for('sobre')}}">Sobre nós!</a></button>
-                <button><a href="{{ url_for('auth.oauth2_authorize', provider='suap')}}">Entrar</a></button>
-            </div>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabStock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <main>
+        <div id="conteudo-inicial">
+            <aside>
+                <img src="../../static/assets/vertical.png" alt="Logo LabStock">
+                <span>Gerencie seu laboratório conosco!</span>
+            </aside>
+            <section>
+                <div id="index-conteudo">
+                    <div id="texto">
+                        <h1>LabStock</h1>
+                        <img src="../../static/assets/horizontal.png    " alt="Logo LabStock">
+                        <p>Bem-Vindo ao LabStock, seu gerenciador de estoques de laboratórios!</p>
+                    </div>
+                    <div id="botoes">
+                        <button><a href="{{url_for('sobre')}}">Sobre nós!</a></button>
+                        <button><a href="{{ url_for('auth.oauth2_authorize', provider='suap')}}">Entrar</a></button>
+                    </div>  
+                </div>
+            </section>    
         </div>
-    </section>    
-</div>
-{% endblock %}
+    </main>
+</body>
+</html>

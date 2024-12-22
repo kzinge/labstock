@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from .database import db
 from .auth import auth_bp
 from .models.usuarios import User
+from .models.laboratorios import Lab, ReservaLab
+from .models.materiais import Material, ReservaMaterial, Categoria
 from .controllers import lab_bp, materias_bp, usu_bp
 
 load_dotenv('.env')
@@ -46,7 +48,7 @@ def login():
 @login_required
 @app.route('/inicio')
 def dashboard():
-    usuario = db.session.scalar(db.select(User).where(User.usu_id == current_user.usu_id))
+    usuario = db.session.scalar(db.select(User).where(User.usu_matricula == current_user.usu_matricula))
     return render_template('pages/inicio.html', nome = usuario.usu_nome, foto = usuario.usu_foto)
 
 @app.route('/sobre')
@@ -93,7 +95,7 @@ def cadastrar_lab():
         return f"<h1> metodo post nome: {nome_lab} especialidade: {especialidade_lab} local: {local_lab} quantidade: {capacidade_lab}</h1>"
     return render_template('pages/cadastrar_lab.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
     logout_user()
     flash('Você foi desconectado com sucesso.')

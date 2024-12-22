@@ -19,9 +19,53 @@ body {
     min-height: 100vh;
 }
 
+#lab-s{
+    display: flex;
+    height: 100%;
+}
+
+#lab-menu{
+    height: 100%;
+    width: 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & #hd-logo{
+        display: flex;
+        align-items: center;
+        width: 60%;
+
+        & img{
+            width: 100%;
+        }
+    }
+
+    & #hd-perfil{
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        & img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+
+    }
+}
+
 main {
     height: 100%; /* Faz com que o main ocupe todo o espaço disponível */
+    width: 88%;
+    display: inline-flex;
+    background-color: #000000;
 }
+
 
 nav{
     height: 4rem;
@@ -83,27 +127,6 @@ nav{
                 color: white;
              }
 
-    }
-
-    & #hd-perfil{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        width: 20%;
-
-        & h1{
-            font-size: 1rem;
-            color: white;
-        }
-
-        & img{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            overflow: hidden;
-            margin: 10px;
-        }
     }
 
 }
