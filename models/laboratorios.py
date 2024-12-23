@@ -35,6 +35,7 @@ class ReservaLab(db.Model):
     rel_usu_matricula: Mapped[str] = mapped_column(String(20), ForeignKey('tb_usuarios.usu_matricula'), nullable=False)
     
     laboratorio = relationship('Lab', back_populates='reservas', lazy=True)
+    usuario = relationship('User', back_populates='reservas', lazy=True)
     reservas_materiais = relationship('ReservaMaterial', back_populates='reserva', lazy=True)
 
     def __repr__(self):

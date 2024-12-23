@@ -18,4 +18,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% if tipo == 'Professor'%} #Se for professor
+    <h1>oi Servidor</h1>
+
+{% elif tipo == 'Aluno'%} #Página do aluno
+    <h1>oi Aluno</h1>
+
+{% elif tipo == 'Técnico'%} #Página Técnico
+    <h1>oi Técnico</h1>
+{%endif%}
+
 {% endblock %}
