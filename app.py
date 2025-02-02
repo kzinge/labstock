@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, logout_user, login_required, current_user
 from os import getenv
 from dotenv import load_dotenv
-from .database import db
-from .auth import auth_bp
-from .models.usuarios import User
-from .models.laboratorios import Lab, ReservaLab
-from .models.materiais import Material, ReservaMaterial, Categoria
-from .controllers import lab_bp, materias_bp, usu_bp
+from database import db
+from auth import auth_bp
+from models.usuarios import User
+from models.laboratorios import Lab, ReservaLab
+from models.materiais import Material, ReservaMaterial, Categoria
+from controllers import lab_bp, materias_bp, usu_bp
 
 load_dotenv('.env')
 
@@ -102,4 +102,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(host='10.146.6.4', port=5000)
+    app.run(host='0.0.0.0', port=5000)

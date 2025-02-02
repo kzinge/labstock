@@ -1,6 +1,6 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from ..database import db
+from database import db
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):

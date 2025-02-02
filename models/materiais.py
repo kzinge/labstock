@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, DECIMAL, Numeric, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from ..database import db
+from database import db
 from datetime import date
 
 class Categoria(db.Model):

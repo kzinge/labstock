@@ -2,9 +2,9 @@
 from flask import Blueprint, redirect, url_for,abort,session, request, flash
 from urllib.parse import urlencode
 from flask_login import current_user, login_user
-from ..suap_beckend.beckend import SuapOAuth2
-from ..database import db
-from ..models.usuarios import User
+from suap_beckend.beckend import SuapOAuth2
+from database import db
+from models.usuarios import User
 import secrets, requests
 from dotenv import load_dotenv
 from os import getenv
