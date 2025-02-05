@@ -7,7 +7,7 @@ from .auth import auth_bp
 from .models.usuarios import User
 from .models.laboratorios import Lab, ReservaLab
 from .models.materiais import Material, ReservaMaterial, Categoria
-from .controllers import lab_bp, materias_bp, usu_bp
+from .controllers import lab_bp, materiais_bp, usu_bp
 
 load_dotenv('.env')
 
@@ -28,7 +28,7 @@ def load_user(user_id):
 
 #registrar os bps
 app.register_blueprint(lab_bp)
-app.register_blueprint(materias_bp)
+app.register_blueprint(materiais_bp)
 app.register_blueprint(usu_bp)
 app.register_blueprint(auth_bp)
 
