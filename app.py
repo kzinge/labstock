@@ -76,15 +76,6 @@ def visualizar_aluno():
     return render_template('pages/visualizar_aluno.html')
 
 
-@app.route('/cadastrar_material', methods=['POST', 'GET'])
-def cadastrar_material():
-    if request.method == 'POST':
-        nome_material = request.form['nome_material']
-        tipo_material = request.form['tipo_material']
-        return f"<h1> metodo post nome: {nome_material} tipo: {tipo_material}</h1>"
-    return render_template('pages/cadastrar_material.html')
-
-
 @app.route('/logout', methods=['POST'])
 def logout():
     logout_user()
