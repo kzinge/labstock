@@ -1,7 +1,7 @@
 #Rotas para laboratórios
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from ..models.laboratorios import Lab, ReservaLab
-from ..database import *
+from ..database import db
 lab_bp = Blueprint(name ='lab', 
                     import_name= __name__, 
                     url_prefix='/lab', 
@@ -9,7 +9,8 @@ lab_bp = Blueprint(name ='lab',
 
 @lab_bp.route('/')
 def index():
-    return 'laboratorios'
+    laboratorios = db.session.scalars(db.select(Lab)).all()
+    return f'{laboratorios}'
 
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
 def cadastrar_lab():
@@ -19,5 +20,8 @@ def cadastrar_lab():
         local_lab = request.form['local_lab']
         capacidade_lab = request.form['capacidade_lab']
         laboratorio = Lab(nome_lab, especialidade_lab, local_lab, capacidade_lab)
-        return f"<h1> metodo post nome: {nome_lab} especialidade: {especialidade_lab} local: {local_lab} quantidade: {capacidade_lab}</h1>"
+        db.session.add(laboratorio)
+        db.session.commit()
+        flash('cadastro de laboratório realizado!')
+        return redirect(url_for('lab.index'))
     return render_template('laboratorios/cadastrar_lab.html')
