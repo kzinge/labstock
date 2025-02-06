@@ -1,7 +1,7 @@
 {% extends "modGeral.html" %}
 
 {% block head_extras %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/cadastrar_lab.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/cadastrar_lab.css') }}">
 {% endblock %}
 
 {% block headerlinks %}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{url_for('cadastrar_lab')}}" method="POST" id="form-lab">
+<form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
     <label for="nome_lab">Nome do laboratório:</label>
     <input type="text" name="nome_lab" id="nome-lab">
 
