@@ -27,10 +27,19 @@ def cadastrar_material():
                                  mat_fornecedor = mat_fornecedor, mat_validade = validade_material, mat_lab_id = mat_lab_id, mat_cai_id = mat_cat_id)
         db.session.add(novo_material)
         db.session.commit()
-        return redirect(url_for('estoque.html'))
-    return render_template('pages/cadastrar_material.html')
+        return redirect(url_for('material.estoque'))
+    return render_template('materiais/cadastrar_material.html')
 
 @materiais_bp.route('/estoque', methods=['POST','GET'])
 def estoque():
     materiais = db.session.scalars(db.select(Material)).all()
     return render_template('estoque.html', materiais = materiais)
+
+@materiais_bp.route('/nova_cat', methods=['POST'])
+def nova_categoria():
+    nome = request.form['nome']
+    nova_cat = Categoria(nome=nome)
+    db.session.add(nova_cat)
+    db.session.commit()
+    
+    return redirect(url_for('material.cadastrar_material'))
