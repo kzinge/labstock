@@ -23,7 +23,7 @@
     <button type="submit">Criar</button>
 </form> 
 
-<form action="{{url_for('material.cadastrar_material')}}" method="POST" id="form-material">
+<form action="{{url_for('material.cadastro')}}" method="POST" id="form-material">
     <label for="nome_material">Nome do material:</label>
     <input type="text" name="nome_material" id="nome-material">
 
@@ -33,10 +33,18 @@
     <div class="conteiner-labels">
         <label for="validade_material">Validade:</label>
         <label for="quantidade_material">Quantidade:</label>
+        <label for="unidade" style="position:relative;right:-30px;">Medida:</label>
     </div>
     <div class="conteiner-inputs">
         <input type="date" name="validade_material" id="validade-material">
         <input type="number" name="quantidade_material" id="quantidade-material">
+        <select name="unidade">
+            <option value="mg">mg</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <option value="ml">mL</option>
+            <option value="l">L</option>
+        </select>
     </div>
 
     <button type="submit" class="botao-cadastrar">Cadastrar</button>
