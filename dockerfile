@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV PYTHONUNBUFFERED=1
 
 # Expondo a porta do Flask
-EXPOSE 5000
+EXPOSE 3000
 
 # Comando para rodar a aplicação
 CMD ["python", "app.py"]
