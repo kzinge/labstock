@@ -23,10 +23,10 @@
     <input type="text" name="nome_lab" id="nome-lab" required>
 
     <label for="tipo_reserva">Tipo da reserva:</label>
-    <select name="tipo_reserva" id="tipo-reserva">
+    <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
         <option value="anual">anual</option>
         <option value="semestral">semestral</option>
-        <option value="anual">extraordinária</option>
+        <option value="extraordinaria">extraordinária</option>
     </select>
 
     <label for="motivo_reserva">motivo da reserva:</label required>
@@ -38,7 +38,7 @@
     <label for="horario_termino">Horário de término:</label>
     <input type="time" name="horario_termino" id="horario-termino" required>
 
-    <div id="data-field" style="display: none;">
+    <div id="div-data">
         <label for="data_reserva">Data da reserva:</label>
         <input type="date" name="data_reserva" id="data-reserva">
     </div>
@@ -49,6 +49,9 @@
     <div class="conteiner-inputs">
         <button type="submit" class="botao-reservar">Reservar</button>
     </div>
-
+    
 </form>
+
+<script src="{{ url_for('static', filename='scripts/reservar_lab.js') }}"></script>
+
 {% endblock %}

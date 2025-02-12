@@ -56,3 +56,7 @@ main {
     border: none;
 }
 
+#div-data {
+    display: none;
+    flex-direction: column;
+}
