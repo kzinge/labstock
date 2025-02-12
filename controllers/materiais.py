@@ -45,17 +45,13 @@ def edit(id):
 
         if nome_material != material.mat_nome:
             material.mat_nome = nome_material
-
         if tipo_material != categoria: 
             mat_cat_id = db.session.scalar(db.select(Categoria.cat_id).filter(Categoria.cat_nome == tipo_material))
             material.mat_cat_id = mat_cat_id
-
         if mat_unidade != material.mat_unidade:
             material.mat_unidade = mat_unidade
-        
         if quantidade_material != material.mat_quantidade:
             material.mat_quantidade = quantidade_material
-
         if validade_material != material.mat_validade:
             material.mat_validade = validade_material 
         
