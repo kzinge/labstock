@@ -26,6 +26,7 @@ def cadastrar_lab():
         return redirect(url_for('lab.index'))
     return render_template('laboratorios/cadastrar_lab.html')
 
+
 @lab_bp.route('/reservar', methods = ['GET', 'POST'])
 def reservar_lab():
     if request.method == 'POST':
@@ -34,5 +35,8 @@ def reservar_lab():
         motivo_reserva = request.form['motivo_reserva']
         horario_inicio = request.form['horario_inicio']
         horario_termino = request.form['horario_termino']
+        if tipo_reserva == 'extraordinaria':
+            data_reserva = request.form['data_reserva']
+            
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)
