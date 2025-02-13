@@ -28,7 +28,8 @@ class ReservaLab(db.Model):
     __tablename__ = 'tb_reservas_laboratorios'
 
     rel_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    rel_data: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    rel_dataInicial: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    rel_dataFinal: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     rel_motivo: Mapped[str] = mapped_column(Text, nullable=False)
     rel_tipo: Mapped[str] = mapped_column(Enum('Anual', 'Semestral', 'Extraordinária'), nullable=False)
     rel_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
@@ -41,8 +42,9 @@ class ReservaLab(db.Model):
     def __repr__(self):
         return f'Reserva {self.rel_id} - Laboratório: {self.rel_lab_id} - Data: {self.rel_data}'
 
-    def __init__(self, data, motivo, tipo, lab_id, usu_matricula) -> None:
-        self.rel_data = data
+    def __init__(self, data_inicial, data_final, motivo, tipo, lab_id, usu_matricula) -> None:
+        self.rel_dataInicial = data_inicial
+        self.rel_dataFinal = data_final
         self.rel_motivo = motivo
         self.rel_tipo = tipo
         self.rel_lab_id = lab_id
