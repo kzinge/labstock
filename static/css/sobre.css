@@ -109,6 +109,26 @@ body {
     }
 }
 
+button{
+    width: 5rem;
+    height: 2rem;
+    margin: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #7ed957;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+
+button:hover{
+    background-color: black;
+    color: #7ed957;
+}    
+
 @media (max-width: 768px) {
     #lab-sobre {
         flex-direction: column;

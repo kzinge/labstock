@@ -4,7 +4,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
 {% endblock %}
 
-
+{% block headerlinks %}
+<form action="{{ url_for('index') }}" method="get">
+    <button type="submit">Voltar</button>
+</form>
+{% endblock %}
 
 {% block content %}
 <div id="conteudo-sobre">
