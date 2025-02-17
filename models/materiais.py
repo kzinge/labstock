@@ -11,6 +11,9 @@ class Categoria(db.Model):
 
     materiais = relationship('Material', back_populates='categoria', lazy=True)
 
+    def __repr__(self):
+        return self.cat_nome
+    
     def __init__(self, nome) -> None:
         self.cat_nome = nome
 

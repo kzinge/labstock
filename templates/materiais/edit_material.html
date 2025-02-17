@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="{{url_for('material.edit')}}" method="POST" id="form-material">
+    <form action="{{url_for('material.edit', id = material.mat_id)}}" method="POST" id="form-material">
         <label for="nome_material">Nome do material:</label>
         <input type="text" name="nome_material" id="nome-material" value={{material.mat_nome}}>
 
