@@ -33,7 +33,7 @@ def oauth2_authorize(provider):
     # Cria uma string de consulta com todos os parâmetros do OAuth2
     qs = urlencode({
         'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
-        'redirect_uri': getenv('AUTH_REDIRECT'),
+        'redirect_uri': 'http://localhost:5000/auth/callback/suap',
         'response_type': 'code',
         'scope': 'email',
         'state': session['oauth2_state'],

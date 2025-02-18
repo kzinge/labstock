@@ -45,8 +45,9 @@ def index():
 def login():
     return render_template('pages/login.html')
 
-@login_required
+
 @app.route('/inicio')
+@login_required
 def dashboard():
     usuario = db.session.scalar(db.select(User).where(User.usu_matricula == current_user.usu_matricula))
     return render_template('pages/inicio.html', nome = usuario.usu_nome, foto = usuario.usu_foto, tipo = usuario.usu_tipo)

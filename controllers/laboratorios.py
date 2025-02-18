@@ -2,6 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from ..models.laboratorios import Lab, ReservaLab
 from ..database import db
+from ..decorators.auth import role_required
 lab_bp = Blueprint(name ='lab', 
                     import_name= __name__, 
                     url_prefix='/lab', 
@@ -12,7 +13,9 @@ def index():
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return f'{laboratorios}'
 
+
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
+@role_required('Técnico')
 def cadastrar_lab():
     if request.method == 'POST':
         nome_lab = request.form['nome_lab']
