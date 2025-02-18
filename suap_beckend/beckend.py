@@ -9,6 +9,7 @@ class SuapOAuth2():
     AUTHORIZATION_URL = 'https://suap.ifrn.edu.br/o/authorize/'
     ACCESS_TOKEN_METHOD = 'POST'
     ACCESS_TOKEN_URL = 'https://suap.ifrn.edu.br/o/token/'
+    REVOKE_TOKEN_URL = 'https://suap.ifrn.edu.br/o/revoke_token/'
     ID_KEY = 'identificacao'
     RESPONSE_TYPE = 'code'
     REDIRECT_STATE = True

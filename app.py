@@ -39,11 +39,9 @@ with app.app_context():
 
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard') )
     return render_template('pages/index.html')
-
-@app.route('/login')
-def login():
-    return render_template('pages/login.html')
 
 
 @app.route('/inicio')
@@ -77,11 +75,6 @@ def visualizar_aluno():
     return render_template('pages/visualizar_aluno.html')
 
 
-@app.route('/logout', methods=['POST'])
-def logout():
-    logout_user()
-    flash('Você foi desconectado com sucesso.')
-    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host='10.146.6.4', port=5000)

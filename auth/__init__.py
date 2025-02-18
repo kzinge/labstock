@@ -1,7 +1,7 @@
 #Login com SUAP
 from flask import Blueprint, redirect, url_for,abort,session, request, flash
 from urllib.parse import urlencode
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user
 from ..suap_beckend.beckend import SuapOAuth2
 from ..database import db
 from ..models.usuarios import User
@@ -72,6 +72,7 @@ def oauth2_callback(provider):
     }, headers={'Accept': 'application/json'})
 
     oauth2_token = response.json().get('access_token')
+
     if not oauth2_token:
         abort(401)
 
@@ -110,5 +111,30 @@ def oauth2_callback(provider):
             db.session.commit()
 
 
+#Login de Usuário
     login_user(user)
     return redirect(url_for('dashboard'))
+
+#Logout de Usuário
+@auth_bp.route('/logout/<provider>', methods=['POST'])
+def logout(provider):
+    if current_user.is_authenticated:
+        # Obtém o token salvo na sessão
+        oauth2_token = session.get('access_token')
+
+        if oauth2_token:
+            # Faz a requisição para revogar o token no SUAP
+            response = requests.post(suap_data.REVOKE_TOKEN_URL, data={
+                "token": oauth2_token,
+                "client_id": suap_data.SOCIAL_AUTH_SUAP_KEY,
+                "client_secret": suap_data.SOCIAL_AUTH_SUAP_SECRET,
+            }, headers={'Accept': 'application/json'})
+
+            if response.status_code == 200:
+                # Remove o token da sessão
+                session.pop("access_token", None)
+
+        # Desloga o usuário do Flask-Login
+        logout_user()
+
+    return redirect(url_for('index'))

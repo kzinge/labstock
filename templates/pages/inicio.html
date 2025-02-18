@@ -8,7 +8,7 @@
 <li><a href="#">Teste</a></li>
 <li><a href="#">Teste</a></li>
 <li><a href="#">Teste</a></li>
-<form action="{{url_for('logout')}}" method="post">
+<form action="{{url_for('auth.logout', provider='suap')}}" method="post">
     <button type="submit">Sair</button>
 </form>
 {% endblock %}
