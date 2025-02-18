@@ -8,7 +8,7 @@ materiais_bp = Blueprint(name ='material',
                     template_folder='templates')
 
 #CREATE MATERIAIS
-@materiais_bp.route('/cadastro', methods=['POST', 'GET'])
+@materiais_bp.route('/cadastro', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def cadastro():
     mat_fornecedor = 'null'
     mat_lab_id = 1 #PEGAR O LABORATORIO
@@ -26,13 +26,14 @@ def cadastro():
         return redirect(url_for('material.estoque'))
     return render_template('materiais/cadastrar_material.html')
 
-@materiais_bp.route('/estoque', methods=['POST','GET'])
+@materiais_bp.route('/estoque', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
 def estoque():
     materiais = db.session.scalars(db.select(Material)).all()
     return render_template('materiais/estoque.html', materiais = materiais)
 
-@materiais_bp.route('/edit/<int:id>', methods=['POST', 'GET']) # AINDA PRECISA LEMBRAR DE MUDAR O NEGÓCIO PRA PEGAR O LABORATORIO
+@materiais_bp.route('/edit/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def edit(id):
+    # AINDA PRECISA LEMBRAR DE MUDAR O NEGÓCIO PRA PEGAR O LABORATORIO
     material = db.session.scalar(db.select(Material).filter(Material.mat_id == int(id)))
     categoria = db.session.scalar(db.select(Categoria.cat_nome).filter(Categoria.cat_id == material.mat_cat_id))
 
@@ -64,14 +65,14 @@ def edit(id):
 
     return render_template('materiais/edit_material.html', material = material, categoria = categoria)
 
-@materiais_bp.route('/remove/<int:id>', methods=['POST', 'GET'])
+@materiais_bp.route('/remove/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def remove(id):
     material = db.session.scalar(db.select(Material).filter(Material.mat_id == int(id)))
     db.session.delete(material)
     db.session.commit()
     return redirect(url_for('material.estoque'))
 
-@materiais_bp.route('/nova_categoria', methods=['POST'])
+@materiais_bp.route('/nova_categoria', methods=['POST']) # ROTA APENAS PARA TECNICO
 def nova_categoria():
     nome = request.form['nome']
     nova_cat = Categoria(nome=nome)
