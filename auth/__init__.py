@@ -1,5 +1,5 @@
 #Login com SUAP
-from flask import Blueprint, redirect, url_for,abort,session, request, flash
+from flask import Blueprint, redirect, url_for,abort,session, request, flash, make_response
 from urllib.parse import urlencode
 from flask_login import current_user, login_user, logout_user
 from ..suap_beckend.beckend import SuapOAuth2
@@ -113,7 +113,13 @@ def oauth2_callback(provider):
 
 #Login de Usuário
     login_user(user)
-    return redirect(url_for('dashboard'))
+    response_cookie = make_response(url_for("dashboard"))
+    response_cookie.set_cookie('username', user_infos['nome_usual'], httponly=False)
+    response_cookie.set_cookie('user_foto', user_infos['url_foto_75x100'], httponly=False)
+    return response_cookie
+    # session['username'] = user_infos['nome_usual']
+    # session['foto'] = user_infos['url_foto_75x100']
+    #return redirect(url_for('dashboard'))
 
 #Logout de Usuário
 @auth_bp.route('/logout/<provider>', methods=['POST'])
