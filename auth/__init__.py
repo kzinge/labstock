@@ -57,29 +57,33 @@ def oauth2_callback(provider):
                 flash(f'{k}: {v}')
         return redirect(url_for('index'))
 
-
     if 'code' not in request.args:
         abort(401)
 
-
-    response = requests.post(suap_data.ACCESS_TOKEN_URL, data={
-        'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
-        'client_secret': suap_data.SOCIAL_AUTH_SUAP_SECRET,
-        'code': request.args['code'],
-        'grant_type': 'authorization_code',
-        'redirect_uri': url_for('auth.oauth2_callback', provider=provider,
-                                _external=True),
-    }, headers={'Accept': 'application/json'})
+    response = requests.post(
+        suap_data.ACCESS_TOKEN_URL,
+        data={
+            'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
+            'client_secret': suap_data.SOCIAL_AUTH_SUAP_SECRET,
+            'code': request.args['code'],
+            'grant_type': 'authorization_code',
+            'redirect_uri': url_for('auth.oauth2_callback', provider=provider, _external=True),
+        },
+        headers={'Accept': 'application/json'}
+    )
 
     oauth2_token = response.json().get('access_token')
 
     if not oauth2_token:
         abort(401)
 
-    user_response = requests.get(suap_data.USER_DATA_URL, headers={
-        'Authorization': 'Bearer ' + oauth2_token,
-        'Accept': 'application/json',
-    })
+    user_response = requests.get(
+        suap_data.USER_DATA_URL,
+        headers={
+            'Authorization': f'Bearer {oauth2_token}',
+            'Accept': 'application/json',
+        }
+    )
 
     print(user_response.status_code)
 
@@ -88,38 +92,57 @@ def oauth2_callback(provider):
 
     user_infos = user_response.json()
 
-    # buscar user
-    user = db.session.scalar(db.select(User).where(User.usu_matricula == user_infos['matricula']))
+    # Buscar usuário
+    user = db.session.scalar(
+        db.select(User).where(User.usu_matricula == user_infos['matricula'])
+    )
 
     if user is None:
         
         if user_infos['tipo_vinculo'] == 'Servidor':
 
-            if 'PROFESSOR' in user_infos['vinculo']['cargo']:
-                user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= 'Professor', foto = user_infos['url_foto_75x100'])
+            if 'docente' in user_infos['vinculo']['categoria']:
+                user = User(
+                    nome= user_infos['nome_usual'],
+                    email= user_infos['email'],
+                    matricula= user_infos['matricula'],
+                    tipo= 'Docente',
+                    foto = user_infos['url_foto_75x100']
+                    )
                 db.session.add(user)
                 db.session.commit()
             
             elif 'TECNICO' in user_infos['vinculo']['cargo']:
-                user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= 'Técnico', foto = user_infos['url_foto_75x100'])
+                user = User(
+                    nome= user_infos['nome_usual'],
+                    email= user_infos['email'],
+                    matricula= user_infos['matricula'],
+                    tipo= 'Técnico',
+                    foto = user_infos['url_foto_75x100']
+                    )
                 db.session.add(user)
                 db.session.commit()
         
         else:
-            user = User(nome= user_infos['nome_usual'], email= user_infos['email'], matricula= user_infos['matricula'], tipo= user_infos['tipo_vinculo'], foto = user_infos['url_foto_75x100'])
+            user = User(
+                nome= user_infos['nome_usual'],
+                email= user_infos['email'],
+                matricula= user_infos['matricula'],
+                tipo= user_infos['tipo_vinculo'],
+                foto = user_infos['url_foto_75x100']
+                )
             db.session.add(user)
             db.session.commit()
 
 
 #Login de Usuário
     login_user(user)
-    response_cookie = make_response(url_for("dashboard"))
+
+    response_cookie = make_response(redirect(url_for('dashboard')))
     response_cookie.set_cookie('username', user_infos['nome_usual'], httponly=False)
     response_cookie.set_cookie('user_foto', user_infos['url_foto_75x100'], httponly=False)
+
     return response_cookie
-    # session['username'] = user_infos['nome_usual']
-    # session['foto'] = user_infos['url_foto_75x100']
-    #return redirect(url_for('dashboard'))
 
 #Logout de Usuário
 @auth_bp.route('/logout/<provider>', methods=['POST'])

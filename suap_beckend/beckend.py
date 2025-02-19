@@ -14,7 +14,7 @@ class SuapOAuth2():
     RESPONSE_TYPE = 'code'
     REDIRECT_STATE = True
     STATE_PARAMETER = True
-    USER_DATA_URL = 'https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/'
+    USER_DATA_URL = 'https://suap.ifrn.edu.br/api/rh/meus-dados/'
     SOCIAL_AUTH_SUAP_KEY = getenv('SOCIAL_AUTH_SUAP_KEY')
     SOCIAL_AUTH_SUAP_SECRET = getenv('SOCIAL_AUTH_SUAP_SECRET')
     

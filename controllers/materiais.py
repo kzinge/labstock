@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from ..database import db
 from ..models.materiais import Material, Categoria
 from ..models.laboratorios import Lab
+from ..decorators.auth import role_required
 materiais_bp = Blueprint(name ='material', 
                     import_name= __name__, 
                     url_prefix='/material', 
@@ -43,6 +44,7 @@ def cadastro():
     return render_template('materiais/cadastrar_material.html')
 
 @materiais_bp.route('/estoque', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
+@role_required('Docente')
 def estoque():
     materiais = db.session.scalars(db.select(Material)).all()
     return render_template('materiais/estoque.html', materiais = materiais)
