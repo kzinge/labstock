@@ -24,13 +24,17 @@
         <div class="conteiner-inputs">
             <input type="date" name="validade_material" id="validade-material" value={{material.mat_validade}}>
             <input type="number" name="quantidade_material" id="quantidade-material" value={{material.mat_quantidade}}>
-            {% set opcoes = ["mg", "g", "kg", "ml", "l"] %}
+            {% set opcoes = ["g", "l"] %}
             <select name="unidade">
                 {% for opcao in opcoes %}
                 <option value="{{ opcao }}" {% if opcao==unidade %} selected {% endif %}>{{ opcao }}</option>
                 {% endfor %}
             </select>
         </div>
+        <label for="lab_nome">Lab</label>
+        <input type="text" name="lab_nome" value={{laboratorio}}>
+        <label for="fornecedor">Fornecedor</label>
+        <input type="text" name="fornecedor" value={{material.mat_fornecedor}}>
 
         <button type="submit" class="botao-cadastrar">Editar</button>
     </form>

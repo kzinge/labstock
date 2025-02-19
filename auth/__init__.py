@@ -142,5 +142,8 @@ def logout(provider):
 
         # Desloga o usuário do Flask-Login
         logout_user()
+        resp = make_response(redirect(url_for('index'))) 
+        resp.delete_cookie('username')
+        resp.delete_cookie('user_foto')
 
-    return redirect(url_for('index'))
+    return resp

@@ -15,7 +15,7 @@ def index():
 
 
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
-@role_required('Técnico')
+# @role_required('Técnico')
 def cadastrar_lab():
     if request.method == 'POST':
         nome_lab = request.form['nome_lab']

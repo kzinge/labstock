@@ -63,7 +63,7 @@ body {
         border-radius: 10px;
         width: calc(25% - 20px);
         height: 90%;
-
+        
         & img {
             border-radius: 100%;
           
