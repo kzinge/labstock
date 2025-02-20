@@ -52,6 +52,7 @@ CREATE TABLE tb_reservas_materiais (
     rem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     rem_mat_id INT NOT NULL,
     rem_rel_id INT NOT NULL,
+    rem_mat_quantidade INT NOT NULL,
     FOREIGN KEY (rem_mat_id) REFERENCES tb_materiais(mat_id),
     FOREIGN KEY (rem_rel_id) REFERENCES tb_reservas_laboratorios(rel_id)
 );
