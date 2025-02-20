@@ -11,6 +11,7 @@ main {
     flex-direction: column;
     padding: 20px;
     margin: auto;
+    background-color: gray;
 }
 
 #form-lab input {
@@ -28,7 +29,7 @@ main {
 
 #form-lab label {
     margin-top: 20px;
-    color: white;
+    color: black;
 }
 
 #form-lab .conteiner-inputs {

@@ -14,6 +14,11 @@ def index():
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return f'{laboratorios}'
 
+@lab_bp.route('/reservas')
+def reservas():
+    reservas = db.session.scalars(db.select(ReservaLab)).all()
+    return f'{reservas}'
+
 
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
 # @role_required('Técnico')
@@ -40,18 +45,20 @@ def reservar_lab():
         motivo_reserva = request.form['motivo_reserva']
         horario_inicio = request.form['horario_inicio']
         horario_termino = request.form['horario_termino']
+        data_inicio = request.form['data_inicio']
         if tipo_reserva == 'extraordinaria':
-            data_inicio = request.form['data_inicio']
-            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_inicio, rel_motivo=motivo_reserva,
+            data_final = data_inicio
+            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_final, rel_motivo=motivo_reserva,
                                  rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
         else:
-            data_inicio = request.form['data_inicio']
             data_final = request.form['data_final']
             reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_final, rel_motivo=motivo_reserva,
                                  rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
         
         db.session.add(reserva)
         db.session.commit()
-        
+        flash('solicitação de reserva de laboratório realizada!')
+        return redirect(url_for('lab.reservas'))
+    
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)
