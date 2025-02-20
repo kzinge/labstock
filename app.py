@@ -48,7 +48,12 @@ def index():
 @login_required
 def dashboard():
     usuario = db.session.scalar(db.select(User).where(User.usu_matricula == current_user.usu_matricula))
-    return render_template('pages/inicio.html', nome = usuario.usu_nome, foto = usuario.usu_foto, tipo = usuario.usu_tipo)
+    if usuario.usu_tipo == 'Docente':
+        return render_template('pages/inicioProfessor.html', nome = usuario.usu_nome)
+    elif usuario.usu_tipo == 'Técnico':
+        return render_template('pages/inicioTecnico.html', nome = usuario.usu_nome)
+    else:
+        return render_template('pages/inicio.html', nome = usuario.usu_nome)
 
 @app.route('/sobre')
 def sobre():
