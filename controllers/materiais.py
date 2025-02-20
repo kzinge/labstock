@@ -43,8 +43,8 @@ def cadastro():
 
     return render_template('materiais/cadastrar_material.html')
 
-@materiais_bp.route('/estoque', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
-@role_required('Docente')
+@materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
+# @role_required('Docente')
 def estoque():
     materiais = db.session.scalars(db.select(Material)).all()
     return render_template('materiais/estoque.html', materiais = materiais)

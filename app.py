@@ -60,9 +60,9 @@ def laboratorios():
     return render_template('pages/laboratorios.html')
 
 
-@app.route('/reserva_materiais')
-def reserva_materiais():
-    return render_template('pages/reserva_materiais.html')
+# @app.route('/reservar')
+# def reservar():
+#     return render_template('pages/reserva')
 
 
 @app.route('/visualizar_prof')
@@ -78,3 +78,4 @@ def visualizar_aluno():
 
 if __name__ == '__main__':
     app.run(host='10.146.6.4', port=5000)
+

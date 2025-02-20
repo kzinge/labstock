@@ -1,5 +1,6 @@
 #Rotas para laboratórios
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask_login import current_user
 from ..models.laboratorios import Lab, ReservaLab
 from ..database import db
 from ..decorators.auth import role_required
@@ -34,12 +35,23 @@ def cadastrar_lab():
 def reservar_lab():
     if request.method == 'POST':
         nome_lab = request.form['nome_lab']
+        lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_nome == nome_lab))
         tipo_reserva = request.form['tipo_reserva']
         motivo_reserva = request.form['motivo_reserva']
         horario_inicio = request.form['horario_inicio']
         horario_termino = request.form['horario_termino']
         if tipo_reserva == 'extraordinaria':
-            data_reserva = request.form['data_reserva']
-            
+            data_inicio = request.form['data_inicio']
+            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_inicio, rel_motivo=motivo_reserva,
+                                 rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
+        else:
+            data_inicio = request.form['data_inicio']
+            data_final = request.form['data_final']
+            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_final, rel_motivo=motivo_reserva,
+                                 rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
+        
+        db.session.add(reserva)
+        db.session.commit()
+        
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)
