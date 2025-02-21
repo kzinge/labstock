@@ -13,13 +13,16 @@ class SuapOAuth2():
     AUTHORIZATION_URL = 'https://suap.ifrn.edu.br/o/authorize/'
     ACCESS_TOKEN_METHOD = 'POST'
     ACCESS_TOKEN_URL = 'https://suap.ifrn.edu.br/o/token/'
+    REVOKE_TOKEN_URL = 'https://suap.ifrn.edu.br/o/revoke_token/'
     ID_KEY = 'identificacao'
     RESPONSE_TYPE = 'code'
     REDIRECT_STATE = True
     STATE_PARAMETER = True
+
     USER_DATA_URL = 'https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/'
     SOCIAL_AUTH_SUAP_KEY = SUAP_KEY
     SOCIAL_AUTH_SUAP_SECRET = SUAP_SECRET
+
     
 
     def user_data(self, access_token, *args, **kwargs):

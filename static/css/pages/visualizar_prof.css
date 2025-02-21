@@ -1,0 +1,156 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.labs {
+    max-width: 850px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.lab-conteiner {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 230px;
+    height: fit-content;
+    border: 1px solid black;
+    margin: 15px 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-conteiner img {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.botoes * {
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    margin: 0px 5px;
+}
+
+.botoes img {
+    width: 40px;
+}
+
+.botoes :nth-child(3) {
+    transform: scaleX(-1);
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+table {
+    width: 80%;
+    border-collapse: collapse; 
+    margin-top: 1rem; 
+}
+
+
+th {
+    background-color:#7ed957; 
+}
+
+
+th, td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: center; 
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/*testes*/ 
+nav{
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #7ed957;
+
+    & #hd-logo{
+        display: flex;
+        align-items: center;
+        width: 15%;
+
+        & a{
+            width: 60%;
+        }
+
+        & img{
+            width: 100%;
+        }
+    }   
+    
+    & #hd-links{
+        display: flex;
+        width: 50%;
+
+        & ul{
+            list-style: none;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+         & li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 10%;
+            height: 2rem;
+            margin: 10px;
+            border-radius: 5px;
+            background: rgb(255, 255, 255);
+            transition: background-color 0.3s;
+         }
+
+         & li:hover{
+            background-color: transparent;
+            border: 0.5px solid white;
+
+         }
+
+            & a{
+                text-decoration: none;
+                color: rgb(0, 0, 0);
+                transition: color 0.3s;
+            }
+
+            & a:hover{
+                color: white;
+             }
+
+    }
+
+}

@@ -1,0 +1,60 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/reservar_lab.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<form action="{{url_for('lab.reservar_lab')}}" method="POST" id="form-lab">
+    <label for="nome_lab">Nome do laboratório:</label>
+    <input type="text" name="nome_lab" id="nome-lab" required>
+
+    <label for="tipo_reserva">Tipo da reserva:</label>
+    <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
+        <option value="anual">anual</option>
+        <option value="semestral">semestral</option>
+        <option value="extraordinaria">extraordinária</option>
+    </select>
+
+    <label for="motivo_reserva">motivo da reserva:</label>
+    <input type="text" name="motivo_reserva" required>
+
+    <label for="horario_inicio">Horário de início:</label>
+    <input type="time" name="horario_inicio" id="horario-inicio" required>
+
+    <label for="horario_termino">Horário de término:</label>
+    <input type="time" name="horario_termino" id="horario-termino" required>
+
+    <label for="data_inicio" id="label-inicio">Data de início:</label>
+    <input type="date" name="data_inicio" id="data-inicio" required>
+
+    <div id="div-data">
+        <label for="data_final">Data final:</label>
+        <input type="date" name="data_final" id="data-final" required>
+    </div>
+
+
+
+    
+    <div class="conteiner-inputs">
+        <button type="submit" class="botao-reservar">Reservar</button>
+    </div>
+    
+</form>
+
+<script src="{{ url_for('static', filename='scripts/reservar_lab.js') }}"></script>
+
+{% endblock %}

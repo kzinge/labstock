@@ -2,6 +2,7 @@ from sqlalchemy import Integer, String, DECIMAL, Numeric, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database import db
 from datetime import date
+from typing import List
 
 class Categoria(db.Model):
     __tablename__ = 'tb_categorias'
@@ -11,6 +12,9 @@ class Categoria(db.Model):
 
     materiais = relationship('Material', back_populates='categoria', lazy=True)
 
+    def __repr__(self):
+        return self.cat_nome
+    
     def __init__(self, nome) -> None:
         self.cat_nome = nome
 
@@ -19,8 +23,8 @@ class Material(db.Model):
 
     mat_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     mat_nome: Mapped[str] = mapped_column(String(50), nullable=False)
-    mat_quantidade: Mapped[DECIMAL] = mapped_column(Numeric(10, 2), nullable=False)
-    mat_unidade: Mapped[Enum] = mapped_column(Enum('kg', 'g', 'mg', 'l', 'ml'), nullable=False)
+    mat_quantidade: Mapped[DECIMAL] = mapped_column(Numeric(10, 3), nullable=False)
+    mat_unidade: Mapped[Enum] = mapped_column(Enum('g', 'l'), nullable=False)
     mat_fornecedor: Mapped[str] = mapped_column(String(90), nullable=False)
     mat_validade: Mapped[date] = mapped_column(Date, nullable=False)
     mat_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
@@ -46,7 +50,8 @@ class ReservaMaterial(db.Model):
     __tablename__ = 'tb_reservas_materiais'
 
     rem_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    rem_mat_id: Mapped[int] = mapped_column(ForeignKey('tb_materiais.mat_id'), nullable=False)
+    rem_mat_id: Mapped[List["Material"]] = mapped_column(ForeignKey('tb_materiais.mat_id'), nullable=False)
+    rem_mat_quantidade = db.Column(db.Integer, nullable=False) #obs: eu mexi aqui porque esta tava dando erro no codigo, qualquer coisa podem mudar 
     rem_rel_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_laboratorios.rel_id'), nullable=False)
 
     material = relationship('Material', back_populates='reservas_materiais', lazy=True)

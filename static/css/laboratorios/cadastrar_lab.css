@@ -1,0 +1,59 @@
+main {
+    display: flex;
+    min-height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-lab {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: auto;
+    background-color: gray;
+}
+
+#form-lab input {
+    background-color: #d3d3d3;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    height: 40px;
+}
+
+#form-lab > label:nth-of-type(1){
+    margin-top: 0px;
+}
+
+#form-lab label {
+    margin-top: 20px;
+    color: rgb(0, 0, 0);
+}
+
+#form-lab .conteiner-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-inputs :nth-child(2) {
+    margin-left: 15px;
+    width: 150px;
+}
+
+.conteiner-labels {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.botao-cadastrar {
+    margin-top: 5px;
+    background-color: green;
+    width: 100px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+}
+

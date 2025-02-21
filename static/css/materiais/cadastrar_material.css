@@ -27,6 +27,7 @@ main {
 
 #form-material label, button {
     margin-top: 20px;
+    color: white;
 }
 
 #form-material .conteiner-inputs {

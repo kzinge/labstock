@@ -11,6 +11,7 @@ main {
     flex-direction: column;
     padding: 20px;
     margin: auto;
+    background-color: gray;
 }
 
 #form-lab input {
@@ -28,6 +29,7 @@ main {
 
 #form-lab label {
     margin-top: 20px;
+    color: black;
 }
 
 #form-lab .conteiner-inputs {
@@ -46,7 +48,7 @@ main {
     justify-content: flex-start;
 }
 
-.botao-cadastrar {
+.botao-reservar {
     margin-top: 5px;
     background-color: green;
     width: 100px;
@@ -55,3 +57,7 @@ main {
     border: none;
 }
 
+#div-data {
+    display: none;
+    flex-direction: column;
+}

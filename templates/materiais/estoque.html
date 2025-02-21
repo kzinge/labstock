@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+</head>
+<body>
+    {% if materiais %}
+        <ul id="materiais">
+            {% for material in materiais %}
+                <li>Id: {{material.mat_id}} | Nome: {{material.mat_nome}} | Quantidade: {{material.mat_quantidade, material.mat_unidade}} | Lab: {{material.laboratorio}} | Cat: {{material.categoria}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

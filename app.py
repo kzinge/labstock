@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, logout_user, login_required, current_user
+
 from sqlalchemy.exc import OperationalError
 import pymysql
 import time
@@ -12,6 +13,7 @@ from controllers import lab_bp, materias_bp, usu_bp
 
 
 pymysql.install_as_MySQLdb()
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
@@ -26,7 +28,7 @@ def load_user(user_id):
 
 #registrar os bps
 app.register_blueprint(lab_bp)
-app.register_blueprint(materias_bp)
+app.register_blueprint(materiais_bp)
 app.register_blueprint(usu_bp)
 app.register_blueprint(auth_bp)
 
@@ -45,17 +47,21 @@ with app.app_context():
 
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard') )
     return render_template('pages/index.html')
 
-@app.route('/login')
-def login():
-    return render_template('pages/login.html')
 
-@login_required
 @app.route('/inicio')
+@login_required
 def dashboard():
     usuario = db.session.scalar(db.select(User).where(User.usu_matricula == current_user.usu_matricula))
-    return render_template('pages/inicio.html', nome = usuario.usu_nome, foto = usuario.usu_foto, tipo = usuario.usu_tipo)
+    if usuario.usu_tipo == 'Docente':
+        return render_template('pages/inicioProfessor.html', nome = usuario.usu_nome)
+    elif usuario.usu_tipo == 'Técnico':
+        return render_template('pages/inicioTecnico.html', nome = usuario.usu_nome)
+    else:
+        return render_template('pages/inicio.html', nome = usuario.usu_nome)
 
 @app.route('/sobre')
 def sobre():
@@ -67,9 +73,9 @@ def laboratorios():
     return render_template('pages/laboratorios.html')
 
 
-@app.route('/reserva_materiais')
-def reserva_materiais():
-    return render_template('pages/reserva_materiais.html')
+# @app.route('/reservar')
+# def reservar():
+#     return render_template('pages/reserva')
 
 
 @app.route('/visualizar_prof')
@@ -82,30 +88,7 @@ def visualizar_aluno():
     return render_template('pages/visualizar_aluno.html')
 
 
-@app.route('/cadastrar_material', methods=['POST', 'GET'])
-def cadastrar_material():
-    if request.method == 'POST':
-        nome_material = request.form['nome_material']
-        tipo_material = request.form['tipo_material']
-        return f"<h1> metodo post nome: {nome_material} tipo: {tipo_material}</h1>"
-    return render_template('pages/cadastrar_material.html')
-
-
-@app.route('/cadastrar_lab', methods=['POST', 'GET'])
-def cadastrar_lab():
-    if request.method == 'POST':
-        nome_lab = request.form['nome_lab']
-        especialidade_lab = request.form['especialidade_lab']
-        local_lab = request.form['local_lab']
-        capacidade_lab = request.form['capacidade_lab']
-        return f"<h1> metodo post nome: {nome_lab} especialidade: {especialidade_lab} local: {local_lab} quantidade: {capacidade_lab}</h1>"
-    return render_template('pages/cadastrar_lab.html')
-
-@app.route('/logout', methods=['POST'])
-def logout():
-    logout_user()
-    flash('Você foi desconectado com sucesso.')
-    return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
+  app.run(host='0.0.0.0', port=3000)
+

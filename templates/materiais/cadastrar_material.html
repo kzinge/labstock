@@ -1,0 +1,55 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cadastrar_material.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<form action="{{url_for('material.nova_categoria')}}" method="post">
+    <input name="nome" placeholder="Nome da Categoria" type="text" required>
+    <button style="color: black;" type="submit">Criar</button>
+</form> 
+
+<form action="{{url_for('material.cadastro')}}" method="POST" id="form-material">
+    <label for="nome_material">Nome do material:</label>
+    <input type="text" name="nome_material" id="nome-material" value={{nome}}>
+
+    <label for="tipo_material">Tipo:</label>
+    <input type="text" name="tipo_material" id="tipo-material" value={{categoria}}>
+
+    <div class="conteiner-labels">
+        <label for="validade_material">Validade:</label>
+        <label for="quantidade_material">Quantidade:</label>
+        <label for="unidade" style="position:relative;right:-30px;">Medida:</label>
+    </div>
+    <div class="conteiner-inputs">
+        <input type="date" name="validade_material" id="validade-material" value={{validade}}>
+        <input type="number" name="quantidade_material" id="quantidade-material" value={{quantidade}}>
+        <select name="unidade">
+            <option value="mg">mg</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <option value="ml">mL</option>
+            <option value="l">L</option>
+        </select>
+    </div>
+    <label for="lab_nome">Lab</label>
+    <input type="text" name="lab_nome" value={{laboratorio}}>
+    <label for="fornecedor">Fornecedor</label>
+    <input type="text" name="fornecedor" value={{fornecedor}}>
+    <button type="submit" class="botao-cadastrar">Cadastrar</button>
+</form>
+{% endblock %}
