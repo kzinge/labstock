@@ -23,6 +23,7 @@ MarkupSafe==2.1.5
 mysqlclient==2.2.4
 pycparser==2.22
 PyJWT==2.10.0
+pymysql
 pyparsing==3.2.0
 python-dotenv==1.0.1
 python3-openid==3.2.0

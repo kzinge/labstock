@@ -1,8 +1,12 @@
-from os import getenv
-from dotenv import load_dotenv
-
-load_dotenv('.env')
-
+def read_secret(secret_name):
+    try:
+        with open(f'/run/secrets/{secret_name}', 'r') as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        return None
+    
+SUAP_KEY = read_secret('suap_key')
+SUAP_SECRET = read_secret('suap_secret')
 
 class SuapOAuth2():
     name = 'suap'
@@ -14,9 +18,11 @@ class SuapOAuth2():
     RESPONSE_TYPE = 'code'
     REDIRECT_STATE = True
     STATE_PARAMETER = True
-    USER_DATA_URL = 'https://suap.ifrn.edu.br/api/rh/meus-dados/'
-    SOCIAL_AUTH_SUAP_KEY = getenv('SOCIAL_AUTH_SUAP_KEY')
-    SOCIAL_AUTH_SUAP_SECRET = getenv('SOCIAL_AUTH_SUAP_SECRET')
+
+    USER_DATA_URL = 'https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/'
+    SOCIAL_AUTH_SUAP_KEY = SUAP_KEY
+    SOCIAL_AUTH_SUAP_SECRET = SUAP_SECRET
+
     
 
     def user_data(self, access_token, *args, **kwargs):

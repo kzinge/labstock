@@ -3,3 +3,18 @@ vlab/
 __pycache__/
 env/
 *.env
+
+# Arquivos de configuração do Docker
+*.log
+*.pid
+*.swp
+docker-compose.override.yml
+
+# Pastas de dependências
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+
+# Logs do Nginx
+/var/log/nginx/

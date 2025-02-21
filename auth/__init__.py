@@ -1,15 +1,13 @@
 #Login com SUAP
 from flask import Blueprint, redirect, url_for,abort,session, request, flash, make_response
 from urllib.parse import urlencode
-from flask_login import current_user, login_user, logout_user
-from ..suap_beckend.beckend import SuapOAuth2
-from ..database import db
-from ..models.usuarios import User
-import secrets, requests
-from dotenv import load_dotenv
-from os import getenv
 
-load_dotenv('.env')
+from flask_login import current_user, login_user, logout_user
+from suap_beckend.beckend import SuapOAuth2
+from database import db
+from models.usuarios import User
+
+import secrets, requests
 
 
 auth_bp = Blueprint(name ='auth', 
@@ -33,7 +31,9 @@ def oauth2_authorize(provider):
     # Cria uma string de consulta com todos os parâmetros do OAuth2
     qs = urlencode({
         'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
-        'redirect_uri': 'http://localhost:5000/auth/callback/suap',
+
+        'redirect_uri': 'http://localhost:3000/auth/callback/suap',
+
         'response_type': 'code',
         'scope': 'email',
         'state': session['oauth2_state'],

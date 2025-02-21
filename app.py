@@ -1,22 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, logout_user, login_required, current_user
-from os import getenv
-from dotenv import load_dotenv
-from .database import db
-from .auth import auth_bp
-from .models.usuarios import User
-from .models.laboratorios import Lab, ReservaLab
-from .models.materiais import Material, ReservaMaterial, Categoria
-from .controllers import lab_bp, materiais_bp, usu_bp
 
-load_dotenv('.env')
+from sqlalchemy.exc import OperationalError
+import pymysql
+import time
+from database import db
+from auth import auth_bp
+from models.usuarios import User
+from models.laboratorios import Lab, ReservaLab
+from models.materiais import Material, ReservaMaterial, Categoria
+from controllers import lab_bp, materias_bp, usu_bp
+
+
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    f"mysql://{getenv('MYSQL_USER')}:{getenv('MYSQL_SENHA')}@"
-    f"{getenv('MYSQL_HOST')}/{getenv('MYSQL_DB')}"
-)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
 #login_manager
 login_manager = LoginManager()
@@ -35,7 +35,15 @@ app.register_blueprint(auth_bp)
 db.init_app(app)
 
 with app.app_context():
-    db.create_all()
+    connected = False
+    while not connected:
+        try:
+            db.create_all()
+            connected = True
+            print("✅ Conexão com o banco de dados estabelecida!")
+        except OperationalError:
+            print("⏳ Banco de dados ainda não está pronto. Tentando novamente em 2 segundos...")
+            time.sleep(2)
 
 @app.route('/')
 def index():
@@ -82,5 +90,5 @@ def visualizar_aluno():
 
 
 if __name__ == '__main__':
-    app.run(host='10.146.6.4', port=5000)
+  app.run(host='0.0.0.0', port=3000)
 
