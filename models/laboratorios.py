@@ -40,7 +40,7 @@ class ReservaLab(db.Model):
     reservas_materiais = relationship('ReservaMaterial', back_populates='reserva', lazy=True)
 
     def __repr__(self):
-        return f'Reserva {self.rel_id} - Laboratório: {self.rel_lab_id} - Data Inicial: {self.rel_dataInicial}'
+        return f'Reserva {self.rel_id} - Laboratório: {self.laboratorio} - Data Inicial: {self.rel_dataInicial} - Data Final {self.rel_dataFinal}'
 
     def __init__(self, data_inicial, data_final, motivo, tipo, lab_id, usu_matricula) -> None:
         self.rel_dataInicial = data_inicial

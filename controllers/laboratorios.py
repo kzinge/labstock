@@ -4,6 +4,7 @@ from flask_login import current_user
 from ..models.laboratorios import Lab, ReservaLab
 from ..database import db
 from ..decorators.auth import role_required
+from datetime import datetime
 lab_bp = Blueprint(name ='lab', 
                     import_name= __name__, 
                     url_prefix='/lab', 
@@ -45,20 +46,25 @@ def reservar_lab():
         motivo_reserva = request.form['motivo_reserva']
         horario_inicio = request.form['horario_inicio']
         horario_termino = request.form['horario_termino']
-        data_inicio = request.form['data_inicio']
+        data_inicio = datetime.strptime(request.form['data_inicio'] + " " + horario_inicio, '%Y-%m-%d %H:%M')
         if tipo_reserva == 'extraordinaria':
-            data_final = data_inicio
-            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_final, rel_motivo=motivo_reserva,
-                                 rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
+            data_final = datetime.strptime(request.form['data_inicio'] + " " + horario_termino, '%Y-%m-%d %H:%M')
         else:
-            data_final = request.form['data_final']
-            reserva = ReservaLab(rel_dataInicial=data_inicio, rel_dataFinal=data_final, rel_motivo=motivo_reserva,
-                                 rel_tipo=tipo_reserva, rel_lab_id = lab_id, rel_usu_matricula = current_user.usu_matricula)
-        
-        db.session.add(reserva)
-        db.session.commit()
-        flash('solicitação de reserva de laboratório realizada!')
-        return redirect(url_for('lab.reservas'))
+            data_final = datetime.strptime(request.form['data_final'] + " " + horario_termino, '%Y-%m-%d %H:%M')
+
+
+        reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id,
+                                                                            ReservaLab.rel_dataFinal > data_inicio,
+                                                                              ReservaLab.rel_dataInicial < data_final))
+        if reserva_existente:
+            flash("Já existe uma reserva para esse período!", "danger")
+            return "Já existe uma reserva para esse período!"
+            return redirect(url_for('lab.reservar_lab'))
+        else:
+            reserva = ReservaLab(data_inicio, data_final, motivo_reserva, tipo_reserva, lab_id, current_user.usu_matricula)
+            db.session.add(reserva)
+            db.session.commit()
+            flash('solicitação de reserva de laboratório realizada!')
+            return redirect(url_for('lab.reservas'))
     
-    laboratorios = db.session.scalars(db.select(Lab)).all()
-    return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)
+    return render_template('laboratorios/reservar_lab.html')
