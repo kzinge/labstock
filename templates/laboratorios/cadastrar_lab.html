@@ -20,20 +20,20 @@
 {% block content %}
 <form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
     <label for="nome_lab">Nome do laboratório:</label>
-    <input type="text" name="nome_lab" id="nome-lab">
+    <input type="text" name="nome_lab" id="nome-lab" required>
 
     <label for="especialidade_lab">Especialidade:</label>
-    <input type="text" name="especialidade_lab" id="especialidade-lab">
+    <input type="text" name="especialidade_lab" id="especialidade-lab" required>
 
     <label for="local_lab">Local:</label>
-    <input type="text" name="local_lab" id="local-lab">
+    <input type="text" name="local_lab" id="local-lab" required>
 
 
     <div class="conteiner-labels">
         <label for="capacidade_lab">Capacidade:</label>
     </div>
     <div class="conteiner-inputs">
-        <input type="number" name="capacidade_lab" min="1" id="capacidade-lab">
+        <input type="number" name="capacidade_lab" min="1" id="capacidade-lab" required>
         <button type="submit" class="botao-cadastrar">Cadastrar</button>
     </div>
 

@@ -1,7 +1,7 @@
-from sqlalchemy import Integer, String, DateTime, ForeignKey, Text, Enum
+from sqlalchemy import Integer, String, Date, Time, ForeignKey, Text, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from ..database import db
-from datetime import datetime
+from datetime import date, time
 
 class Lab(db.Model):
     __tablename__ = 'tb_laboratorios'
@@ -28,8 +28,10 @@ class ReservaLab(db.Model):
     __tablename__ = 'tb_reservas_laboratorios'
 
     rel_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    rel_dataInicial: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    rel_dataFinal: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    rel_dataInicial: Mapped[date] = mapped_column(Date, nullable=False)
+    rel_dataFinal: Mapped[date] = mapped_column(Date, nullable=False)
+    rel_horarioInicial: Mapped[time] = mapped_column(Time, nullable=False)
+    rel_horarioFinal: Mapped[time] = mapped_column(Time, nullable=False)
     rel_motivo: Mapped[str] = mapped_column(Text, nullable=False)
     rel_tipo: Mapped[str] = mapped_column(Enum('Anual', 'Semestral', 'Extraordinária'), nullable=False)
     rel_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
@@ -40,11 +42,13 @@ class ReservaLab(db.Model):
     reservas_materiais = relationship('ReservaMaterial', back_populates='reserva', lazy=True)
 
     def __repr__(self):
-        return f'Reserva {self.rel_id} - Laboratório: {self.laboratorio} - Data Inicial: {self.rel_dataInicial} - Data Final {self.rel_dataFinal}'
+        return f'Reserva {self.rel_id} - Laboratório: {self.laboratorio} - Data Inicial: {self.rel_dataInicial} - até {self.rel_dataFinal} de {self.rel_horarioInicial} às {self.rel_horarioFinal}'
 
-    def __init__(self, data_inicial, data_final, motivo, tipo, lab_id, usu_matricula) -> None:
+    def __init__(self, data_inicial, data_final, horario_inicial, horario_final, motivo, tipo, lab_id, usu_matricula) -> None:
         self.rel_dataInicial = data_inicial
         self.rel_dataFinal = data_final
+        self.rel_horarioInicial = horario_inicial
+        self.rel_horarioFinal = horario_final
         self.rel_motivo = motivo
         self.rel_tipo = tipo
         self.rel_lab_id = lab_id

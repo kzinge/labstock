@@ -38,8 +38,10 @@ CREATE TABLE tb_materiais (
 
 CREATE TABLE tb_reservas_laboratorios (
     rel_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    rel_dataInicial DATETIME NOT NULL,
-    rel_dataFinal DATETIME NOT NULL,
+    rel_dataInicial DATE NOT NULL,
+    rel_dataFinal DATE NOT NULL,
+    rel_horarioInicial TIME NOT NULL,
+    rel_horarioFinal TIME NOT NULL,
     rel_motivo TEXT NOT NULL,
     rel_tipo ENUM('Anual', 'Semestral', 'Extraordinária'),
     rel_lab_id INT NOT NULL,
