@@ -1,4 +1,5 @@
 # Roteiro para Inicializar o Docker
+ Para o projeto Labstock
 
 ## Necessário:
 - Docker instalado
@@ -6,7 +7,29 @@
 
 ---
 
-## 1️ Criar as Chaves Necessárias
+## 1. Iniciar o Docker Swarm
+O Docker Swarm precisa estar ativo para que os secrets sejam utilizados corretamente.
+
+### **Linux & Windows (PowerShell)**
+Inicialize o Swarm:
+```bash
+docker swarm init
+```
+
+Verifique se o Swarm está rodando:
+```bash
+docker info | grep Swarm
+```
+
+Se precisar resetar o Swarm:
+```bash
+docker swarm leave --force
+```
+E depois inicialize novamente.
+
+---
+
+## 2. Criar as Chaves Necessárias
 Antes de iniciar os containers, é preciso criar as secrets que serão usadas na aplicação.
 
 ### **Linux**
@@ -29,35 +52,12 @@ docker secret ls
 Se precisar remover um secret:
 ```bash
 docker secret rm suap_key
-
 docker secret rm suap_secret
 ```
 
 ---
 
-## 2️ Iniciar o Docker Swarm
-O Docker Swarm precisa estar ativo para que os secrets sejam utilizados corretamente.
-
-### **Linux & Windows (PowerShell)**
-Inicialize o Swarm:
-```bash
-docker swarm init
-```
-
-Verifique se o Swarm está rodando:
-```bash
-docker info | grep Swarm
-```
-
-Se precisar resetar o Swarm:
-```bash
-docker swarm leave --force
-```
-E depois inicialize novamente.
-
----
-
-## 3️ Criar as Imagens Docker
+## 3. Criar as Imagens Docker
 
 ### Criar a imagem do backend (`web`)
 Certifique-se de que seu `Dockerfile` está configurado corretamente e, na raiz do projeto, execute:
@@ -72,35 +72,38 @@ docker images
 
 ---
 
-## 4️ Subir os Containers
-Com as secrets criadas e as imagens prontas, podemos rodar o `docker-compose`:
-```bash
-docker-compose up -d
-```
-Isso iniciará os containers em modo "detached" (em segundo plano).
+## 4. Rodar os Containers com Docker Stack
+Com as secrets criadas e as imagens prontas, podemos rodar o `docker stack` para iniciar os containers no Swarm:
 
-Verifique se os containers estão rodando:
 ```bash
-docker ps
+docker stack deploy -c docker-compose.yml labstock
 ```
 
-Se precisar visualizar os logs:
+Verifique se os services estão rodando:
 ```bash
-docker-compose logs -f
+docker stack services labstock
+```
+
+Para visualizar os logs:
+```bash
+docker service logs -f labstock_web
 ```
 
 ---
 
 ## Parar e Remover Containers
-Se precisar parar e remover os containers:
+Se precisar remover o stack:
 ```bash
-docker-compose down
-```
-Para remover também os volumes:
-```bash
-docker-compose down -v
+docker stack rm labstock
 ```
 
----
+Para remover os secrets criados:
+```bash
+docker secret rm suap_key suap_secret
+```
 
+Se precisar resetar o Swarm:
+```bash
+docker swarm leave --force
+```
 
