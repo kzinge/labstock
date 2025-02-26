@@ -2,6 +2,7 @@
 Gerenciador de Laboratórios
 
 Referências do projeto:
+
 ARRUDA, C. F. Desenvolvimento de um software online de gerenciamento de controle de estoque interno para laboratórios, Botucatu, p. 1-55, 2023.
 
 DE SOUZA, N. V.; MULLER, F. C.; PAYE, H. S; MONTEBELLER, C. A.; CAVAZZANA, E. Sistema de Gerenciamento de dados laboratoriais e emissão de relatórios técnicos de análise de solo. Agronomia: Jornadas Científicas, Guarujá, v. 2, ed. 1, p. 213-217, 2020.
@@ -16,7 +17,7 @@ DE OLIVEIRA, J. S. Sigem - Sistema de gerenciamento de equipamentos e materiais.
 YAO, K.; MARUTA, T.; LUMAN, E. T.; NKENGASONG, J. N. The SLMTA programme: Transforming the laboratory landscape in developing countries. Afr J Lab Med, Art. #194, p. 1-8, 2014.
 
 CHARAV, C.; SEGARD, S.; PORCHON, N.; NUSSAME, L; JAVOT, H. SeedUSoon: A new software program to improve seed stock management and plant line exchanges between research laboratories. Front. Plant Sci, v. 8,  Art.13, p. 1-16, 2017.
-l
+
 VIOLITA, R. F.; WIDOWATI, S.; GANI, P. H. Application of the TROPOS Method to Development a Website-based Blood Stock Management System at Palang Marah Indonesia (PMI) in Bandung City. Telkon University, Bandung, Indonesia, v. 9, ed. 2, p. 185-194, 2020.
 
 YAMAMOTO, R. I.; WATANABE, D. H.; RODRIGUES, M. C.; BERTAGLIA, V. K. Desenvolvimento de sistema de estoque automatizado de baixo custo. FTT Journal of Engineering and Business, SÃO BERNARDO DO CAMPO, SP, p. 93-106, 1 dez. 2020.
@@ -49,23 +50,26 @@ DE ANDRADE, A.P. O que é Flask?. 2019. Disponível em: https://www.treinaweb.co
 
 Bootstrap. Bootstrap. 2024. Disponível em: https://getbootstrap.com/ Acesso em: 15 jul. 2024.
 
-LIMA, Guilherme. Bootstrap: O que é, Documentação, como e quando usar. Disponível em: https://www.alura.com.br/artigos/bootstrap Acesso em: 15 jul. 2024.
-
 MySQL. Servidor MySQL e MySQL Cluster: Manual de referência do Mysql 8.0. 2024. Disponível em: https://dev.mysql.com/doc/refman/8.0/en/introduction.html Acesso em: 15 jul. 2024.
-
-Mozilla. JAVASCRIPT. 2022. Disponível em:
-https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Introduction Aceso em: 15 jul. 2024.
-
+SUAP. SUAP API. Disponível em: <https://suap.ifrn.edu.br/api/docs/>. Acesso em: 1 out. 2024.,
 LABWARE, INC. Sistemas de Gerenciamento de Informações Laboratoriais para Empresas de Grande e Pequeno Porte. Disponível em: <https://www.labware.com/pt/lims>. Acesso em: 30 ago. 2024.
-
-SZKARADEK, P. STARLIMS - LIMS, ELN, LES, & SDMS lab informatics platform. Disponível em: <https://www.starlims.com/>. Acesso em: 30 ago. 2024.
-
 SZKARADEK, P. STARLIMS - LIMS, ELN, LES, & SDMS lab informatics platform. Disponível em: <https://www.starlims.com/>. Acesso em: 30 ago. 2024.
 
 BALTRUSCH, C. Drucker’s Daily 474 – “A melhor maneira de prever o futuro é criá-lo”. Disponível em: <https://abramark.com.br/druckers-daily/druckers-daily-474-a-melhor-maneira-de-prever-o-futuro-e-cria-lo/>. Acesso em: 4 out. 2024.
 
-ELabInventory - lab inventory management software. Disponível em: <https://www.elabnext.com/products/elabinventory/>. Acesso em: 30 ago. 2024.
+ELABNEXT. ELabInventory - lab inventory management software. Disponível em: <https://www.elabnext.com/we-are-now-elabnext>. Acesso em: 30 ago. 2024.
 
-Quartzy. Disponível em: <https://www.quartzy.com/>. Acesso em: 30 ago. 2024.
+QUARTZY. A plataforma completa para os melhores laboratórios administrados. Disponível em: <https://www.quartzy.com/>. Acesso em: 30 ago. 2024.
+
+LABGURU. Software de gerenciamento de laboratório poderoso que impulsiona inovação, resultados e percepções. Disponível em: <https://www.labguru.com/>. Acesso em: 30 ago. 2024.
 
 COHEN, W. The best way to predict the future is to create it. Disponível em: <https://www.processexcellencenetwork.com/business-transformation/articles/the-best-way-to-predict-the-future-is-to-create-it>. Acesso em: 30 ago. 2024.
+
+GUEDES, Gilleanes. UML Uma Abordagem Prática. Editora Novatec. Acesso em: 01 out. 2024
+
+DE MEDEIROS, G. K. S. et al. PP. Disponível em: <https://www.figma.com/design/RqKH5zwyeTkrVbnu8qWsrg/PP?node-id=0-1&t=4wo1WPUAu467wOMk-1>. Acesso em: 1 dez. 2024.
+GOMES, R. Docker para desenvolvedores. Salvador, Bahia: Leanpub, 2019.
+
+NGINX. nginx. Disponível em: <https://nginx.org/>. Acesso em: 5 fev. 2025.
+
+FIGMA. Guia de prototipagem no Figma. Disponível em: <https://help.figma.com/hc/pt-br>. Acesso em: 5 fev. 2025.
