@@ -91,6 +91,8 @@ docker service logs -f labstock_web
 
 ---
 
+## EXTRAS
+
 ## Parar e Remover Containers
 Se precisar remover o stack:
 ```bash
