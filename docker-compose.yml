@@ -10,7 +10,7 @@ services:
     environment:
       FLASK_ENV: development
       MYSQL_USER: lab
-      MYSQL_SENHA: stock
+      MYSQL_PASSWORD: stock
       MYSQL_HOST: db
       MYSQL_DB: labstock
     secrets: #Chaves Secretas 
@@ -21,7 +21,6 @@ services:
 
   db: #Container do Banco
     image: mysql:8.0
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: minha_senha_root
       MYSQL_DATABASE: labstock

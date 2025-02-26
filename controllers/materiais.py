@@ -1,10 +1,10 @@
 #Rotas para materiais
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from ..database import db
-from ..models.materiais import Material, Categoria
-from ..models.laboratorios import Lab
-from ..decorators.auth import role_required
-materiais_bp = Blueprint(name ='material', 
+from database import db
+from models.materiais import Material, Categoria
+from models.laboratorios import Lab
+from decorators.auth import role_required
+materiais_bp = Blueprint(name ='material',
                     import_name= __name__, 
                     url_prefix='/material', 
                     template_folder='templates')

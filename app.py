@@ -9,7 +9,7 @@ from auth import auth_bp
 from models.usuarios import User
 from models.laboratorios import Lab, ReservaLab
 from models.materiais import Material, ReservaMaterial, Categoria
-from controllers import lab_bp, materias_bp, usu_bp
+from controllers import lab_bp, materiais_bp, usu_bp
 
 
 pymysql.install_as_MySQLdb()

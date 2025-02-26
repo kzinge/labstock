@@ -1,9 +1,9 @@
 #Rotas para laboratórios
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user
-from ..models.laboratorios import Lab, ReservaLab
-from ..database import db
-from ..decorators.auth import role_required
+from models.laboratorios import Lab, ReservaLab
+from database import db
+from decorators.auth import role_required
 from datetime import datetime
 lab_bp = Blueprint(name ='lab', 
                     import_name= __name__, 
