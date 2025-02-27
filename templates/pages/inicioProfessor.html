@@ -3,14 +3,30 @@
 
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<form action="{{url_for('auth.logout', provider='suap')}}" method="post">
-    <button type="submit">Sair</button>
-</form>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-list"></i>
+        <span class="item-description">
+            Suas Reservas
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-book"></i>
+        <span class="item-description">
+            Suas Aulas
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span class="item-description">
+            Notificações
+        </span>
+    </a>
+</li>
 {% endblock %}
 
 {% block content %}
@@ -21,10 +37,6 @@
         <p>Visulize suas aulas ministradas aqui</p>
     </div>
 
-    <div class="card">
-        <h1>Seu Perfil</h1>
-        <p>Visualize seu perfil aqui</p>
-    </div>
 
     <div class="card">
         <h1>Reservar Laboratórios</h1>

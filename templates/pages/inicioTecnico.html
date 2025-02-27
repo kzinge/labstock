@@ -1,0 +1,50 @@
+{% extends "modGeral.html" %}
+
+
+{% block headerlinks %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-box"></i>
+        <span class="item-description">
+            Estoque
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-flask"></i>
+        <span class="item-description">
+            Laboratórios
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-list"></i>
+        <span class="item-description">
+            Reservas
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span class="item-description">
+            Notificações
+        </span>
+    </a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="cards">
+    <div class="card">
+        <h1>Visualizar Aulas</h1>
+    </div>
+
+    <div class="card">
+        <h1>Seu Perfil</h1>
+    </div>
+</div>
+{% endblock %}

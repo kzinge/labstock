@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, logout_user, login_required, current_user
 
 from sqlalchemy.exc import OperationalError
-import pymysql
 import time
+# import pymysql (caso user docker)
 from database import db
 from auth import auth_bp
 from models.usuarios import User
@@ -11,12 +11,11 @@ from models.laboratorios import Lab, ReservaLab
 from models.materiais import Material, ReservaMaterial, Categoria
 from controllers import lab_bp, materiais_bp, usu_bp
 
-
-pymysql.install_as_MySQLdb()
-
+#Caso user docker: pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
+#Caso use docker:app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
 #login_manager
 login_manager = LoginManager()
@@ -78,17 +77,17 @@ def laboratorios():
 #     return render_template('pages/reserva')
 
 
-@app.route('/visualizar_prof')
+@app.route('/profdash')
 def visualizar_prof():
-    return render_template('pages/visualizar_prof.html')
+    return render_template('pages/inicioProfessor.html')
 
 
-@app.route('/visualizar_aluno')
+@app.route('/tecdash')
 def visualizar_aluno():
-    return render_template('pages/visualizar_aluno.html')
+    return render_template('pages/inicioTecnico.html')
 
 
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=3000)
+  app.run(host='0.0.0.0', port=3000, debug=True)
 

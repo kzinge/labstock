@@ -3,24 +3,55 @@
 
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<li><a href="#">Teste</a></li>
-<form action="{{url_for('auth.logout', provider='suap')}}" method="post">
-    <button type="submit">Sair</button>
-</form>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-book"></i>
+        <span class="item-description">
+            Aulas
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span class="item-description">
+            Notificações
+        </span>
+    </a>
+</li>
 {% endblock %}
 
 {% block content %}
-<div class="cards">
-    <div class="card">
-        <h1>Visualizar Aulas</h1>
+<div class="container">
+    <div class="saudacao">
+        <h1>Olá, {{nome}}</h1>
+        <p>Acompanhe suas atividades laboratoriais por aqui!</p>
     </div>
-
-    <div class="card">
-        <h1>Seu Perfil</h1>
+    <div class="cards">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <div class="title-card-div">
+                    <i class="fa-solid fa-book"></i>
+                    <h5 class="card-title">Suas Aulas</h5>
+                </div>
+                <p class="card-text mb-2 text-body-secondary">Veja suas aulas passadas e aulas futuras aqui.</p>
+                <h6 class="class-subtitle">Próximas aulas:</h6>
+                <span>{Aqui deverá mostrar as proximas aulas do aluno, caso não tenha coloca uma msg dizendo que não tem aulas futuras}</span>
+                <a href="#" class="btn btn-primary">Aulas</a>
+            </div>
+        </div>
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <div class="title-card-div">
+                    <i class="fa-solid fa-bell"></i>
+                    <h5 class="card-title">Notificações</h5>
+                </div>
+                <p class="card-text mb-2 text-body-secondary">Acopanhe suas notificações por aqui</p>
+                <span>{Aqui deverá mostrar as ultimas notificações do aluno, caso não tenha avisa}</span>
+                <a href="#" class="btn btn-primary">Ver mais</a>
+            </div>
+        </div>
     </div>
 </div>
+
 {% endblock %}

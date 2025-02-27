@@ -12,125 +12,198 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
 body {
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    background-color: #e3e9f7;
 }
 
 #lab-s{
     display: flex;
+    width: 100%;
     height: 100%;
 }
 
-#lab-menu{
-    height: 100%;
-    width: 12%;
+#sidebar {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffffff;
+    height: 100vh;
+    border-radius: 0px 18px 18px 0px;
+    position: relative;
+    transition: all .5s;
+    width: 82px;
+    z-index: 2;
+}
 
-    & #hd-logo{
-        display: flex;
-        align-items: center;
-        width: 60%;
+#lab-menu {
+    padding: 12px;
+}
 
-        & img{
-            width: 100%;
-        }
-    }
+#hd-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2rem;
 
-    & #hd-perfil{
-        display: flex;
-        align-items: center;
-        width: 100%;
-
-        & img{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            overflow: hidden;
-            margin: 10px;
-        }
-
-
+    & img{
+        width: 80%;
     }
 }
+
+#user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+
+    & .foto{
+        width: 50px;  /* Defina um tamanho fixo */
+        height: 50px; /* Igual à largura para manter um círculo perfeito */
+        border-radius: 50%;
+        overflow: hidden; /* Garante que a imagem não ultrapasse a borda do círculo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ddd; /* Caso a imagem não carregue */
+
+         img{
+            width: 100%; /* Faz a imagem ocupar todo o espaço do div */
+            height: 100%; /* Mantém a altura igual ao div */
+            object-fit: cover; /* Garante que a imagem cubra todo o círculo sem distorcer */
+        }
+    }
+}
+
+#user_infos {
+    display: flex;
+    flex-direction: column;
+}
+
+#side_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.side-item {
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.side-item.active {
+    background-color: #36791a;
+}
+
+.side-item:hover:not(.active),
+#logout_btn:hover {
+    background-color: #e3e9f7;
+}
+
+.side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+}
+
+.side-item.active a {
+    color: #e3e9f7;
+}
+
+.side-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#logout {
+    border-top: 1px solid #e3e9f7;
+    padding: 12px;
+}
+
+#logout_btn {
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px;
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#open_btn {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: #36791a;
+    color: #e3e9f7;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#open_btn_icon {
+    transition: transform .3s ease;
+}
+
+.open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+}
+
+.item-description {
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+
+.item-description.username {
+    font-size: 1rem;
+    color: #36791a;
+    font-weight: bold;
+}
+
+#sidebar.open-sidebar {
+    min-width: 15%;
+}
+
+#sidebar.open-sidebar .item-description {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
 
 main {
-    height: 100%; /* Faz com que o main ocupe todo o espaço disponível */
-    width: 88%;
-    display: inline-flex;
-    background-color: white;
-}
-
-
-nav{
-    height: 4rem;
+    padding: 20px;
+    min-width: 90%;
+    min-height: 100%;
+    z-index: 1;
+    padding-left: calc(82px + 20px);
     display: flex;
-    justify-content: space-around;
-    background-color: #7ed957;
-
-    & #hd-logo{
-        display: flex;
-        align-items: center;
-        width: 15%;
-
-        & a{
-            width: 60%;
-        }
-
-        & img{
-            width: 100%;
-        }
-    }   
-    
-    & #hd-links{
-        display: flex;
-        width: 50%;
-
-        & ul{
-            list-style: none;
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-         & li{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 10%;
-            height: 2rem;
-            margin: 10px;
-            border-radius: 5px;
-            background: rgb(255, 255, 255);
-            transition: background-color 0.3s;
-         }
-
-         & li:hover{
-            background-color: transparent;
-            border: 0.5px solid white;
-
-         }
-
-            & a{
-                text-decoration: none;
-                color: rgb(0, 0, 0);
-                transition: color 0.3s;
-            }
-
-            & a:hover{
-                color: white;
-             }
-
-    }
-
 }
-
 
 footer{
     background-color: #7ed957;
