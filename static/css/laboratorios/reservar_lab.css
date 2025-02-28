@@ -1,5 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
 main {
     display: flex;
+    height: 100vh;
     min-height: fit-content;
     flex-direction: column;
     justify-content: center;
@@ -9,55 +29,68 @@ main {
 #form-lab {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin: auto;
-    background-color: gray;
-}
-
-#form-lab input {
-    background-color: #d3d3d3;
-    border: none;
+    background-color: #fff;
+    padding: 20px; 
     border-radius: 10px;
-    margin-top: 5px;
-    padding: 10px;
-    height: 40px;
+    width: 100%;
+    max-width: 350px; 
 }
 
-#form-lab > label:nth-of-type(1){
-    margin-top: 0px;
-}
-
-#form-lab label {
-    margin-top: 20px;
+h1 {
+    text-align: center;
+    margin-bottom: 15px; 
+    font-size: 20px; 
     color: black;
 }
 
-#form-lab .conteiner-inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+label {
+    font-size: 0.9rem; 
+    color: black;
+    margin-bottom: 8px;
+    display: block;
 }
 
-.conteiner-inputs :nth-child(2) {
-    margin-left: 15px;
-    width: 150px;
+input[type="text"], input[type="number"], input[type="time"], input[type="date"], select {
+    width: 100%;
+    padding: 8px; 
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 0.9rem; 
 }
 
-.conteiner-labels {
-    display: flex;
-    justify-content: flex-start;
+input[type="text"]:focus, input[type="number"]:focus, input[type="time"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #7ed957;
+    outline: none;
 }
 
 .botao-reservar {
-    margin-top: 5px;
-    background-color: green;
-    width: 100px;
-    padding: 12px;
-    border-radius: 10px;
+    background-color: #7ed957;
+    color: #fff;
+    padding: 10px 18px; 
+    border-radius: 5px;
     border: none;
+    font-size: 0.9rem; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
-#div-data {
-    display: none;
-    flex-direction: column;
+.botao-reservar:hover {
+    background-color: black;
+    color: #6bc746;
+}
+
+.horario-container, .data-container {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group input[type="time"], .input-group input[type="date"] {
+    width: 100%;
 }

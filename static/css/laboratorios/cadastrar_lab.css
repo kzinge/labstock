@@ -1,3 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
 main {
     display: flex;
     min-height: fit-content;
@@ -9,51 +29,56 @@ main {
 #form-lab {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin: auto;
-    background-color: gray;
-}
-
-#form-lab input {
-    background-color: #d3d3d3;
-    border: none;
+    background-color: #fff;
+    padding: 30px;
     border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: black;
+}
+
+
+label {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 12px;
     margin-top: 5px;
-    padding: 10px;
-    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 1rem;
 }
 
-#form-lab > label:nth-of-type(1){
-    margin-top: 0px;
-}
-
-#form-lab label {
-    margin-top: 20px;
-    color: rgb(0, 0, 0);
-}
-
-#form-lab .conteiner-inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.conteiner-inputs :nth-child(2) {
-    margin-left: 15px;
-    width: 150px;
-}
-
-.conteiner-labels {
-    display: flex;
-    justify-content: flex-start;
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #7ed957;
+    outline: none;
 }
 
 .botao-cadastrar {
-    margin-top: 5px;
-    background-color: green;
-    width: 100px;
-    padding: 12px;
-    border-radius: 10px;
+    background-color: #7ed957;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
     border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
+.botao-cadastrar:hover {
+    background-color: black;
+    color: #6bc746;
+}
