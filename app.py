@@ -7,8 +7,8 @@ import time
 from database import db
 from auth import auth_bp
 from models.usuarios import User
-from models.laboratorios import Lab, ReservaLab
-from models.materiais import Material, ReservaMaterial, Categoria
+from models.laboratorios import Lab, ReservaLab, EspecialidadeLab
+from models.materiais import Material, ReservaMaterial, Categoria, Reagente
 from controllers import lab_bp, materiais_bp, usu_bp
 
 #Caso user docker: pymysql.install_as_MySQLdb()
