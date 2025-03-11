@@ -8,7 +8,7 @@ class EspecialidadeLab(db.Model):
     __tablename__ = 'tb_especialidades_labs'
 
     esp_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    esp_nome: Mapped[str] = mapped_column(String, nullable=False)
+    esp_nome: Mapped[str] = mapped_column(String(50), nullable=False)
 
     laboratorio = relationship('Lab', back_populates='especialidades', lazy=True)
 
@@ -19,7 +19,7 @@ class Lab(db.Model):
     lab_nome: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     lab_local: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     lab_capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
-    lab_especialidade: Mapped[int] = mapped_column(String, ForeignKey('tb_especialidades_labs.esp_id'), nullable=False)
+    lab_especialidade: Mapped[int] = mapped_column(Integer, ForeignKey('tb_especialidades_labs.esp_id'), nullable=False)
 
     materiais = relationship('Material', back_populates='laboratorio', lazy=True)
     reagentes = relationship('Reagente', back_populates='laboratorio', lazy=True)

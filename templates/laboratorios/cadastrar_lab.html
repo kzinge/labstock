@@ -23,7 +23,12 @@
     <input type="text" name="nome_lab" id="nome-lab" required>
 
     <label for="especialidade_lab">Especialidade:</label>
-    <input type="text" name="especialidade_lab" id="especialidade-lab" required>
+    <select id="especialidade_lab" name="especialidade_lab" required> 
+        {% for especialidade in especialidades %}
+            <option value="{{ especialidade.esp_id }}">{{ especialidade.esp_nome }}</option>
+        {% endfor %}
+    </select>
+
 
     <label for="local_lab">Local:</label>
     <input type="text" name="local_lab" id="local-lab" required>

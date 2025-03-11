@@ -1,7 +1,7 @@
 #Rotas para laboratórios
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user
-from models.laboratorios import Lab, ReservaLab
+from models.laboratorios import Lab, ReservaLab, EspecialidadeLab
 from database import db
 from decorators.auth import role_required
 from datetime import datetime
@@ -24,7 +24,15 @@ def reservas():
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
 # @role_required('Técnico')
 def cadastrar_lab():
-    if request.method == 'POST':
+    especialidades = db.session.scalars(db.select(EspecialidadeLab)).all()
+    print(especialidades)
+    if not especialidades: #cria a especialidade química se n houver nenhuma
+        especialidade = EspecialidadeLab(esp_nome = "Química")
+        db.session.add(especialidade)
+        db.session.commit()
+        print("cadastrou uma especialidade")
+
+    elif request.method == 'POST':
         nome_lab = request.form['nome_lab']
         especialidade_lab = request.form['especialidade_lab']
         local_lab = request.form['local_lab']
@@ -34,7 +42,9 @@ def cadastrar_lab():
         db.session.commit()
         flash('cadastro de laboratório realizado!')
         return redirect(url_for('lab.index'))
-    return render_template('laboratorios/cadastrar_lab.html')
+    #pega pra exibir no form
+    especialidades = db.session.scalars(db.select(EspecialidadeLab)).all()
+    return render_template('laboratorios/cadastrar_lab.html', especialidades=especialidades)
 
 
 @lab_bp.route('/reservar', methods = ['GET', 'POST'])
