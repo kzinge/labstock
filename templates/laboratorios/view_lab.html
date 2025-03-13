@@ -1,0 +1,28 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/view_lab.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="labs-div">
+    {% for lab in laboratorios %}
+    <div class="lab-div">
+        <p>{{lab.lab_nome}} <span>local:</span> {{lab.lab_local}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

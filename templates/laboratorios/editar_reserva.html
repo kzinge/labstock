@@ -1,0 +1,48 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/reservar_lab.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Editar Reserva</h1>
+<form action="{{ url_for('lab.editar_reserva', reserva_id=reserva.rel_id) }}" method="POST" id="form-lab">
+    <label for="nome_lab">Nome do laboratório:</label>
+    <input type="text" name="nome_lab" id="nome-lab" list="lista-lab" value="{{ reserva.laboratorio.lab_nome }}" required>
+    <datalist id="lista-lab">
+        {% for laboratorio in laboratorios %}
+            <option value="{{ laboratorio.lab_nome }}">
+        {% endfor %}
+    </datalist>
+
+    <label for="tipo_reserva">Tipo da reserva:</label>
+    <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
+        <option value="anual" {% if reserva.rel_tipo == 'anual' %}selected{% endif %}>Anual</option>
+        <option value="semestral" {% if reserva.rel_tipo == 'semestral' %}selected{% endif %}>Semestral</option>
+        <option value="extraordinaria" {% if reserva.rel_tipo == 'extraordinaria' %}selected{% endif %}>Extraordinária</option>
+    </select>
+
+    <label for="motivo_reserva">Motivo da reserva:</label>
+    <input type="text" name="motivo_reserva" value="{{ reserva.rel_motivo }}" required>
+
+    <label for="horario_inicio">Horário de início:</label>
+    <input type="time" name="horario_inicio" value="{{ reserva.rel_horarioInicial.strftime('%H:%M') }}" required>
+
+    <label for="horario_termino">Horário de término:</label>
+    <input type="time" name="horario_termino" value="{{ reserva.rel_horarioFinal.strftime('%H:%M') }}" required>
+
+    <label for="data_inicio" id="label-inicio">Data de início:</label>
+    <input type="date" name="data_inicio" value="{{ reserva.rel_dataInicial }}" required>
+
+    <div id="div-data">
+        <label for="data_final">Data final:</label>
+        <input type="date" name="data_final" value="{{ reserva.rel_dataFinal }}" {% if reserva.rel_tipo == 'extraordinaria' %}disabled{% endif %} required>
+    </div>
+
+    <div class="conteiner-inputs">
+        <button type="submit" class="botao-reservar">Salvar Alterações</button>
+    </div>
+</form>
+
+<script src="{{ url_for('static', filename='scripts/reservar_lab.js') }}"></script>
+{% endblock %}

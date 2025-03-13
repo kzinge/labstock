@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.rels-div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: red;
+    height: fit-content;
+}
+
+.rel-div {
+    background-color: black;
+    margin:2px;
+    color: white;
+}
+
+.rel-div span {
+    color: yellow;
+}

@@ -13,12 +13,8 @@ lab_bp = Blueprint(name ='lab',
 @lab_bp.route('/')
 def index():
     laboratorios = db.session.scalars(db.select(Lab)).all()
-    return f'{laboratorios}'
+    return render_template('laboratorios/view_lab.html', laboratorios = laboratorios)
 
-@lab_bp.route('/reservas')
-def reservas():
-    reservas = db.session.scalars(db.select(ReservaLab)).all()
-    return f'{reservas}'
 
 
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
@@ -45,6 +41,10 @@ def cadastrar_lab():
     especialidades = db.session.scalars(db.select(EspecialidadeLab)).all()
     return render_template('laboratorios/cadastrar_lab.html', especialidades=especialidades)
 
+@lab_bp.route('/reservas')
+def reservas():
+    reservas = db.session.scalars(db.select(ReservaLab)).all()
+    return render_template('laboratorios/view_reservas.html', reservas = reservas)
 
 @lab_bp.route('/reservar', methods = ['GET', 'POST'])
 def reservar_lab():
@@ -75,3 +75,42 @@ def reservar_lab():
             return redirect(url_for('lab.reservas'))
     laboratorios = db.session.scalars(db.select(Lab)).all()
     return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)
+
+@lab_bp.route('/editar_reserva/<int:reserva_id>', methods=['GET', 'POST'])
+def editar_reserva(reserva_id):
+    reserva = db.session.get(ReservaLab, reserva_id) 
+    if not reserva:
+        flash("Reserva não encontrada!", "danger")
+        return redirect(url_for('lab.reservas'))
+
+    if request.method == 'POST':
+        reserva.rel_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_nome == request.form['nome_lab']))
+        reserva.rel_tipo = request.form['tipo_reserva']
+        reserva.rel_motivo = request.form['motivo_reserva']
+        reserva.rel_horarioInicial = datetime.strptime(request.form['horario_inicio'], '%H:%M').time()
+        reserva.rel_horarioFinal = datetime.strptime(request.form['horario_termino'], '%H:%M').time()
+        reserva.rel_dataInicial = datetime.strptime(request.form['data_inicio'], '%Y-%m-%d').date()
+        if request.form['tipo_reserva'] == 'extraordinaria':
+            reserva.rel_dataFinal = reserva.rel_dataInicial
+        else:
+            reserva.rel_dataFinal = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
+
+        db.session.commit()
+        flash('Reserva atualizada com sucesso!', 'success')
+        return redirect(url_for('lab.reservas'))
+
+    laboratorios = db.session.scalars(db.select(Lab)).all()
+    return render_template('laboratorios/editar_reserva.html', reserva=reserva, laboratorios=laboratorios)
+
+
+@lab_bp.route('/excluir_reserva/<int:reserva_id>', methods=['POST'])
+def excluir_reserva(reserva_id):
+    reserva = db.session.get(ReservaLab, reserva_id)  
+    if not reserva:
+        flash("Reserva não encontrada!", "danger")
+        return redirect(url_for('lab.reservas'))
+
+    db.session.delete(reserva)
+    db.session.commit()
+    flash('Reserva excluída com sucesso!', 'success')
+    return redirect(url_for('lab.reservas'))

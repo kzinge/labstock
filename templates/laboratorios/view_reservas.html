@@ -1,0 +1,34 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/view_reserva.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+<li><a href="#">Teste</a></li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="rels-div">
+    {% for reserva in reservas %}
+    <div class="rel-div">
+        <p>{{reserva.laboratorio.lab_nome}} <span>tipo da reserva:</span> {{reserva.rel_tipo}} <span>horario:</span> {{reserva.rel_horarioInicial}} <span>as</span> {{reserva.rel_horarioFinal}}</p>
+        <a href="{{ url_for('lab.editar_reserva', reserva_id=reserva.rel_id) }}" class="btn-editar">Editar</a>
+        <form action="{{ url_for('lab.excluir_reserva', reserva_id=reserva.rel_id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta reserva?')">Excluir</button>
+        </form>
+        <!-- <a href="{{ url_for('lab.excluir_reserva', reserva_id=reserva.rel_id) }}" 
+        onclick="return confirm('Tem certeza que deseja excluir esta reserva?')">Excluir</a> -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
