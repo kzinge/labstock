@@ -1,3 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    background-color: #f0f0f0 !important;
+}
+
 main {
     display: flex;
     min-height: fit-content;
@@ -7,56 +26,74 @@ main {
 }
 
 #form-material {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-
-#form-material input {
-    background-color: #d3d3d3;
-    border: none;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #fff;
+    padding: 30px;
     border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: black;
+}
+
+label {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 12px;
     margin-top: 5px;
-    padding: 10px;
-    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 1rem;
 }
 
-#form-material > label:nth-of-type(1){
-    margin-top: 0px;
+input:focus, select:focus {
+    border-color: #7ed957;
+    outline: none;
 }
 
-#form-material label, button {
-    margin-top: 20px;
-    color: white;
+.botao-cadastrar {
+    background-color: #7ed957;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
-#form-material .conteiner-inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.conteiner-inputs :nth-child(2) {
-    margin-left: 15px;
-    width: 150px;
+.botao-cadastrar:hover {
+    background-color: black;
+    color: #6bc746;
 }
 
 .conteiner-labels {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
 
-.conteiner-labels :nth-child(2) {
-    position: relative;
-    margin-left: 90px;
+.conteiner-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.botao-cadastrar {
-    background-color: green;
-    width: 100px;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    margin: 25px auto 0px;
+.conteiner-inputs input, .conteiner-inputs select {
+    flex: 1;
 }
-
