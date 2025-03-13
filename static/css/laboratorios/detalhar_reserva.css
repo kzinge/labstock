@@ -1,0 +1,126 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+main {
+    display: flex;
+    min-height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalhes-reserva {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.detalhes-reserva h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    background-color: #ffcc00; /* Amarelo para destacar o título */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.info-reserva {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e6f7ff; /* Azul claro para destacar as seções */
+    border-radius: 5px;
+}
+
+.info-reserva h2 {
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.info-reserva p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.acoes-reserva {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.acoes-reserva form{
+    display: inline;
+}
+
+.btn-voltar, .btn-confirmar, .btn-rejeitar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-voltar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+}
+
+.btn-confirmar {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.btn-rejeitar {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+}
+
+.btn-voltar:hover {
+    background-color: #5a6268; /* Cinza mais escuro */
+}
+
+.btn-confirmar:hover {
+    background-color: #218838; /* Verde mais escuro */
+}
+
+.btn-rejeitar:hover {
+    background-color: #c82333; /* Vermelho mais escuro */
+}
+
+/* Cores aleatórias para ajudar na visualização */
+.detalhes-reserva {
+    background-color: #f9f9f9; /* Fundo claro */
+}
+
+.info-reserva:nth-child(odd) {
+    background-color: #ffe6e6; /* Rosa claro para seções ímpares */
+}
+
+.info-reserva:nth-child(even) {
+    background-color: #e6ffe6; /* Verde claro para seções pares */
+}
