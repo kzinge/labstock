@@ -138,3 +138,11 @@ def rejeitar_reserva(reserva_id):
     db.session.commit()
     flash('Reserva rejeitada com sucesso!', 'success')
     return redirect(url_for('lab.reservas'))
+
+@lab_bp.route('/detalhar_reserva/<int:reserva_id>')
+def detalhar_reserva(reserva_id):
+    reserva = db.session.get(ReservaLab, reserva_id)
+    if not reserva:
+        flash("Reserva não encontrada!", "danger")
+        return redirect(url_for('lab.reservas'))
+    return render_template('laboratorios/detalhar_reserva.html', reserva=reserva)
