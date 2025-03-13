@@ -45,6 +45,7 @@ class ReservaLab(db.Model):
     rel_horarioFinal: Mapped[time] = mapped_column(Time, nullable=False)
     rel_motivo: Mapped[str] = mapped_column(Text, nullable=False)
     rel_tipo: Mapped[str] = mapped_column(Enum('Anual', 'Semestral', 'Extraordinária'), nullable=False)
+    rel_status: Mapped[str] = mapped_column(Enum('Pendente', 'Confirmada', 'Rejeitada'), nullable=False, default='Pendente')
     rel_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
     rel_usu_matricula: Mapped[str] = mapped_column(String(20), ForeignKey('tb_usuarios.usu_matricula'), nullable=False)
     
