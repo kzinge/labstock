@@ -42,7 +42,6 @@ def cadastrar_lab():
         db.session.commit()
         flash('cadastro de laboratório realizado!')
         return redirect(url_for('lab.index'))
-    #pega pra exibir no form
     especialidades = db.session.scalars(db.select(EspecialidadeLab)).all()
     return render_template('laboratorios/cadastrar_lab.html', especialidades=especialidades)
 
@@ -74,5 +73,5 @@ def reservar_lab():
             db.session.commit()
             flash('solicitação de reserva de laboratório realizada!')
             return redirect(url_for('lab.reservas'))
-    
-    return render_template('laboratorios/reservar_lab.html')
+    laboratorios = db.session.scalars(db.select(Lab)).all()
+    return render_template('laboratorios/reservar_lab.html', laboratorios = laboratorios)

@@ -20,7 +20,12 @@
 {% block content %}
 <form action="{{url_for('lab.reservar_lab')}}" method="POST" id="form-lab">
     <label for="nome_lab">Nome do laboratório:</label>
-    <input type="text" name="nome_lab" id="nome-lab" required>
+    <input type="text" name="nome_lab" id="nome-lab" list="lista-lab" required>
+    <datalist id="lista-lab">
+        {% for laboratorio in laboratorios %}
+            <option value="{{ laboratorio.lab_nome }}">
+        {% endfor %}
+    </datalist>
 
     <label for="tipo_reserva">Tipo da reserva:</label>
     <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>

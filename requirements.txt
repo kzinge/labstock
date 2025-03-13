@@ -20,7 +20,7 @@ idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
-mysqlclient==2.2.4
+# mysqlclient==2.2.4
 pycparser==2.22
 PyJWT==2.10.0
 pymysql
