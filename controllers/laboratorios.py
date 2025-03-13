@@ -114,3 +114,27 @@ def excluir_reserva(reserva_id):
     db.session.commit()
     flash('Reserva excluída com sucesso!', 'success')
     return redirect(url_for('lab.reservas'))
+
+@lab_bp.route('/confirmar_reserva/<int:reserva_id>', methods=['POST'])
+def confirmar_reserva(reserva_id):
+    reserva = db.session.get(ReservaLab, reserva_id)
+    if not reserva:
+        flash("Reserva não encontrada!", "danger")
+        return redirect(url_for('lab.reservas'))
+
+    reserva.rel_status = 'Confirmada'
+    db.session.commit()
+    flash('Reserva confirmada com sucesso!', 'success')
+    return redirect(url_for('lab.reservas'))
+
+@lab_bp.route('/rejeitar_reserva/<int:reserva_id>', methods=['POST'])
+def rejeitar_reserva(reserva_id):
+    reserva = db.session.get(ReservaLab, reserva_id)
+    if not reserva:
+        flash("Reserva não encontrada!", "danger")
+        return redirect(url_for('lab.reservas'))
+
+    reserva.rel_status = 'Rejeitada'
+    db.session.commit()
+    flash('Reserva rejeitada com sucesso!', 'success')
+    return redirect(url_for('lab.reservas'))
