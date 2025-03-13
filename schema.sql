@@ -44,7 +44,7 @@ CREATE TABLE tb_reservas_laboratorios (
     rel_horarioFinal TIME NOT NULL,
     rel_motivo TEXT NOT NULL,
     rel_tipo ENUM('Anual', 'Semestral', 'Extraordinária'),
-    rel_status ENUM('pendente', 'confirmada', 'rejeitada') NOT NULL DEFAULT 'pendente',
+    rel_status ENUM('Pendente', 'Confirmada', 'Rejeitada') NOT NULL DEFAULT 'Pendente',
     rel_lab_id INT NOT NULL,
     rel_usu_matricula VARCHAR(20) NOT NULL,
     FOREIGN KEY (rel_usu_matricula) REFERENCES tb_usuarios(usu_matricula),
