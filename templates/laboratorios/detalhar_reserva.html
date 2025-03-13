@@ -1,0 +1,49 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/detalhar_reserva.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="detalhes-reserva">
+    <h1>Detalhes da Reserva</h1>
+
+    <div class="info-reserva">
+        <h2>Informações Gerais</h2>
+        <p><strong>Laboratório:</strong> {{ reserva.laboratorio.lab_nome }}</p>
+        <p><strong>Tipo de Reserva:</strong> {{ reserva.rel_tipo }}</p>
+        <p><strong>Status:</strong> {{ reserva.rel_status }}</p>
+    </div>
+
+    <div class="info-reserva">
+        <h2>Datas e Horários</h2>
+        <p><strong>Data Inicial:</strong> {{ reserva.rel_dataInicial }}</p>
+        <p><strong>Data Final:</strong> {{ reserva.rel_dataFinal }}</p>
+        <p><strong>Horário de Início:</strong> {{ reserva.rel_horarioInicial }}</p>
+        <p><strong>Horário de Término:</strong> {{ reserva.rel_horarioFinal }}</p>
+    </div>
+
+    <div class="info-reserva">
+        <h2>Motivo da Reserva</h2>
+        <p>{{ reserva.rel_motivo }}</p>
+    </div>
+
+    <div class="info-reserva">
+        <h2>Solicitante</h2>
+        <p><strong>Matrícula:</strong> {{ reserva.usuario.usu_matricula }}</p>
+        <p><strong>Nome:</strong> {{ reserva.usuario.usu_nome }}</p>
+    </div>
+
+    <div class="acoes-reserva">
+        <a href="{{ url_for('lab.reservas') }}" class="btn-voltar">Voltar</a>
+        {% if reserva.rel_status != 'Pendente' %}  <!-- and if current_user.usu_tipo == 'TECNICO' --> 
+        <form action="{{ url_for('lab.confirmar_reserva', reserva_id=reserva.rel_id) }}" method="POST" >
+            <button type="submit" class="btn-confirmar">Confirmar</button>
+        </form>
+        <form action="{{ url_for('lab.rejeitar_reserva', reserva_id=reserva.rel_id) }}" method="POST" >
+            <button type="submit" class="btn-rejeitar">Rejeitar</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
