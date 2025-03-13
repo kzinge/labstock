@@ -1,7 +1,7 @@
 {% extends "modGeral.html" %}
 
 {% block head_extras %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/cadastrar_material.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_material.css') }}">
 {% endblock %}
 
 {% block headerlinks %}
@@ -18,9 +18,9 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{url_for('material.nova_categoria')}}" method="post">
+<form action="{{url_for('material.nova_categoria')}}" method="post" id="form-categoria">
     <input name="nome" placeholder="Nome da Categoria" type="text" required>
-    <button style="color: black;" type="submit">Criar</button>
+    <button type="submit" class="botao-cadastrar">Criar</button>
 </form> 
 
 <form action="{{url_for('material.cadastro')}}" method="POST" id="form-material">
@@ -33,7 +33,7 @@
     <div class="conteiner-labels">
         <label for="validade_material">Validade:</label>
         <label for="quantidade_material">Quantidade:</label>
-        <label for="unidade" style="position:relative;right:-30px;">Medida:</label>
+        <label for="unidade">Medida:</label>
     </div>
     <div class="conteiner-inputs">
         <input type="date" name="validade_material" id="validade-material" value={{validade}}>
@@ -46,9 +46,9 @@
             <option value="l">L</option>
         </select>
     </div>
-    <label for="lab_nome">Lab</label>
+    <label for="lab_nome">Lab:</label>
     <input type="text" name="lab_nome" value={{laboratorio}}>
-    <label for="fornecedor">Fornecedor</label>
+    <label for="fornecedor">Fornecedor:</label>
     <input type="text" name="fornecedor" value={{fornecedor}}>
     <button type="submit" class="botao-cadastrar">Cadastrar</button>
 </form>

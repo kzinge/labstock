@@ -11,29 +11,39 @@ html, body {
 }
 
 body {
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important;
-    background-color: #f0f0f0 !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh ;
+    background-color: #f0f0f0;
 }
 
 main {
     display: flex;
     min-height: fit-content;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap:1rem;
 }
 
 #form-material {
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex ;
+    flex-direction: column;
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
     width: 100%;
     max-width: 450px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#form-categoria {
+    display: flex ;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 250px;
 }
 
 h1 {
@@ -97,3 +107,4 @@ input:focus, select:focus {
 .conteiner-inputs input, .conteiner-inputs select {
     flex: 1;
 }
+
