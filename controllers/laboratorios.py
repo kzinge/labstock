@@ -31,9 +31,10 @@ def cadastrar_lab():
     elif request.method == 'POST':
         nome_lab = request.form['nome_lab']
         especialidade_lab = request.form['especialidade_lab']
-        local_lab = request.form['local_lab']
+        bloco_lab = request.form['bloco_lab']
+        sala_lab = request.form['sala_lab']
         capacidade_lab = request.form['capacidade_lab']
-        laboratorio = Lab(nome_lab, local_lab, capacidade_lab, especialidade_lab)
+        laboratorio = Lab(nome_lab, bloco_lab, sala_lab, capacidade_lab, especialidade_lab)
         db.session.add(laboratorio)
         db.session.commit()
         flash('cadastro de laboratório realizado!')

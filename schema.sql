@@ -18,7 +18,8 @@ CREATE TABLE tb_usuarios (
 CREATE TABLE tb_laboratorios (
     lab_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     lab_nome VARCHAR(50) NOT NULL,
-    lab_local VARCHAR(50) NOT NULL,
+    lab_bloco VARCHAR(50) NOT NULL,
+    lab_sala VARCHAR(50) NOT NULL,
     lab_capacidade INT NOT NULL,
     lab_especialidade ENUM('Química', 'Biologia')
 );

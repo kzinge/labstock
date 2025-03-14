@@ -17,7 +17,8 @@ class Lab(db.Model):
 
     lab_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     lab_nome: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
-    lab_local: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
+    lab_bloco: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
+    lab_sala: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     lab_capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
     lab_especialidade: Mapped[int] = mapped_column(Integer, ForeignKey('tb_especialidades_labs.esp_id'), nullable=False)
 
@@ -29,9 +30,10 @@ class Lab(db.Model):
     def __repr__(self):
         return f'Lab {self.lab_nome} - {self.lab_local}'
 
-    def __init__(self, nome, local, capacidade, especialidade) -> None:
+    def __init__(self, nome, bloco, sala, capacidade, especialidade) -> None:
         self.lab_nome = nome
-        self.lab_local = local
+        self.lab_bloco = bloco
+        self.lab_sala = sala
         self.lab_capacidade = capacidade
         self.lab_especialidade = especialidade
 
