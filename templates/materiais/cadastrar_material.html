@@ -18,38 +18,63 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{url_for('material.nova_categoria')}}" method="post" id="form-categoria">
+<!-- <form action="{{url_for('material.nova_categoria')}}" method="post" id="form-categoria">
     <input name="nome" placeholder="Nome da Categoria" type="text" required>
     <button type="submit" class="botao-cadastrar">Criar</button>
-</form> 
+</form>  -->
+<div id="escolha">
+    <p>Cadastrar</p>
+    <button onclick="change_menu('reagentes')">Reagentes</button> 
+    <button onclick="change_menu('materiais')">Materiais</button>
+</div>
 
-<form action="{{url_for('material.cadastro')}}" method="POST" id="form-material">
-    <label for="nome_material">Nome do material:</label>
-    <input type="text" name="nome_material" id="nome-material" value={{nome}}>
 
-    <label for="tipo_material">Tipo:</label>
-    <input type="text" name="tipo_material" id="tipo-material" value={{categoria}}>
+<div id="form_reagentes">
+    <form action="{{url_for('material.cadastro_reagente')}}" method="POST" id="form-material">
+        <label for="nome_reagente">Nome do material:</label>
+        <input type="text" name="nome_reagente" id="nome-material" value={{nome}}>
 
-    <div class="conteiner-labels">
-        <label for="validade_material">Validade:</label>
-        <label for="quantidade_material">Quantidade:</label>
-        <label for="unidade">Medida:</label>
-    </div>
-    <div class="conteiner-inputs">
-        <input type="date" name="validade_material" id="validade-material" value={{validade}}>
-        <input type="number" name="quantidade_material" id="quantidade-material" value={{quantidade}}>
-        <select name="unidade">
-            <option value="mg">mg</option>
-            <option value="g">g</option>
-            <option value="kg">kg</option>
-            <option value="ml">mL</option>
-            <option value="l">L</option>
-        </select>
-    </div>
-    <label for="lab_nome">Lab:</label>
-    <input type="text" name="lab_nome" value={{laboratorio}}>
-    <label for="fornecedor">Fornecedor:</label>
-    <input type="text" name="fornecedor" value={{fornecedor}}>
-    <button type="submit" class="botao-cadastrar">Cadastrar</button>
-</form>
+        <label for="tipo_material">Categoria:</label>
+
+        <!-- <input type="text" name="tipo_material" id="tipo-material" value={{categoria}}> -->
+
+        <div class="conteiner-labels">
+            <label for="validade_reagente">Validade:</label>
+            <label for="quantidade_reagente">Quantidade:</label>
+            <label for="unidade">Medida:</label>
+        </div>
+
+        <div class="conteiner-inputs">
+            <input type="date" name="validade_reagente" id="validade-material" value={{validade}}>
+            <input type="number" name="quantidade_reagente" id="quantidade-material" value={{quantidade}}>
+            <select name="unidade">
+                <option value="g">g</option>
+                <option value="l">L</option>
+            </select>
+        </div>
+
+        <label for="lab_nome">Lab:</label>
+        <input type="text" name="lab_nome" value={{laboratorio}}>
+
+        <label for="fornecedor">Fornecedor:</label>
+        <input type="text" name="fornecedor" value={{fornecedor}}>
+
+        <button type="submit" class="botao-cadastrar">Cadastrar</button>
+    </form>
+</div>
+
+<div id="form_materiais" style="display: none;">
+    <form action="{{url_for('material.cadastro_material')}}" method="post">
+        <label for="nome_material">Nome do material</label>
+        <input type="text" name="nome_material">
+
+        <label for="descricao">Descrição (opcional)</label>
+        <input type="text" name="descricao">
+
+        <h1>FALTA TERMINAR ESSE INPUT</h1>
+    </form>
+</div>
+
+<script src="../../static/scripts/change_menu.js"></script>
+
 {% endblock %}

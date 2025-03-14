@@ -8,7 +8,7 @@ function getUserCookie() {
         .map(([, valor]) => decodeURIComponent(valor));
     
 }
-console.log(getUserCookie())
+
 document.addEventListener("DOMContentLoaded", getUserCookie);
 cookies = getUserCookie()
 username_element = document.getElementById('username')
