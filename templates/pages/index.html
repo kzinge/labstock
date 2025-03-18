@@ -21,8 +21,8 @@
                         <p>Bem-Vindo ao LabStock, seu gerenciador de estoques de laboratórios!</p>
                     </div>
                     <div id="botoes">
-                        <button><a href="{{url_for('sobre')}}">Sobre nós!</a></button>
-                        <button><a href="{{ url_for('auth.oauth2_authorize', provider='suap')}}">Entrar</a></button>
+                        <a href="{{url_for('sobre')}}" class="botao">Sobre nós!</a>
+                        <a href="{{ url_for('auth.oauth2_authorize', provider='suap')}}" class="botao">Entrar</a>
                     </div>  
                 </div>
             </section>    
