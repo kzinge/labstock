@@ -10,17 +10,42 @@ materiais_bp = Blueprint(name ='material',
                     template_folder='templates')
 
 
+@materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
+# @role_required('Docente')
+def estoque():
+    materiais = db.session.scalars(db.select(Reagente)).all()
+    return render_template('materiais/estoque.html', materiais = materiais)
+
 #REAGENTES
 
 @materiais_bp.route('/cadastro', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def cadastro():
-    return render_template('materiais/cadastrar_material.html')
+    categorias = db.session.scalars(db.select(Categoria)).all()
+    return render_template('materiais/cadastrar_material.html' , categorias=categorias)
 
 @materiais_bp.route('/cadastro_reagente', methods=['POST','GET'])
 def cadastro_reagente():
     if request.method == 'POST':
         nome_reagente = request.form['nome_reagente']
-        tipo_reagente = request.form['tipo_reagente'] #Vou achar que esse tipo é a Categoria
+
+        try: #Tenta pegar do select
+            tipo_reagente = request.form['tipo_reagente']
+
+        except: #Se der erro é por que ta com o input de criar uma categoria nova
+
+            tipo_reagente = request.form['tipo_reagente_novo']
+            categorias = db.session.scalars(db.select(Categoria)).all()
+            
+            for categoria in categorias:
+                if tipo_reagente == categoria.cat_nome:
+                    flash('Categoria já existe')
+                    return redirect(url_for('material.cadastro'))
+                else:
+                    nova_cat = Categoria(nome = tipo_reagente)
+                    db.session.add(nova_cat)
+                    db.session.commit()
+                    break
+
         rgt_unidade = request.form['unidade']
         quantidade_reagente = request.form['quantidade_reagente']
         validade_reagente = request.form['validade_reagente']
@@ -44,13 +69,8 @@ def cadastro_reagente():
                                      rgt_fornecedor, validade_reagente, rgt_lab_id, rgt_cat_id)
         db.session.add(novo_reagente)
         db.session.commit()
-        return redirect(url_for('reagente.estoque'))
+        return redirect(url_for('material.estoque'))
 
-@materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
-# @role_required('Docente')
-def estoque():
-    materiais = db.session.scalars(db.select(Reagente)).all()
-    return render_template('materiais/estoque.html', materiais = materiais)
 
 @materiais_bp.route('/edit/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def edit(id):
@@ -98,27 +118,33 @@ def edit(id):
             reagente.rgt_fornecedor = rgt_fornecedor
         
         db.session.commit()
-        return redirect(url_for('reagente.estoque'))
+        return redirect(url_for('material.estoque'))
         
-    return render_template('materiais/edit_reagente.html', reagente = reagente, categoria = categoria, laboratorio = laboratorio)
+    return render_template('materiais/edit_reagente.html', material = reagente, categoria = categoria, laboratorio = laboratorio)
+
+
 
 @materiais_bp.route('/remove/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def remove(id):
     reagente = db.session.scalar(db.select(reagente).filter(reagente.rgt_id == int(id)))
     db.session.delete(reagente)
     db.session.commit()
-    return redirect(url_for('reagente.estoque'))
+    return redirect(url_for('material.estoque'))
+
+
 
 @materiais_bp.route('/reservar', methods=['POST','GET'])
 def reservar():
     pass
 
-@materiais_bp.route('/nova_categoria', methods=['POST']) # ROTA APENAS PARA TECNICO
-def nova_categoria():
-    nome = request.form['nome']
-    nova_cat = Categoria(nome=nome)
-    db.session.add(nova_cat)
-    db.session.commit()
+
+
+# @materiais_bp.route('/nova_categoria', methods=['POST']) # ROTA APENAS PARA TECNICO
+# def nova_categoria():
+#     nome = request.form['nome']
+#     nova_cat = Categoria(nome=nome)
+#     db.session.add(nova_cat)
+#     db.session.commit()
     
     return redirect(url_for('reagente.cadastro'))
 

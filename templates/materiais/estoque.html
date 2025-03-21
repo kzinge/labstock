@@ -9,7 +9,7 @@
     {% if materiais %}
         <ul id="materiais">
             {% for material in materiais %}
-                <li>Id: {{material.mat_id}} | Nome: {{material.mat_nome}} | Quantidade: {{material.mat_quantidade, material.mat_unidade}} | Lab: {{material.laboratorio}} | Cat: {{material.categoria}}</li>
+                <li>Id: {{material.rgt_id}} | Nome: {{material.rgt_nome}} | Quantidade: {{material.rgt_quantidade, material.rgt_unidade}} | Lab: {{material.laboratorio.lab_nome}} | Cat: {{material.categoria}}</li>
             {% endfor %}
         </ul>
     {% endif %}

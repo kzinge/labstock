@@ -18,25 +18,36 @@
 {% endblock %}
 
 {% block content %}
-<!-- <form action="{{url_for('material.nova_categoria')}}" method="post" id="form-categoria">
-    <input name="nome" placeholder="Nome da Categoria" type="text" required>
-    <button type="submit" class="botao-cadastrar">Criar</button>
-</form>  -->
 <div id="escolha">
     <p>Cadastrar</p>
     <button onclick="change_menu('reagentes')">Reagentes</button> 
     <button onclick="change_menu('materiais')">Materiais</button>
 </div>
 
+<!-- DIV DE CADASTRO DE REAGENTES -->
 
 <div id="form_reagentes">
     <form action="{{url_for('material.cadastro_reagente')}}" method="POST" id="form-material">
-        <label for="nome_reagente">Nome do material:</label>
+        <label for="nome_reagente">Nome do reagente:</label>
         <input type="text" name="nome_reagente" id="nome-material" value={{nome}}>
 
         <label for="tipo_material">Categoria:</label>
+            <div id="cat_existente" {% if not categorias %}style="display: none;"{% endif %}>
+                <button type="button" onclick="change_menu('nova_categoria')">Criar nova categoria</button>
+                <label for="tipo_reagente">Nome da categoria:</label>
+                <select name="tipo_reagente" required>
+                    <option value="" disabled selected>Selecionar categoria</option>
+                        {% for categoria in categorias %}
+                            <option value={{categoria}}>{{categoria}}</option>
+                        {% endfor %}
+                </select>
+            </div>
+            <div id="nova_cat" {% if categorias %}style="display: none;"{% endif %}>
+                    <button type="button" onclick="change_menu('categoria_existente')">Selecionar categoria existente</button>
+                <label for="tipo_reagente_novo">Nome da nova categoria:</label>
+                <input type="text" name="tipo_reagente_novo">
+            </div>
 
-        <!-- <input type="text" name="tipo_material" id="tipo-material" value={{categoria}}> -->
 
         <div class="conteiner-labels">
             <label for="validade_reagente">Validade:</label>
@@ -63,6 +74,8 @@
     </form>
 </div>
 
+<!-- DIV DO FORM PARA O CADASTRO DE MATERIAIS -->
+
 <div id="form_materiais" style="display: none;">
     <form action="{{url_for('material.cadastro_material')}}" method="post">
         <label for="nome_material">Nome do material</label>
@@ -75,6 +88,9 @@
     </form>
 </div>
 
-<script src="../../static/scripts/change_menu.js"></script>
+
+<script src="../../static/scripts/cadastro_materiais.js"></script>
+
+
 
 {% endblock %}
