@@ -13,15 +13,16 @@ materiais_bp = Blueprint(name ='material',
 @materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
 # @role_required('Docente')
 def estoque():
-    materiais = db.session.scalars(db.select(Reagente)).all()
-    return render_template('materiais/estoque.html', materiais = materiais)
+    reagentes = db.session.scalars(db.select(Reagente)).all()
+    return render_template('materiais/estoque.html', reagentes = reagentes)
 
 #REAGENTES
 
 @materiais_bp.route('/cadastro', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def cadastro():
+    laboratorios = db.session.scalars(db.select(Lab)).all()
     categorias = db.session.scalars(db.select(Categoria)).all()
-    return render_template('materiais/cadastrar_material.html' , categorias=categorias)
+    return render_template('materiais/cadastrar_material.html' , categorias=categorias, laboratorios=laboratorios)
 
 @materiais_bp.route('/cadastro_reagente', methods=['POST','GET'])
 def cadastro_reagente():
@@ -32,32 +33,43 @@ def cadastro_reagente():
             tipo_reagente = request.form['tipo_reagente']
 
         except: #Se der erro é por que ta com o input de criar uma categoria nova
-
+            print('entrou no except')
             tipo_reagente = request.form['tipo_reagente_novo']
             categorias = db.session.scalars(db.select(Categoria)).all()
-            
+
+            if not categorias: #caso não exista categoria ainda, ele cria a que a pessoa colocou
+                nova_cat = Categoria(nome = tipo_reagente)
+                db.session.add(nova_cat)
+                db.session.commit()           
+
             for categoria in categorias:
+                print('entrou no for')
                 if tipo_reagente == categoria.cat_nome:
+                    print(categoria.cat_nome)
+                    print(tipo_reagente)
+                    print('categoria existe?')
                     flash('Categoria já existe')
                     return redirect(url_for('material.cadastro'))
                 else:
                     nova_cat = Categoria(nome = tipo_reagente)
                     db.session.add(nova_cat)
                     db.session.commit()
+                    print('entrou e criou a categoria')
                     break
 
         rgt_unidade = request.form['unidade']
         quantidade_reagente = request.form['quantidade_reagente']
         validade_reagente = request.form['validade_reagente']
-        laboratorio = request.form['lab_nome']
+        laboratorio = request.form['lab_local']
         rgt_fornecedor = request.form['fornecedor']
 
         rgt_cat_id = db.session.scalar(db.select(Categoria.cat_id).filter(Categoria.cat_nome == tipo_reagente))
         if not rgt_cat_id:
+            print('falou que a categoria não existe')
             flash('Categoria inexistente')
             return render_template('materiais/cadastrar_material.html',nome=nome_reagente, unidade=rgt_unidade, 
                 quantidade=quantidade_reagente, validade=validade_reagente, laboratorio=laboratorio, fornecedor = rgt_fornecedor)
-        rgt_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_nome == laboratorio))
+        rgt_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_sala == laboratorio))
         if not rgt_lab_id:
             flash('Laboratório inexistente')
             return render_template('materiais/cadastrar_material.html',nome=nome_reagente, unidade=rgt_unidade, 
@@ -76,9 +88,9 @@ def cadastro_reagente():
 def edit(id):
     reagente = db.session.scalar(db.select(Reagente).filter(Reagente.rgt_id == int(id)))
     categoria = db.session.scalar(db.select(Categoria.cat_nome).filter(Categoria.cat_id == Reagente.rgt_cat_id))
-    laboratorio = db.session.scalar(db.select(Lab.lab_nome).filter(Lab.lab_id == reagente.rgt_lab_id))
+    laboratorio = db.session.scalar(db.select(Lab).filter(Lab.lab_id == reagente.rgt_lab_id))
 
-    print(f'reagente: {reagente.rgt_nome} {reagente.rgt_id} | categoria: {categoria}')
+    print(f'reagente: {reagente.rgt_nome} {reagente.rgt_id} | categoria: {categoria} | lab: {laboratorio.lab_sala}')
     if request.method == 'POST':
         nome_reagente = request.form['nome_reagente']
         tipo_reagente = request.form['tipo_reagente']
@@ -108,7 +120,7 @@ def edit(id):
             reagente.rgt_validade = validade_reagente 
 
         if laboratorio_novo != laboratorio:
-            rgt_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_nome == laboratorio_novo))
+            rgt_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_sala == laboratorio_novo))
             if not rgt_lab_id:
                 flash('Laboratório inválido')
                 return render_template('materiais/edit_reagente.html', reagente = reagente, categoria = categoria, laboratorio = laboratorio)

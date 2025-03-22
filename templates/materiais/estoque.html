@@ -6,10 +6,10 @@
     <title>Estoque</title>
 </head>
 <body>
-    {% if materiais %}
-        <ul id="materiais">
-            {% for material in materiais %}
-                <li>Id: {{material.rgt_id}} | Nome: {{material.rgt_nome}} | Quantidade: {{material.rgt_quantidade, material.rgt_unidade}} | Lab: {{material.laboratorio.lab_nome}} | Cat: {{material.categoria}}</li>
+    {% if reagentes %}
+        <ul id="reagentes">
+            {% for reagente in reagentes %}
+                <li>Id: {{reagente.rgt_id}} | Nome: {{reagente.rgt_nome}} | Quantidade: {{reagente.rgt_quantidade, reagente.rgt_unidade}} | Lab: {{reagente.laboratorio.lab_sala}} | Cat: {{reagente.categoria}}</li>
             {% endfor %}
         </ul>
     {% endif %}

@@ -26,16 +26,16 @@
 
 <!-- DIV DE CADASTRO DE REAGENTES -->
 
-<div id="form_reagentes">
+<div class="form" id="form_reagentes">
     <form action="{{url_for('material.cadastro_reagente')}}" method="POST" id="form-material">
         <label for="nome_reagente">Nome do reagente:</label>
-        <input type="text" name="nome_reagente" id="nome-material" value={{nome}}>
+        <input type="text" name="nome_reagente" id="nome-material">
 
         <label for="tipo_material">Categoria:</label>
             <div id="cat_existente" {% if not categorias %}style="display: none;"{% endif %}>
                 <button type="button" onclick="change_menu('nova_categoria')">Criar nova categoria</button>
                 <label for="tipo_reagente">Nome da categoria:</label>
-                <select name="tipo_reagente" required>
+                <select name="tipo_reagente" {% if categorias %}required{% endif %}>
                     <option value="" disabled selected>Selecionar categoria</option>
                         {% for categoria in categorias %}
                             <option value={{categoria}}>{{categoria}}</option>
@@ -43,9 +43,10 @@
                 </select>
             </div>
             <div id="nova_cat" {% if categorias %}style="display: none;"{% endif %}>
-                    <button type="button" onclick="change_menu('categoria_existente')">Selecionar categoria existente</button>
+                {% if not categorias %} <p>Nenhuma categoria cadastrada</p> {% endif %}
+                    <button type="button" onclick="change_menu('categoria_existente')" {% if not categorias %}style="display: none;"{% endif %}>Selecionar categoria existente</button>
                 <label for="tipo_reagente_novo">Nome da nova categoria:</label>
-                <input type="text" name="tipo_reagente_novo">
+                <input type="text" name="tipo_reagente_novo" {% if not categorias %}required{% endif %}>
             </div>
 
 
@@ -56,8 +57,8 @@
         </div>
 
         <div class="conteiner-inputs">
-            <input type="date" name="validade_reagente" id="validade-material" value={{validade}}>
-            <input type="number" name="quantidade_reagente" id="quantidade-material" value={{quantidade}}>
+            <input type="date" name="validade_reagente" id="validade-material">
+            <input type="number" name="quantidade_reagente" id="quantidade-material">
             <select name="unidade">
                 <option value="g">g</option>
                 <option value="l">L</option>
@@ -65,10 +66,14 @@
         </div>
 
         <label for="lab_nome">Lab:</label>
-        <input type="text" name="lab_nome" value={{laboratorio}}>
+        <select name="lab_local">
+            {% for lab in laboratorios %}
+                <option value={{lab.lab_sala}}>{{lab.lab_sala}}</option>
+            {% endfor %}
+        </select>
 
         <label for="fornecedor">Fornecedor:</label>
-        <input type="text" name="fornecedor" value={{fornecedor}}>
+        <input type="text" name="fornecedor">
 
         <button type="submit" class="botao-cadastrar">Cadastrar</button>
     </form>
@@ -76,7 +81,7 @@
 
 <!-- DIV DO FORM PARA O CADASTRO DE MATERIAIS -->
 
-<div id="form_materiais" style="display: none;">
+<div class="form" id="form_materiais" style="display: none;">
     <form action="{{url_for('material.cadastro_material')}}" method="post">
         <label for="nome_material">Nome do material</label>
         <input type="text" name="nome_material">
@@ -84,7 +89,28 @@
         <label for="descricao">Descrição (opcional)</label>
         <input type="text" name="descricao">
 
-        <h1>FALTA TERMINAR ESSE INPUT</h1>
+        <label for="quantidade">Quantidade</label>
+        <input type="number" name="quantidade">
+
+        <label for="fornecedor">Fornecedor</label>
+        <input type="text" name="fornecedor">
+
+        <label for="validade">Validade</label>
+        <input type="date" name="validade">
+
+        <label for="laboratorio">Laboratorio</label>
+        <select name="laboratorio">
+            {% for lab in laboratorios %}
+                <option value={{lab.lab_sala}}>{{lab.lab_sala}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="categoria">Categoria</label>
+        <select name="categoria">
+            {% for cat in categorias %}
+                <option value={{cat.cat_nome}}></option>
+            {% endfor %}
+        </select>
     </form>
 </div>
 
