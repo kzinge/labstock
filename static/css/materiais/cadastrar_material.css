@@ -40,7 +40,7 @@ main {
     display: flex ;
     flex-direction: column;
     background-color: #fff;
-    padding: 30px;
+    padding: 10px;
     border-radius: 10px;
     width: 100%;
     max-width: 250px;
@@ -56,14 +56,13 @@ h1 {
 label {
     font-size: 1rem;
     color: black;
-    margin-bottom: 2px;
+    margin: 1px;
     display: block;
 }
 
 input[type="text"], input[type="number"], input[type="date"], select {
     width: 100%;
-    padding: 12px;
-    margin-top: 5px;
+    height: 35px;
     border-radius: 5px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -78,7 +77,8 @@ input:focus, select:focus {
 .botao-cadastrar {
     background-color: #7ed957;
     color: #fff;
-    padding: 12px 20px;
+    width: 100%;
+    height: 40px;
     border-radius: 5px;
     border: none;
     font-size: 1rem;
@@ -108,3 +108,21 @@ input:focus, select:focus {
     flex: 1;
 }
 
+
+button {
+    background-color: #7ed957;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: black;
+    color: #6bc746;
+}

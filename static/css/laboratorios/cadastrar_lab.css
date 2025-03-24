@@ -50,10 +50,25 @@ label {
     margin-bottom: 8px;
     display: block;
 }
+#especialidade_lab{
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+#especialidade_lab:hover{
+    border-color: #7ed957;
+    outline: none;
+}
 
 input[type="text"], input[type="number"] {
     width: 100%;
-    padding: 12px;
+    height: 40px;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -69,7 +84,8 @@ input[type="text"]:focus, input[type="number"]:focus {
 .botao-cadastrar {
     background-color: #7ed957;
     color: #fff;
-    padding: 12px 20px;
+    width: 100%;
+    height: 40px;
     border-radius: 5px;
     border: none;
     font-size: 1rem;
