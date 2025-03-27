@@ -4,9 +4,14 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/reservar_lab.css') }}">
 {% endblock %}
 
+
+{% block headerlinks %}
+<a href="{{ url_for('lab.reservas') }}" class="btn-voltar">Voltar</a>
+{% endblock %}
+
 {% block content %}
-<h1>Editar Reserva</h1>
 <form action="{{ url_for('lab.editar_reserva', reserva_id=reserva.rel_id) }}" method="POST" id="form-lab">
+    <h1>Editar Reserva</h1>
     <label for="nome_lab">Nome do laboratório:</label>
     <input type="text" name="nome_lab" id="nome-lab" list="lista-lab" value="{{ reserva.laboratorio.lab_nome }}" required>
     <datalist id="lista-lab">

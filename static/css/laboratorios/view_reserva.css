@@ -8,39 +8,120 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background-color: #f0f0f0;
-}
-
-main {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    min-height: fit-content;
-    justify-content: center;
     align-items: center;
 }
-
 
 .rels-div {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    background-color: red;
-    height: fit-content;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 15px; 
+    padding: 20px;
+    max-width: 1200px;
 }
 
 .rel-div {
-    background-color: black;
-    margin:2px;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white; 
+    height: auto;
+    border-radius: 8px; 
+    width: 300px; 
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-left: 5px solid #7ed957; 
+}
+
+.rel-div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.rel-div p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
 }
 
 .rel-div span {
-    color: yellow;
+    color: #7ed957;
+    font-weight: bold;
+}
+
+.btn-editar, .btn-excluir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.btn-editar {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #217dbb;
+}
+
+.btn-excluir {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    background-color: #c0392b;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-botao {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #7ed957;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-botao:hover {
+    background-color: black;
+    color: #7ed957;
+}
+
+@media (max-width: 768px) {
+    .rels-div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rel-div {
+        width: 90%;
+    }
 }

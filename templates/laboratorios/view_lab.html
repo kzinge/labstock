@@ -6,6 +6,9 @@
 
 {% block headerlinks %}
 
+<a href="{{url_for('lab.cadastrar_lab')}}" class="btn-botao">Cadastrar</a>
+<a href="{{url_for('lab.reservar_lab')}}" class="btn-botao">Reservar</a>
+<a href="{{url_for('lab.reservas')}}" class="btn-botao">Reservas</a>
 {% endblock %}
 
 {% block perfil %}
@@ -17,8 +20,11 @@
 <div class="labs-div">
     {% for lab in laboratorios %}
     <div class="lab-div">
-        <p>{{lab.lab_nome}} <span>local:</span> Bloco: {{lab.lab_bloco}} Sala: {{ lab.lab_sala }}</p>
+        <p>{{lab.lab_nome}}</p>
+        <p><span>local:</span> Bloco: {{lab.lab_bloco}} Sala: {{ lab.lab_sala }}</p>
     </div>
     {% endfor %}
 </div>
+
+
 {% endblock %}

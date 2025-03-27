@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/detalhar_reserva.css') }}">
 {% endblock %}
 
+{% block headerlinks %}
+<a href="{{ url_for('lab.reservas') }}" class="btn-voltar">Voltar</a>
+{% endblock %}
+
 {% block content %}
 <div class="detalhes-reserva">
     <h1>Detalhes da Reserva</h1>
@@ -35,7 +39,6 @@
     </div>
 
     <div class="acoes-reserva">
-        <a href="{{ url_for('lab.reservas') }}" class="btn-voltar">Voltar</a>
         {% if reserva.rel_status != 'Pendente' %}  <!-- and if current_user.usu_tipo == 'TECNICO' --> 
         <form action="{{ url_for('lab.confirmar_reserva', reserva_id=reserva.rel_id) }}" method="POST" >
             <button type="submit" class="btn-confirmar">Confirmar</button>

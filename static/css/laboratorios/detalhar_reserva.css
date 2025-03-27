@@ -1,13 +1,11 @@
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-
 html, body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -21,9 +19,7 @@ body {
 
 main {
     display: flex;
-    min-height: fit-content;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -40,8 +36,6 @@ main {
 .detalhes-reserva h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
-    background-color: #ffcc00; /* Amarelo para destacar o título */
     padding: 10px;
     border-radius: 5px;
 }
@@ -49,13 +43,12 @@ main {
 .info-reserva {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #e6f7ff; /* Azul claro para destacar as seções */
+    background-color: #e6ffe6; 
     border-radius: 5px;
 }
 
 .info-reserva h2 {
     color: #333;
-    border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
@@ -72,7 +65,7 @@ main {
     justify-content: center;
 }
 
-.acoes-reserva form{
+.acoes-reserva form {
     display: inline;
 }
 
@@ -86,7 +79,11 @@ main {
 }
 
 .btn-voltar {
-    background-color: #6c757d; /* Cinza */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #7ed957;
     color: white;
 }
 
@@ -101,7 +98,8 @@ main {
 }
 
 .btn-voltar:hover {
-    background-color: #5a6268; /* Cinza mais escuro */
+    background-color: black;
+    color: #7ed957;
 }
 
 .btn-confirmar:hover {
@@ -112,7 +110,6 @@ main {
     background-color: #c82333; /* Vermelho mais escuro */
 }
 
-/* Cores aleatórias para ajudar na visualização */
 .detalhes-reserva {
     background-color: #f9f9f9; /* Fundo claro */
 }

@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque</title>
-</head>
-<body>
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/estoque.css') }}">
+{% endblock %}
+
+
+{% block content %}
     {% if reagentes %}
-        <ul id="reagentes">
+        <div id="reagentes-container">
             {% for reagente in reagentes %}
-                <li>Id: {{reagente.rgt_id}} | Nome: {{reagente.rgt_nome}} | Quantidade: {{reagente.rgt_quantidade, reagente.rgt_unidade}} | Lab: {{reagente.laboratorio.lab_sala}} | Cat: {{reagente.categoria}}</li>
+                <div class="card">
+                    <p class="titulo">{{ reagente.rgt_nome }}</p>
+                    <p><strong>ID:</strong> {{ reagente.rgt_id }}</p>
+                    <p><strong>Quantidade:</strong> {{ reagente.rgt_quantidade }} {{ reagente.rgt_unidade }}</p>
+                    <p><strong>Laboratório:</strong> {{ reagente.laboratorio.lab_sala }}</p>
+                    <p><strong>Categoria:</strong> {{ reagente.categoria }}</p>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
+    {% else %}
+        <p class="nenhum-reagente">Nenhum reagente cadastrado.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
