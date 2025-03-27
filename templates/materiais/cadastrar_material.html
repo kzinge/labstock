@@ -66,7 +66,7 @@
         </select>
 
         <label for="fornecedor">Fornecedor:</label>
-        <input type="text" name="fornecedor">
+        <input type="text" name="fornecedor_reagente">
 
         <button type="submit" class="botao-cadastrar">Cadastrar</button>
     </form>
@@ -79,31 +79,35 @@
         <label for="nome_material">Nome do material:</label>
         <input type="text" name="nome_material">
         <!-- Removi a palavra opcional, qualquer coisa adicione novamente -->
+        <!-- Se pa que no lugar da pra colocar aquele * vermelho que normalmente tem nos sites,
+         do front é vc que sabe patrão, pode tomar a decisão -->
         <label for="descricao">Descrição:</label>
         <input type="text" name="descricao">
 
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" name="quantidade">
+        <label for="quantidade_material">Quantidade:</label>
+        <input type="number" name="quantidade_material">
 
-        <label for="fornecedor">Fornecedor:</label>
-        <input type="text" name="fornecedor">
+        <label for="fornecedor_material">Fornecedor:</label>
+        <input type="text" name="fornecedor_material">
 
-        <label for="validade">Validade:</label>
-        <input type="date" name="validade">
+        <label for="validade_material">Validade:</label>
+        <input type="date" name="validade_material">
 
-        <label for="laboratorio">Laboratorio:</label>
-        <select name="laboratorio">
+        <label for="lab_material">Laboratorio:</label>
+        <select name="lab_material">
             {% for lab in laboratorios %}
                 <option value={{lab.lab_sala}}>{{lab.lab_sala}}</option>
             {% endfor %}
         </select>
 
-        <label for="categoria">Categoria:</label>
-        <select name="categoria">
+        <label for="categoria_material">Categoria:</label>
+        <select name="categoria_material">
             {% for cat in categorias %}
-                <option value={{cat.cat_nome}}></option>
+                <option value={{cat.cat_nome}}>{{cat}}</option>
             {% endfor %}
         </select>
+
+        <button type="submit" class="botao-cadastrar">Cadastrar</button>
     </form>
 </div>
 

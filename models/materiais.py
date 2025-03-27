@@ -38,11 +38,10 @@ class Material(db.Model):
     def __repr__(self):
         return f'Material {self.mat_nome} - Quantidade: {self.mat_quantidade}'
 
-    def __init__(self, nome, descricao, quantidade, unidade, fornecedor, validade, lab_id, cat_id) -> None:
+    def __init__(self, nome, descricao, quantidade, fornecedor, validade, lab_id, cat_id) -> None:
         self.mat_nome = nome
         self.mat_quantidade = quantidade
         self.mat_descricao = descricao
-        self.mat_unidade = unidade
         self.mat_fornecedor = fornecedor
         self.mat_validade = validade
         self.mat_lab_id = lab_id

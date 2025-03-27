@@ -27,8 +27,8 @@ CREATE TABLE tb_laboratorios (
 CREATE TABLE tb_materiais (
     mat_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mat_nome VARCHAR(50) NOT NULL,
+    mat_descricao VARCHAR(200) NOT NULL,
     mat_quantidade DECIMAL(10, 2) NOT NULL,
-    mat_unidade ENUM('g', 'l') NOT NULL,
     mat_fornecedor VARCHAR(90) NOT NULL,
     mat_validade DATE,
     mat_lab_id INT NOT NULL,

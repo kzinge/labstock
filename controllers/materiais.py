@@ -24,7 +24,7 @@ def cadastro():
     categorias = db.session.scalars(db.select(Categoria)).all()
     return render_template('materiais/cadastrar_material.html' , categorias=categorias, laboratorios=laboratorios)
 
-@materiais_bp.route('/cadastro_reagente', methods=['POST','GET'])
+@materiais_bp.route('/cadastro_reagente', methods=['POST'])
 def cadastro_reagente():
     if request.method == 'POST':
         nome_reagente = request.form['nome_reagente']
@@ -33,7 +33,6 @@ def cadastro_reagente():
             tipo_reagente = request.form['tipo_reagente']
 
         except: #Se der erro é por que ta com o input de criar uma categoria nova
-            print('entrou no except')
             tipo_reagente = request.form['tipo_reagente_novo']
             categorias = db.session.scalars(db.select(Categoria)).all()
 
@@ -43,37 +42,30 @@ def cadastro_reagente():
                 db.session.commit()           
 
             for categoria in categorias:
-                print('entrou no for')
                 if tipo_reagente == categoria.cat_nome:
-                    print(categoria.cat_nome)
-                    print(tipo_reagente)
-                    print('categoria existe?')
                     flash('Categoria já existe')
                     return redirect(url_for('material.cadastro'))
                 else:
                     nova_cat = Categoria(nome = tipo_reagente)
                     db.session.add(nova_cat)
                     db.session.commit()
-                    print('entrou e criou a categoria')
                     break
 
         rgt_unidade = request.form['unidade']
         quantidade_reagente = request.form['quantidade_reagente']
         validade_reagente = request.form['validade_reagente']
         laboratorio = request.form['lab_local']
-        rgt_fornecedor = request.form['fornecedor']
+        rgt_fornecedor = request.form['fornecedor_reagente']
 
         rgt_cat_id = db.session.scalar(db.select(Categoria.cat_id).filter(Categoria.cat_nome == tipo_reagente))
-        if not rgt_cat_id:
-            print('falou que a categoria não existe')
+        if not rgt_cat_id: #ESSE IF NÃO PRECISA MAIS, TA SENDO PEGA POR SELECT
             flash('Categoria inexistente')
-            return render_template('materiais/cadastrar_material.html',nome=nome_reagente, unidade=rgt_unidade, 
-                quantidade=quantidade_reagente, validade=validade_reagente, laboratorio=laboratorio, fornecedor = rgt_fornecedor)
+            return render_template('materiais/cadastrar_material.html')
         rgt_lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_sala == laboratorio))
-        if not rgt_lab_id:
+
+        if not rgt_lab_id: #ESSE IF NÃO PRECISA MAIS, TA SENDO PEGA POR SELECT
             flash('Laboratório inexistente')
-            return render_template('materiais/cadastrar_material.html',nome=nome_reagente, unidade=rgt_unidade, 
-                quantidade=quantidade_reagente, validade=validade_reagente, categoria = tipo_reagente, fornecedor = rgt_fornecedor)
+            return render_template('materiais/cadastrar_material.html')
         
 
 
@@ -138,7 +130,7 @@ def edit(id):
 
 @materiais_bp.route('/remove/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
 def remove(id):
-    reagente = db.session.scalar(db.select(reagente).filter(reagente.rgt_id == int(id)))
+    reagente = db.session.scalar(db.select(Reagente).filter(Reagente.rgt_id == int(id)))
     db.session.delete(reagente)
     db.session.commit()
     return redirect(url_for('material.estoque'))
@@ -147,18 +139,7 @@ def remove(id):
 
 @materiais_bp.route('/reservar', methods=['POST','GET'])
 def reservar():
-    pass
-
-
-
-# @materiais_bp.route('/nova_categoria', methods=['POST']) # ROTA APENAS PARA TECNICO
-# def nova_categoria():
-#     nome = request.form['nome']
-#     nova_cat = Categoria(nome=nome)
-#     db.session.add(nova_cat)
-#     db.session.commit()
-    
-    return redirect(url_for('reagente.cadastro'))
+    return render_template('materiais/reservar_materiais.html')
 
 
 
@@ -166,6 +147,23 @@ def reservar():
 
 #materiais
 
-@materiais_bp.route('/novo_material')
+@materiais_bp.route('/novo_material', methods=['POST'])
 def cadastro_material():
-    return render_template('materiais/edit_reagente.html')
+    nome = request.form['nome_material']
+    descricao = request.form['descricao']
+    quantidade = request.form['quantidade_material']
+    fornecedor = request.form['fornecedor_material']
+    validade = request.form['validade_material']
+    lab = request.form['lab_material']
+    cat = request.form['categoria_material']
+    
+    cat_id = db.session.scalar(db.select(Categoria.cat_id).filter(Categoria.cat_nome == cat))
+    lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_sala == lab))
+
+
+    novo_material = Material(nome, descricao, quantidade, fornecedor, validade, lab_id, cat_id)
+
+    db.session.add(novo_material)
+    db.session.commit()
+
+    return redirect(url_for('material.estoque'))
