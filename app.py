@@ -3,7 +3,7 @@ from flask_login import LoginManager, logout_user, login_required, current_user
 
 from sqlalchemy.exc import OperationalError
 import time
-# import pymysql (caso user docker)
+import pymysql
 from database import db
 from auth import auth_bp
 from models.usuarios import User
@@ -11,11 +11,11 @@ from models.laboratorios import Lab, ReservaLab, EspecialidadeLab
 from models.materiais import Material, ReservaMaterial, Categoria, Reagente
 from controllers import lab_bp, materiais_bp, usu_bp
 
-#Caso user docker: pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
-#Caso use docker:app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
 #login_manager
 login_manager = LoginManager()

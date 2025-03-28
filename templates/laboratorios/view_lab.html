@@ -5,10 +5,46 @@
 {% endblock %}
 
 {% block headerlinks %}
-
-<a href="{{url_for('lab.cadastrar_lab')}}" class="btn-botao">Cadastrar</a>
-<a href="{{url_for('lab.reservar_lab')}}" class="btn-botao">Reservar</a>
-<a href="{{url_for('lab.reservas')}}" class="btn-botao">Reservas</a>
+<li class="side-item">
+    <a href="{{url_for('dashboard')}}">
+        <i class="fa-solid fa-home"></i>
+        <span class="item-description">
+            Início
+        </span>
+    </a>
+</li>
+<li class="side-item active">
+    <a href="{{url_for('lab.index')}}">
+        <i class="fa-solid fa-microscope"></i>
+        <span class="item-description">
+            Laboratorios
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.cadastrar_lab')}}">
+        <i class="fa-solid fa-square-plus"></i>
+        <span class="item-description">
+            Novo Laboratório
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservar_lab')}}">
+        <i class="fa-solid fa-table"></i>
+        <span class="item-description">
+            Nova Reserva
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservas')}}">
+        <i class="fa-solid fa-list"></i>
+        <span class="item-description">
+            Reservas
+        </span>
+    </a>
+</li>
 {% endblock %}
 
 {% block perfil %}
