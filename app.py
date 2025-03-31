@@ -14,8 +14,10 @@ from controllers import lab_bp, materiais_bp, usu_bp
 pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
+#se for usar docker comente essa linha
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
+#se for usar docker descomente essa linha 
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
 #login_manager
 login_manager = LoginManager()
