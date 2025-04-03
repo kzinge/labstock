@@ -56,11 +56,11 @@
 <div class="labs-div">
     {% for lab in laboratorios %}
     <div class="lab-div">
-        <p>{{lab.lab_nome}}</p>
-        <p><span>local:</span> Bloco: {{lab.lab_bloco}} Sala: {{ lab.lab_sala }}</p>
+        <div class="lab-name-box">
+            <p class="lab-name">{{ lab.lab_nome }}</p>
+        </div>
+        <p>Esse laboratório se localiza no corredor {{ lab.lab_bloco }} e na sala {{ lab.lab_sala }}</p>
     </div>
     {% endfor %}
 </div>
-
-
 {% endblock %}

@@ -8,41 +8,31 @@
 <li class="side-item">
     <a href="{{url_for('dashboard')}}">
         <i class="fa-solid fa-home"></i>
-        <span class="item-description">
-            Início
-        </span>
+        <span class="item-description">Início</span>
     </a>
 </li>
 <li class="side-item">
     <a href="{{url_for('lab.index')}}">
         <i class="fa-solid fa-microscope"></i>
-        <span class="item-description">
-            Laboratorios
-        </span>
+        <span class="item-description">Laboratorios</span>
     </a>
 </li>
 <li class="side-item">
     <a href="{{url_for('lab.cadastrar_lab')}}">
         <i class="fa-solid fa-square-plus"></i>
-        <span class="item-description">
-            Novo Laboratório
-        </span>
+        <span class="item-description">Novo Laboratório</span>
     </a>
 </li>
 <li class="side-item active">
     <a href="{{url_for('lab.reservar_lab')}}">
         <i class="fa-solid fa-table"></i>
-        <span class="item-description">
-            Nova Reserva
-        </span>
+        <span class="item-description">Nova Reserva</span>
     </a>
 </li>
 <li class="side-item">
     <a href="{{url_for('lab.reservas')}}">
         <i class="fa-solid fa-list"></i>
-        <span class="item-description">
-            Reservas
-        </span>
+        <span class="item-description">Reservas</span>
     </a>
 </li>
 {% endblock %}
@@ -54,40 +44,52 @@
 
 {% block content %}
 <form action="{{url_for('lab.reservar_lab')}}" method="POST" id="form-lab">
-    <label for="nome_lab">Nome do laboratório:</label>
-    <input type="text" name="nome_lab" id="nome-lab" list="lista-lab" required>
-    <datalist id="lista-lab">
-        {% for laboratorio in laboratorios %}
-            <option value="{{ laboratorio.lab_nome }}">
-        {% endfor %}
-    </datalist>
-
-    <label for="tipo_reserva">Tipo da reserva:</label>
-    <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
-        <option value="anual">anual</option>
-        <option value="semestral">semestral</option>
-        <option value="extraordinaria">extraordinária</option>
-    </select>
-
-    <label for="motivo_reserva">motivo da reserva:</label>
-    <input type="text" name="motivo_reserva" required>
-
-    <label for="horario_inicio">Horário de início:</label>
-    <input type="time" name="horario_inicio" id="horario-inicio" required>
-
-    <label for="horario_termino">Horário de término:</label>
-    <input type="time" name="horario_termino" id="horario-termino" required>
-
-    <label for="data_inicio" id="label-inicio">Data de início:</label>
-    <input type="date" name="data_inicio" id="data-inicio" required>
-    
-    <div id="div-data">
-        <label for="data_final">Data final:</label> 
-        <input type="date" name="data_final" id="data-final" required>
+    <div class="form-title-container">
+        <h1 class="form-title">Nova Reserva</h1>
     </div>
 
+    <div class="form_prin">
+        <div class="form_org">
+            <label for="nome_lab"><h1>Laboratório</h1></label>
+            <input type="text" name="nome_lab" id="nome-lab" list="lista-lab" required>
+            <datalist id="lista-lab">
+                {% for laboratorio in laboratorios %}
+                    <option value="{{ laboratorio.lab_nome }}">
+                {% endfor %}
+            </datalist>
 
+            <label for="tipo_reserva"><h1>Tipo da reserva</h1></label>
+            <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
+                <option value="anual">anual</option>
+                <option value="semestral">semestral</option>
+                <option value="extraordinaria">extraordinária</option>
+            </select>
+        </div>
+        <div class="form_dh">
+            <div class="form_org">
+                <h1>Horários e Datas</h1>
+                <div id="horarios-datas">
+                    <div id="div-horario">
+                        <label for="horario_inicio">Horário de início</label>
+                        <input type="time" name="horario_inicio" id="horario-inicio" required>
 
+                        <label for="horario_termino">Horário de término</label>
+                        <input type="time" name="horario_termino" id="horario-termino" required>
+                    </div>
+                    <div id="div-data">
+                        <label for="data_inicio" id="label-inicio">Data ínicial</label>
+                        <input type="date" name="data_inicio" id="data-inicio" required>
+                    
+                        <label for="data_final">Data final</label> 
+                        <input type="date" name="data_final" id="data-final" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <label for="motivo_reserva"><h1>Motivo da reserva</h1></label>
+    <input type="text" name="motivo_reserva" id="motivo-reserva" required>
     
     <div class="conteiner-inputs">
         <button type="submit" class="botao-reservar">Reservar</button>
@@ -96,5 +98,4 @@
 </form>
 
 <script src="{{ url_for('static', filename='scripts/reservar_lab.js') }}"></script>
-
 {% endblock %}
