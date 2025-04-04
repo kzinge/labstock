@@ -56,16 +56,19 @@
 <div class="rels-div">
     {% for reserva in reservas %}
     <div class="rel-div">
-        <p>{{reserva.laboratorio.lab_nome}}</p>
-        <p><span>tipo da reserva:</span> {{reserva.rel_tipo}} <p><span>horario:</span> {{reserva.rel_horarioInicial}} <span>as</span> {{reserva.rel_horarioFinal}}</p> 
-        <p><span>status:</span> {{reserva.rel_status}} </p>
-        <a href="{{ url_for('lab.detalhar_reserva', reserva_id=reserva.rel_id) }}" class="btn-editar">Ver detalhes</a>
-        <a href="{{ url_for('lab.editar_reserva', reserva_id=reserva.rel_id) }}" class="btn-editar">Editar</a>
+        <div class="lab-nome-box">
+            <p class="lab-name">{{ reserva.laboratorio.lab_nome }}</p>
+        </div>
+        <p><span>tipo da reserva:</span> {{reserva.rel_tipo}}</p>
+        <p><span>horario:</span> {{reserva.rel_horarioInicial}} <span>às</span> {{reserva.rel_horarioFinal}}</p> 
+        <p><span>status:</span> {{reserva.rel_status}}</p>
+        
+        <a href="{{ url_for('lab.detalhar_reserva', reserva_id=reserva.rel_id) }}" class="btn-botao">Detalhes</a>
+        <a href="{{ url_for('lab.editar_reserva', reserva_id=reserva.rel_id) }}" class="btn-botao">Editar</a>
+        
         <form action="{{ url_for('lab.excluir_reserva', reserva_id=reserva.rel_id) }}" method="POST">
-            <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta reserva?')">Excluir</button>
+            <button type="submit" class="btn-botao" onclick="return confirm('Tem certeza que deseja excluir esta reserva?')">Excluir</button>
         </form>
-        <!-- <a href="{{ url_for('lab.excluir_reserva', reserva_id=reserva.rel_id) }}" 
-        onclick="return confirm('Tem certeza que deseja excluir esta reserva?')">Excluir</a> -->
     </div>
     {% endfor %}
 </div>
