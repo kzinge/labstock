@@ -63,7 +63,7 @@ def reservar_lab():
             data_final = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
 
 
-        reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id, ReservaLab.rel_dataFinal >= data_inicio, ReservaLab.rel_dataInicial <= data_final, ReservaLab.rel_horarioFinal >= horario_inicio, ReservaLab.rel_horarioInicial <= horario_termino))
+        reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id, ReservaLab.rel_status == 'Confirmada', ReservaLab.rel_dataFinal >= data_inicio, ReservaLab.rel_dataInicial <= data_final, ReservaLab.rel_horarioFinal >= horario_inicio, ReservaLab.rel_horarioInicial <= horario_termino))
         if reserva_existente:
             flash("Já existe uma reserva para esse período!", "danger")
             print("Já existe uma reserva para esse período!")
