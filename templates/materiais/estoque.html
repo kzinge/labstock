@@ -7,17 +7,59 @@
 
 {% block content %}
     {% if reagentes %}
-        <div id="reagentes-container">
-            {% for reagente in reagentes %}
-                <div class="card">
-                    <p class="titulo">{{ reagente.rgt_nome }}</p>
-                    <p><strong>ID:</strong> {{ reagente.rgt_id }}</p>
-                    <p><strong>Quantidade:</strong> {{ reagente.rgt_quantidade }} {{ reagente.rgt_unidade }}</p>
-                    <p><strong>Laboratório:</strong> {{ reagente.laboratorio.lab_sala }}</p>
-                    <p><strong>Categoria:</strong> {{ reagente.categoria }}</p>
-                </div>
-            {% endfor %}
+        <div class="filtro-container">
+            <h3>Filtrar Estoque</h3>
+
+            <button class="btn-toggle">Materiais</button>
+            <button class="btn-toggle ativo">Reagentes</button>
+
+            <label>
+                Categoria
+                <select>
+                    <option value="">Selecione</option>
+                    <!-- opções dinâmicas aqui -->
+                </select>
+            </label>
+
+            <label>
+                Fornecedor
+                <select>
+                    <option value="">Selecione</option>
+                    <!-- opções dinâmicas aqui -->
+                </select>
+            </label>
+
+            <div class="busca-container">
+                <input type="text" placeholder="Buscar">
+                <label>Buscar</label>
+            </div>
+
+            <button class="btn-filtrar">Filtrar</button>
         </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <a href="">Imprimir lista</a>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for reagente in reagentes %}
+                <tr>
+                    <td>{{ reagente.rgt_nome }}</td>
+                    <td><span>Fornecedor</span></td>
+                    <td><span>Quantidade</span>{{ reagente.rgt_quantidade }} {{ reagente.rgt_unidade }}</td>
+                    <td><span>Validade</span></td>
+                    <td>
+                        <a href="">Deletar</a>
+                        <a href="">Visualizar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
     {% else %}
         <p class="nenhum-reagente">Nenhum reagente cadastrado.</p>
     {% endif %}

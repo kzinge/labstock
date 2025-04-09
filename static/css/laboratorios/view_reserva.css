@@ -4,14 +4,18 @@
     box-sizing: border-box;
 }
 
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+}
+
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
 .rels-div {

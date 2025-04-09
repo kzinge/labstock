@@ -4,15 +4,20 @@
     box-sizing: border-box;
 }
 
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+}
+
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
+
 
 .labs-div {
     display: flex;
@@ -20,8 +25,7 @@ html, body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    padding: 20px;
-    max-width: 1200px;
+
 }
 
 .lab-div {
@@ -63,14 +67,3 @@ html, body {
 }
 
 
-
-@media (max-width: 768px) {
-    .labs-div {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .lab-div {
-        width: 90%;
-    }
-}
