@@ -76,8 +76,8 @@ def cadastro_reagente():
         return redirect(url_for('material.estoque'))
 
 
-@materiais_bp.route('/edit/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
-def edit(id):
+@materiais_bp.route('/edit_reagente/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
+def edit_reagente(id):
     reagente = db.session.scalar(db.select(Reagente).filter(Reagente.rgt_id == int(id)))
     categoria = db.session.scalar(db.select(CategoriaReagente.cat_nome).filter(CategoriaReagente.cat_id == Reagente.rgt_cat_id))
     laboratorio = db.session.scalar(db.select(Lab).filter(Lab.lab_id == reagente.rgt_lab_id))
@@ -128,8 +128,8 @@ def edit(id):
 
 
 
-@materiais_bp.route('/remove/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
-def remove(id):
+@materiais_bp.route('/remove_rgt/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO
+def remove_reagente(id):
     reagente = db.session.scalar(db.select(Reagente).filter(Reagente.rgt_id == int(id)))
     db.session.delete(reagente)
     db.session.commit()
@@ -147,6 +147,7 @@ def reservar():
 
 #materiais
 
+#CREATE MATERIAIS
 @materiais_bp.route('/novo_material', methods=['POST'])
 def cadastro_material():
     nome = request.form['nome_material']
@@ -167,3 +168,17 @@ def cadastro_material():
     db.session.commit()
 
     return redirect(url_for('material.estoque'))
+
+#DELETE MATERIAIS 
+@materiais_bp.route('/delete_material/<int:id>', methods=['POST'])
+def remove_material(id):
+    material = db.session.scalar(db.select(Material).filter(Material.mat_id == int(id)))
+    db.session.delete(material)
+    db.session.commit()
+    return redirect(url_for('material.estoque'))
+
+
+#EDIT MATERIAIS
+@materiais_bp.route('/edit_material/<int:id>', methods=['GET','POST'])
+def edit_material(id):
+    pass
