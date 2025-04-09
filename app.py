@@ -71,7 +71,8 @@ def sobre():
 
 @app.route('/laboratorios')
 def laboratorios():
-    return render_template('pages/laboratorios.html')
+    pass
+    # return render_template('laboratorios/view_lab.html')
 
 
 # @app.route('/reservar')
