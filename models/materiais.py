@@ -4,13 +4,12 @@ from database import db
 from datetime import date
 from typing import List
 
-class Categoria(db.Model):
-    __tablename__ = 'tb_categorias'
+class CategoriaReagente(db.Model):
+    __tablename__ = 'tb_categorias_reagentes'
 
     cat_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     cat_nome: Mapped[str] = mapped_column(String(50), nullable=False)
 
-    materiais = relationship('Material', back_populates='categoria', lazy=True)
     reagentes = relationship('Reagente', back_populates='categoria', lazy=True)
 
     def __repr__(self):
@@ -18,6 +17,22 @@ class Categoria(db.Model):
     
     def __init__(self, nome) -> None:
         self.cat_nome = nome
+
+
+class CategoriaMaterial(db.Model):
+    __tablename__ = 'tb_categorias_materiais'
+
+    cat_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    cat_nome: Mapped[str] = mapped_column(String(50), nullable=False)
+
+    materiais = relationship('Material', back_populates='categoria', lazy=True)
+
+    def __repr__(self):
+        return self.cat_nome
+    
+    def __init__(self, nome) -> None:
+        self.cat_nome = nome
+
 
 class Material(db.Model):
     __tablename__ = 'tb_materiais'
@@ -29,10 +44,10 @@ class Material(db.Model):
     mat_fornecedor: Mapped[str] = mapped_column(String(90), nullable=False)
     mat_validade: Mapped[date] = mapped_column(Date, nullable=False)
     mat_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
-    mat_cat_id: Mapped[int] = mapped_column(ForeignKey('tb_categorias.cat_id'), nullable=False)
+    mat_cat_id: Mapped[int] = mapped_column(ForeignKey('tb_categorias_materiais.cat_id'), nullable=False)
 
     laboratorio = relationship('Lab', back_populates='materiais', lazy=True)
-    categoria = relationship('Categoria', back_populates='materiais', lazy=True)
+    categoria = relationship('CategoriaMaterial', back_populates='materiais', lazy=True)
     reservas_materiais = relationship('ReservaMaterial', back_populates='material', lazy=True)
 
     def __repr__(self):
@@ -57,10 +72,10 @@ class Reagente(db.Model):
     rgt_fornecedor: Mapped[str] = mapped_column(String(90), nullable=False)
     rgt_validade: Mapped[date] = mapped_column(Date, nullable=False)
     rgt_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
-    rgt_cat_id: Mapped[int] = mapped_column(ForeignKey('tb_categorias.cat_id'), nullable=False)
+    rgt_cat_id: Mapped[int] = mapped_column(ForeignKey('tb_categorias_reagentes.cat_id'), nullable=False)
 
     laboratorio = relationship('Lab', back_populates='reagentes', lazy=True)
-    categoria = relationship('Categoria', back_populates='reagentes', lazy=True)
+    categoria = relationship('CategoriaReagente', back_populates='reagentes', lazy=True)
     reservas_materiais = relationship('ReservaMaterial', back_populates='reagentes', lazy=True)
 
     def __repr__(self):
