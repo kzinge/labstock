@@ -1,17 +1,29 @@
 function getUserCookie() {
-    const username = 'username'
-    const user_foto = 'user_foto'
-    return document.cookie
-        .split('; ') 
-        .map(cookie => cookie.split('=')) 
-        .filter(([chave]) => chave === username || chave === user_foto)
-        .map(([, valor]) => decodeURIComponent(valor));
-    
+    const keys = ['username', 'user_foto', 'usertype'];
+    const cookieMap = Object.fromEntries(
+        document.cookie
+            .split('; ')
+            .map(cookie => cookie.split('='))
+            .map(([key, val]) => [key, decodeURIComponent(val)])
+    );
+    return keys.map(key => cookieMap[key] || "");
 }
 
-document.addEventListener("DOMContentLoaded", getUserCookie);
-cookies = getUserCookie()
-username_element = document.getElementById('username')
-username_element.textContent = cookies[0].replace(/"/g,"")
-user_foto_element = document.getElementById('user_foto')
-user_foto_element.src = cookies[1]
+document.addEventListener("DOMContentLoaded", () => {
+    const cookies = getUserCookie();
+
+    const usernameElement = document.getElementById('username');
+    if (usernameElement) {
+        usernameElement.textContent = cookies[0].replace(/"/g, "");
+    }
+
+    const userFotoElement = document.getElementById('user_foto');
+    if (userFotoElement) {
+        userFotoElement.src = cookies[1];
+    }
+
+    const usertypeElement = document.getElementById('usertype');
+    if (usertypeElement) {
+        usertypeElement.textContent = cookies[2];
+    }
+});

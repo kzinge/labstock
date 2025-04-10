@@ -3,19 +3,35 @@
 
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
-<li class="side-item">
+<li class="side-item active">
     <a href="#">
-        <i class="fa-solid fa-list"></i>
+        <i class="fa-solid fa-home"></i>
         <span class="item-description">
-            Suas Reservas
+            Início
         </span>
     </a>
 </li>
 <li class="side-item">
     <a href="#">
+        <i class="fa-solid fa-microscope"></i>
+        <span class="item-description">
+            Laboratórios
+        </span>
+    </a>
+    <ul class="sub-menu">
+        <li class="sub-item">
+            <a href="#">Laboratórios</a>
+        </li>
+        <li class="sub-item">
+            <a href="#">Minhas Reservas</a>
+        </li>
+    </ul>
+</li>
+<li class="side-item">
+    <a href="#">
         <i class="fa-solid fa-book"></i>
         <span class="item-description">
-            Suas Aulas
+            Estoque
         </span>
     </a>
 </li>
@@ -23,7 +39,7 @@
     <a href="#">
         <i class="fa-solid fa-bell"></i>
         <span class="item-description">
-            Notificações
+            Aulas
         </span>
     </a>
 </li>

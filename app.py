@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, logout_user, login_required, current_user
-
+from dotenv import load_dotenv
+import socket
+from os import getenv
 from sqlalchemy.exc import OperationalError
 import time
 import pymysql
@@ -12,11 +14,15 @@ from models.usuarios import User
 # from models.materiais import Material, ReservaMaterial, Categoria, Reagente
 from controllers import lab_bp, materiais_bp, usu_bp
 
+load_dotenv('.env')
+
+mysqlsenha = getenv('MYSQL_PASS')
+
 pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
 #se for usar docker comente essa linha
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_labstock'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:{mysqlsenha}@localhost/db_labstock'
 #se for usar docker descomente essa linha 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
@@ -91,7 +97,19 @@ def visualizar_aluno():
     return render_template('pages/inicioTecnico.html')
 
 
+def find_free_port(start_port):
+    port = start_port
+    while port < 65535:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(('0.0.0.0', port))
+                return port
+            except OSError:
+                port += 1
+    raise RuntimeError("No available ports found.")
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=3000, debug=True)
+    port = find_free_port(3000)
+    print(f'Starting Flask on port {port}')
+    app.run(host='0.0.0.0', port=port, debug=True)
 

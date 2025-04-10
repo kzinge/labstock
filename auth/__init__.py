@@ -142,6 +142,17 @@ def oauth2_callback(provider):
     response_cookie.set_cookie('username', user_infos['nome_usual'], httponly=False)
     response_cookie.set_cookie('user_foto', user_infos['url_foto_75x100'], httponly=False)
 
+    if user_infos['tipo_vinculo'] == 'Servidor':
+
+        if 'docente' in user_infos['vinculo']['categoria']:
+            response_cookie.set_cookie('usertype', 'Professor', httponly=False)
+    
+        elif 'TECNICO' in user_infos['vinculo']['categoria']:
+            response_cookie.set_cookie('usertype', 'Técnico', httponly=False)
+
+    else:
+        response_cookie.set_cookie('usertype', 'Aluno', httponly=False)
+
     return response_cookie
 
 #Logout de Usuário
@@ -168,5 +179,6 @@ def logout(provider):
         resp = make_response(redirect(url_for('index'))) 
         resp.delete_cookie('username')
         resp.delete_cookie('user_foto')
+        resp.delete_cookie('usertype')
 
     return resp

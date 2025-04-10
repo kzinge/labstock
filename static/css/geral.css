@@ -20,7 +20,7 @@ body {
 
 #lab-s{
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100%;
 }
 
@@ -80,6 +80,12 @@ body {
 #user_infos {
     display: flex;
     flex-direction: column;
+    margin: 0;
+
+    #user_type {
+        color: #6b6b6b;
+        font-size: 12px;
+    }
 }
 
 #side_items {
@@ -95,6 +101,18 @@ body {
     border-radius: 8px;
     padding: 14px;
     cursor: pointer;
+}
+
+
+.sub-menu{
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+    .sub-item {
+        font-size: 14px;
+    }
 }
 
 .side-item.active {
@@ -198,7 +216,8 @@ body {
 
 main {
     padding: 20px;
-    min-width: 90%;
+    max-width: 90vw;
+    width: 50%;
     min-height: 100%;
     z-index: 1;
     padding-left: calc(82px + 20px);
