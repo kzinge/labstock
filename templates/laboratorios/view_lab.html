@@ -13,35 +13,43 @@
         </span>
     </a>
 </li>
-<li class="side-item active">
-    <a href="{{url_for('lab.index')}}">
+<li class="side-item">
+    <a href="{{url_for('lab.index')}}" class="active-menu">
         <i class="fa-solid fa-microscope"></i>
-        <span class="item-description">
-            Laboratorios
+        <span class="item-description menu-toggle">
+            Laboratórios
         </span>
     </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="{{url_for('lab.index')}}" class="active-item">Laboratórios</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Minhas Reservas</a>
+        </li>
+    </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.cadastrar_lab')}}">
-        <i class="fa-solid fa-square-plus"></i>
-        <span class="item-description">
-            Novo Laboratório
+    <a href="#">
+        <i class="fa-solid fa-cubes"></i>
+        <span class="item-description menu-toggle">
+            Estoque
         </span>
     </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="{{url_for('lab.index')}}" class="opt-subitem">Materiais</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Grupos</a>
+        </li>
+    </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.reservar_lab')}}">
-        <i class="fa-solid fa-table"></i>
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
         <span class="item-description">
-            Nova Reserva
-        </span>
-    </a>
-</li>
-<li class="side-item">
-    <a href="{{url_for('lab.reservas')}}">
-        <i class="fa-solid fa-list"></i>
-        <span class="item-description">
-            Reservas
+            Aulas
         </span>
     </a>
 </li>

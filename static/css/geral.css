@@ -101,11 +101,40 @@ body {
     border-radius: 8px;
     padding: 14px;
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
 }
 
+.side-item:has(> a.active-menu){
+    padding: 0;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+
+    .active-menu{
+        color: #e3e9f7;
+        background-color: #36791a;
+        border-radius: 8px;
+        padding: 14px;
+    }
+}
+
+.active-item {
+    font-weight: bolder;
+    border-bottom: #36791a 3px solid;
+    border-radius: 1px;
+    width: 70%;
+}
+
+.active{
+    background-color: #36791a;
+}
 
 .sub-menu{
-    margin: 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    margin-left: 1rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -115,8 +144,39 @@ body {
     }
 }
 
-.side-item.active {
+.opt-subitem {
+    position: relative;
+    display: inline-block;
+    color: #36791a;
+    padding-bottom: 3px;
+    font-weight: 500;
+    transition: font-weight 0.3s ease, color 0.3s ease;
+}
+
+.opt-subitem::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
     background-color: #36791a;
+    border-radius: 1px;
+    transition: width 0.5s ease-in-out;
+}
+
+.opt-subitem:hover {
+    font-weight: 700;
+    color: #245c14; /* um tom um pouco mais escuro, opcional */
+}
+
+.opt-subitem:hover::after {
+    width: 70%;
+}
+
+.side-item.active-sub .sub-menu {
+    max-height: 40rem; 
+    opacity: 1;
 }
 
 .side-item:hover:not(.active),
@@ -217,7 +277,7 @@ body {
 main {
     padding: 20px;
     max-width: 90vw;
-    width: 50%;
+    width: 100%;
     min-height: 100%;
     z-index: 1;
     padding-left: calc(82px + 20px);
