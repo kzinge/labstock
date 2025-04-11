@@ -4,7 +4,7 @@ from flask_login import current_user
 from models.laboratorios import Lab, ReservaLab, EspecialidadeLab
 from database import db
 from decorators.auth import role_required
-from datetime import datetime
+from datetime import datetime, date
 lab_bp = Blueprint(name ='lab', 
                     import_name= __name__, 
                     url_prefix='/lab', 
@@ -57,6 +57,14 @@ def reservar_lab():
         horario_inicio = datetime.strptime(request.form['horario_inicio'], '%H:%M').time()
         horario_termino = datetime.strptime(request.form['horario_termino'], '%H:%M').time()
         data_inicio = datetime.strptime(request.form['data_inicio'], '%Y-%m-%d').date()
+
+        data_hoje = datetime.now().date()
+        hora_agora = datetime.now().time()
+        if data_inicio < data_hoje or (data_inicio == data_hoje and horario_inicio < hora_agora):
+            flash("Você não pode reservar para um horário que já passou!", "danger")
+            print("Você não pode reservar para um horário que já passou!", "danger")
+            return redirect(url_for('lab.reservar_lab'))
+        
         if tipo_reserva == 'extraordinaria':
             data_final = data_inicio
         else:
@@ -95,6 +103,13 @@ def editar_reserva(reserva_id):
             reserva.rel_dataFinal = reserva.rel_dataInicial
         else:
             reserva.rel_dataFinal = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
+
+        data_hoje = datetime.now().date()
+        hora_agora = datetime.now().time()
+        if reserva.rel_dataInicial < data_hoje or (reserva.rel_dataInicial == data_hoje and reserva.rel_horarioInicial < hora_agora):
+            flash("Você não pode reservar para um horário que já passou!", "danger")
+            print("Você não pode reservar para um horário que já passou!", "danger")
+            return redirect(url_for('lab.editar_reserva', reserva_id=reserva.rel_id))
 
         db.session.commit()
         flash('Reserva atualizada com sucesso!', 'success')
