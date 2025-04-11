@@ -53,6 +53,22 @@
 {% endblock %}
 
 {% block content %}
+<div class="filtros-div">
+    <h2>Filtrar laboratórios</h2>
+    <select name="especialidades_filtro" id="especialidades-select">
+        {% for especialidade in ['Química', 'Física', 'Biologia'] %}
+            <option value="{{especialidade}}" class="especialidade-option">{{especialidade}}</option>
+        {% endfor%}
+    </select>
+    <input type="search" name="buscar_lab" id="input-buscar-lab" placeholder="Buscar">
+
+    <label for="data_e_hora">Disponível em</label>
+    <div class="data_e_hora">
+        <input type="date" name="data_filtro" id="input-data-filtro">
+        <input type="time" name="horario_filtro" id="input-horario-filtro">
+    </div>
+
+</div>
 <div class="rels-div">
     {% for reserva in reservas %}
     <div class="rel-div">
