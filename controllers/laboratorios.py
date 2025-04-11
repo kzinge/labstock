@@ -70,6 +70,10 @@ def reservar_lab():
         else:
             data_final = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
 
+        if data_final < data_inicio or horario_termino < horario_inicio:
+            print("a data e/ou o horário final não pode ser antes do inicial") 
+            flash("a data e/ou o horário final não pode ser antes do inicial") 
+            return redirect(url_for('lab.reservar_lab'))
 
         reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id, ReservaLab.rel_status == 'Confirmada', ReservaLab.rel_dataFinal >= data_inicio, ReservaLab.rel_dataInicial <= data_final, ReservaLab.rel_horarioFinal >= horario_inicio, ReservaLab.rel_horarioInicial <= horario_termino))
         if reserva_existente:
@@ -109,6 +113,11 @@ def editar_reserva(reserva_id):
         if reserva.rel_dataInicial < data_hoje or (reserva.rel_dataInicial == data_hoje and reserva.rel_horarioInicial < hora_agora):
             flash("Você não pode reservar para um horário que já passou!", "danger")
             print("Você não pode reservar para um horário que já passou!", "danger")
+            return redirect(url_for('lab.editar_reserva', reserva_id=reserva.rel_id))
+        
+        if reserva.rel_dataFinal < reserva.rel_dataInicial or reserva.rel_horarioFinal < reserva.rel_horarioInicial:
+            print("a data e/ou o horário final não pode ser antes do inicial") 
+            flash("a data e/ou o horário final não pode ser antes do inicial") 
             return redirect(url_for('lab.editar_reserva', reserva_id=reserva.rel_id))
 
         db.session.commit()
