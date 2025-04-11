@@ -59,7 +59,7 @@
             </datalist>
 
             <label for="tipo_reserva"><h1>Tipo da reserva</h1></label>
-            <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
+            <select name="tipo_reserva" id="tipo-reserva" onchange="alternarCampoData()" required>
                 <option value="anual">anual</option>
                 <option value="semestral">semestral</option>
                 <option value="extraordinaria">extraordinária</option>
@@ -77,10 +77,10 @@
                         <input type="time" name="horario_termino" id="horario-termino" required>
                     </div>
                     <div id="div-data">
-                        <label for="data_inicio" id="label-inicio">Data ínicial</label>
+                        <label for="data_inicio" id="label-inicio">Data inicial</label>
                         <input type="date" name="data_inicio" id="data-inicio" required>
                     
-                        <label for="data_final">Data final</label> 
+                        <label for="data_final" id="label-final">Data final</label> 
                         <input type="date" name="data_final" id="data-final" required>
                     </div>
                 </div>
