@@ -32,7 +32,7 @@ body {
     height: 100vh;
     border-radius: 0px 18px 18px 0px;
     position: relative;
-    transition: all .5s;
+    transition: width 3s ease, padding 0.5s ease, gap 0.5s ease;
     width: 82px;
     z-index: 2;
 }
@@ -229,8 +229,8 @@ body {
     background-color: #36791a;
     color: #e3e9f7;
     border-radius: 100%;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border: none;
     cursor: pointer;
 }

@@ -1,9 +1,15 @@
+:root {
+    --verde-principal: #1D6D00;
+    --verde-claro: #d1f1c7;
+    --branco: #ffffff;
+    --cinza-fundo: #f0f0f0;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-
 
 html, body {
     height: 100%;
@@ -15,29 +21,38 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--cinza-fundo);
 }
-
 
 .labs-div {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-
+    gap: 20px;
 }
 
 .lab-div {
+    background-color: var(--branco);
+    width: 18rem;
+    height: 18rem;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    background-color: white;
-    height: 200px;
-    border-radius: 8px;
-    width: 250px;
+    align-items: center;
     text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    padding: 15px;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.lab-conteudo{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .lab-div:hover {
@@ -46,24 +61,61 @@ body {
 }
 
 .lab-name-box {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    width: 15rem;
+    top: -18px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #7ed957;
-    color: white;
-    height: 50px;
-    width: 100%;
-    gap:10px;
-    margin-bottom: 30px;
-    border-radius: 5px;
+    position: absolute;
 }
 
 .lab-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    color: white; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
 }
 
 
+.lab-description {
+    font-size: 0.95rem;
+    margin-top: 4rem;
+}
+
+.lab-total {
+    background-color: var(--verde-claro);
+    color: var(--verde-principal);
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.lab-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.lab-buttons a {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--branco);
+    cursor: pointer;
+    background-color: var(--verde-principal);
+    transition: 
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.lab-buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

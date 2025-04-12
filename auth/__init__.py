@@ -122,6 +122,18 @@ def oauth2_callback(provider):
                     )
                 db.session.add(user)
                 db.session.commit()
+
+# Teste para entrar no sistema como professor (por enquanto)
+        elif user_infos['tipo_vinculo'] == 'Prestador de Serviço':
+                user = User(
+                    nome= user_infos['nome_usual'],
+                    email= user_infos['email'],
+                    matricula= user_infos['matricula'],
+                    tipo= 'Docente',
+                    foto = user_infos['url_foto_75x100']
+                    )
+                db.session.add(user)
+                db.session.commit()
         
         else:
             user = User(

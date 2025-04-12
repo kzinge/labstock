@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --verde-principal: #1D6D00;
+    --verde-hover: #2a5e15;
+    --fundo-claro: #f0f0f0;
+    --branco: #ffffff;
+    --preto: #000000;
+    --cinza-escuro: #333;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -16,7 +26,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--fundo-claro);
 }
 
 .cards {
@@ -29,7 +39,7 @@ body {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--branco);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -53,8 +63,8 @@ body {
 }
 
 .card-icone {
-    background-color: #36791a;
-    color: white;
+    background-color: var(--verde-principal);
+    color: var(--branco);
     font-size: 4rem;
     padding: 1.5rem;
     border-radius: 50%;
@@ -81,7 +91,7 @@ body {
     gap: 1rem;
 }
 
-.card.maior .content-card{
+.card.maior .content-card {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -92,7 +102,7 @@ body {
     gap: 1.5rem;
 }
 
-.card.maior aside{
+.card.maior aside {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,7 +110,6 @@ body {
     height: 100%;
     gap: 0.5rem;
 }
-
 
 .card-title {
     display: flex;
@@ -111,20 +120,20 @@ body {
 .card-title h1 {
     font-size: 4rem;
     font-weight: 800;
-    color: #000;
+    color: var(--preto);
     margin: 0;
 }
 
 .card-title span {
     font-size: 1.5rem;
     line-height: 1.5rem;
-    color: #333;
+    color: var(--cinza-escuro);
     font-weight: 500;
 }
 
 .card-content p {
     font-size: 0.95rem;
-    color: #333;
+    color: var(--cinza-escuro);
 }
 
 .buttons {
@@ -135,22 +144,31 @@ body {
 }
 
 .buttons a {
-    background-color: #36791a;
-    color: white;
+    background-color: var(--verde-principal);
+    color: var(--branco);
     padding: 6px;
-    border-radius: 5px;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s ease;
+    gap:5px;
+    transition: 
+        background-color 0.2s ease, 
+        transform 0.2s ease, 
+        box-shadow 0.2s ease;
+}
+
+.buttons a:hover {
+    background-color: var(--verde-hover);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .buttons a div {
-    background-color: white;
-    color: #36791a;
+    background-color: var(--branco);
+    color: var(--verde-principal);
     font-weight: bold;
     border-radius: 50%;
     width: 20px;
@@ -161,7 +179,7 @@ body {
 }
 
 .buttons a:hover {
-    background-color: #2a5e15;
+    background-color: var(--verde-hover);
 }
 
 .side {
@@ -173,25 +191,24 @@ body {
     text-align: center;
     gap: 10px;
 
-    .card-title{
-        background-color: #36791a;
+    .card-title {
+        background-color: var(--verde-principal);
         padding: 1rem;
         width: 20rem;
         border-radius: 5px;
 
-        h1, span{
-            color: #fff;
+        h1, span {
+            color: var(--branco);
         }
 
-        span{
+        span {
             text-align: left;
         }
     }
 }
 
-
 footer {
-    background-color: #7ed957;
+    background-color: var(--verde-principal);
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -209,7 +226,7 @@ footer #ft-infos p {
 }
 
 footer #ft-contato {
-    background-color: white;
+    background-color: var(--branco);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -229,5 +246,5 @@ footer #ft-contato #ft-mail {
 
 footer #ft-contato #ft-mail span {
     font-size: 1.2rem;
-    color: #36791a;
+    color: var(--verde-principal);
 }

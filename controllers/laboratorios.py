@@ -13,7 +13,10 @@ lab_bp = Blueprint(name ='lab',
 @lab_bp.route('/')
 def index():
     laboratorios = db.session.scalars(db.select(Lab)).all()
-    return render_template('laboratorios/view_lab.html', laboratorios = laboratorios)
+    if current_user.usu_tipo == 'Docente':
+        return render_template('pages/professor/viewlab.html', laboratorios = laboratorios)
+    else:
+      return render_template('laboratorios/view_lab.html', laboratorios = laboratorios)
 
 
 
