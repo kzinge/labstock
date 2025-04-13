@@ -1,0 +1,105 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/view_lab.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li class="side-item">
+    <a href="{{url_for('dashboard')}}">
+        <i class="fa-solid fa-home"></i>
+        <span class="item-description">
+            Início
+        </span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('professor.labs')}}" class="active-menu">
+        <i class="fa-solid fa-microscope"></i>
+        <span class="item-description menu-toggle">
+            Laboratórios
+        </span>
+    </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="{{url_for('professor.labs')}}" class="active-item">Laboratórios</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Minhas Reservas</a>
+        </li>
+    </ul>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-cubes"></i>
+        <span class="item-description menu-toggle">
+            Estoque
+        </span>
+    </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="{{url_for('professor.labs')}}" class="opt-subitem">Materiais</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Grupos</a>
+        </li>
+    </ul>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span class="item-description">
+            Aulas
+        </span>
+    </a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="voltar">
+    <div class="seta"><i class="fa-solid fa-arrow-left"></i></div>
+    <h4>Voltar para Laboratórios</h4>
+</div>
+
+<div class="reserva">
+    <h1>Nova Reserva</h1>
+
+    <form action="">
+        <div class="part1">
+            <div class="reserva-lab">
+                <label for="labs">Laboratório</label>
+                <select name="labs" id="labs">
+                    {% for lab in laboratorios %}
+                        <option value="{{lab.lab_nome}}">{{lab.lab_nome}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="reserva-req">
+                <label for="requerente">Requerente: {{current_user.usu_nome}}</label>
+                <input type="text" name="requerente" id="requerente" value="{{current_user.usu_matricula}}" readonly>
+            </div>
+        </div>
+        <div class="part2">
+            <div class="reserva-tipo">
+                <label for="tipo">
+                    <select name="tipo" id="tipo">
+                        <option value="Anual">Anual</option>
+                        <option value="Semestral">Semestral</option>
+                        <option value="Extraordinária">Extraordinária</option>
+                    </select>
+                </label>
+            </div>
+            <div class="reserva-horario" id="reserva-horario">
+                <!--Esses horários serão preenchidos de acordo com o tipo de reserva-->
+            </div>
+            <div class="objetivo">
+                <label for="objetivo">
+                    Objetivo da Reserva:
+                </label>
+                <textarea name="objetivo" id="objetivo"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../../static/scripts/horarioreservas.js"></script>
+{% endblock %}

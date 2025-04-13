@@ -119,3 +119,39 @@ body {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+
+.nova-reserva{
+    height: 18rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .plus{
+        background-color: var(--branco);
+        color: var(--verde-principal);
+        font-weight: bold;
+        padding: 0.5rem;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+    a{
+        text-decoration: none;
+        color: var(--branco);
+        background-color: var(--verde-principal);
+        padding: 0.5rem;
+        border-radius: 0px 5px 5px 0px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        transition: 
+            background-color 0.4s ease-in-out,
+            transform 0.4s ease-in-out,
+            box-shadow 0.4s ease-in-out,
+            border-radius 0.4s ease-in-out;
+    }
+
+    a:hover{
+        transform: scale(1.35);
+        border-radius: 5px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+}

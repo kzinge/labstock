@@ -14,7 +14,7 @@
     </a>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.index')}}" class="active-menu">
+    <a href="{{url_for('professor.labs')}}" class="active-menu">
         <i class="fa-solid fa-microscope"></i>
         <span class="item-description menu-toggle">
             Laboratórios
@@ -22,7 +22,7 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.index')}}" class="active-item">Laboratórios</a>
+            <a href="{{url_for('professor.labs')}}" class="active-item">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
             <a href="#" class="opt-subitem">Minhas Reservas</a>
@@ -38,7 +38,7 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.index')}}" class="opt-subitem">Materiais</a>
+            <a href="{{url_for('professor.labs')}}" class="opt-subitem">Materiais</a>
         </li>
         <li class="sub-item item-description">
             <a href="#" class="opt-subitem">Grupos</a>
@@ -53,11 +53,6 @@
         </span>
     </a>
 </li>
-{% endblock %}
-
-{% block perfil %}
-<h1>Fulano</h1>
-<img src="../../static/assets/perfil.jpg" alt="perfil">
 {% endblock %}
 
 {% block content %}
@@ -79,5 +74,10 @@
         </div>
     </div>
     {% endfor %}
+
+    <div class="nova-reserva">
+        <div class="plus">+</div>
+        <a href="{{url_for('professor.novareserva')}}">Fazer nova reserva</a>
+    </div>
 </div>
 {% endblock %}
