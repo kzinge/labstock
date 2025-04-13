@@ -1,0 +1,1 @@
+from .tecnico import tec_bp

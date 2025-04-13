@@ -1,5 +1,0 @@
-all = [
-    'laboratorios',
-    'materiais',
-    'usuarios'
-]
