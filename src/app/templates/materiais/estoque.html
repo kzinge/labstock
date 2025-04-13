@@ -4,43 +4,52 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/estoque.css') }}">
 {% endblock %}
 
-
 {% block content %}
+
+<div class="estoque">
+
     {% if reagentes %}
-        <div class="filtro-container">
-            <h3>Filtrar Estoque</h3>
 
-            <button class="btn-toggle">Materiais</button>
-            <button class="btn-toggle ativo">Reagentes</button>
+        <div class="Filtros">
 
-            <label>
-                Categoria
-                <select>
-                    <option value="">Selecione</option>
-                    <!-- opções dinâmicas aqui -->
-                </select>
-            </label>
+            <div class="filtro_botao">
+                <h2>Filtrar estoque</h2>
 
-            <label>
-                Fornecedor
-                <select>
-                    <option value="">Selecione</option>
-                    <!-- opções dinâmicas aqui -->
-                </select>
-            </label>
+                <div class="botoes">
+                    <a href="" class="mat_reg">Materiais</a>
+                    <a href="" class="mat_reg">Reagentes</a>
+                </div>
 
-            <div class="busca-container">
-                <input type="text" placeholder="Buscar">
-                <label>Buscar</label>
             </div>
 
-            <button class="btn-filtrar">Filtrar</button>
+            <div class="filtro_categoria">
+                <label for="">Categoria</label>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
+                <div class="input-icon">
+                    <input type="text" placeholder="Buscar">
+                    <i class="fa fa-search"></i>
+                </div>
+                
+            </div>
+
+            <div class="filtro_fornecedor">
+                <label for="">Fornecedor</label>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
+                <a href="" class="botao_filtrar">Filtrar</a>
+            </div>
+
         </div>
 
         <table>
             <thead>
                 <tr>
-                    <a href="">Imprimir lista</a>
+                    <th>
+                        <a href="" class="botao_imprimir">Imprimir lista</a>
+                    </th>
                 </tr>
             </thead>
 
@@ -63,4 +72,7 @@
     {% else %}
         <p class="nenhum-reagente">Nenhum reagente cadastrado.</p>
     {% endif %}
+
+</div>
+
 {% endblock %}
