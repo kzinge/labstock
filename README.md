@@ -7,7 +7,7 @@ Este é um sistema de gerenciamento de reservas e controle de materiais para lab
 
 ## 🚀 Funcionalidades
 
-- ✅ Cadastro e autenticação de usuários (Professor, Técnico, Administrador).
+- ✅ Autenticação via SUAP de usuários (Professor, Técnico, Aluno).
 - 🗓️ Gerenciamento de reservas de laboratórios.
 - 📦 Controle de entrada e saída de materiais.
 - 🔒 Sistema de login com Flask-Login.
