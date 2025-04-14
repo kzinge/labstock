@@ -77,7 +77,7 @@ src/
 
 4. Execute a aplicação:
     ```bash
-    flask run
+    python run.py
     ```
 
 ---
