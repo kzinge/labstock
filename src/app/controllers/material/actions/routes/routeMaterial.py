@@ -47,3 +47,5 @@ def cadastro_material():
 @materiais_bp.route('/delete_material/<int:id>', methods=['POST'])
 def remove_material(id):
     materialservice.remover_material(id)
+
+#
