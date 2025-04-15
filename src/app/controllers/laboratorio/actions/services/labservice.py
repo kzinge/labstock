@@ -45,6 +45,17 @@ def carregar_reservas():
 
     return reservas
 
+def filtrar_labs(form):
+    filtro_especialidade = request.form['especialidades_filtro']
+    filtro_nome = request.form['buscar_lab']
+    filtro_data = request.form['data_filtro']
+    filtro_hora = request.form['hora_filtro']
+    if filtro_especialidade != 'todas':
+        pass
+    if filtro_nome:
+        pass
+
+
 def carregar_reserva(reserva_id):
     reserva = db.session.get(ReservaLab, reserva_id)
 

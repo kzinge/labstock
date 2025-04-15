@@ -22,6 +22,9 @@ def cadastrar_lab():
 
 @lab_bp.route('/reservas')
 def reservas():
+    if request.method == 'POST':
+        labservice.filtrar(request.form)
+        
     reservas = labservice.carregar_reservas()
     especialidades = labservice.listar_especialidades()
     return render_template('laboratorios/view_reservas.html', reservas = reservas, especialidades = especialidades)

@@ -56,6 +56,7 @@
 <div class="filtros-div">
     <h2>Filtrar laboratórios</h2>
     <select name="especialidades_filtro" id="especialidades-select">
+        <option value="todas" selected>Especialidade</option>
         {% for especialidade in especialidades %}
             <option value="{{especialidade.esp_nome}}" class="especialidade-option">{{especialidade.esp_nome}}</option>
         {% endfor%}
