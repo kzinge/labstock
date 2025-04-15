@@ -20,12 +20,12 @@ def cadastrar_lab():
     especialidades = labservice.listar_especialidades()
     return render_template('laboratorios/cadastrar_lab.html', especialidades=especialidades)
 
-@lab_bp.route('/reservas')
+@lab_bp.route('/reservas', methods=['GET', 'POST'])
 def reservas():
     if request.method == 'POST':
-        labservice.filtrar(request.form)
-        
-    reservas = labservice.carregar_reservas()
+        reservas = labservice.filtrar_labs(request.form)
+    elif request.method == 'GET':
+        reservas = labservice.carregar_reservas()
     especialidades = labservice.listar_especialidades()
     return render_template('laboratorios/view_reservas.html', reservas = reservas, especialidades = especialidades)
 

@@ -55,21 +55,25 @@
 {% block content %}
 <div class="filtros-div">
     <h2>Filtrar laboratórios</h2>
-    <select name="especialidades_filtro" id="especialidades-select">
-        <option value="todas" selected>Especialidade</option>
-        {% for especialidade in especialidades %}
-            <option value="{{especialidade.esp_nome}}" class="especialidade-option">{{especialidade.esp_nome}}</option>
-        {% endfor%}
-    </select>
-    <input type="search" name="buscar_lab" id="input-buscar-lab" placeholder="Buscar">
-
-    <label for="data_e_hora">Disponível em</label>
-    <div class="data_e_hora">
-        <input type="date" name="data_filtro" id="input-data-filtro">
-        <input type="time" name="horario_filtro" id="input-horario-filtro">
-    </div>
-
+    <form action="{{url_for('lab.reservas')}}" method="post">
+        <select name="especialidades_filtro" id="especialidades-select">
+            <option value="todas">Especialidade</option>
+            {% for especialidade in especialidades %}
+                <option value="{{especialidade.esp_nome}}" class="especialidade-option">{{especialidade.esp_nome}}</option>
+            {% endfor%}
+        </select>
+        <input type="search" name="buscar_lab" id="input-buscar-lab" placeholder="Buscar">
+    
+        <label for="data_e_hora">Disponível em</label>
+        <div class="data_e_hora">
+            <input type="date" name="data_filtro" id="input-data-filtro">
+            <input type="time" name="horario_filtro" id="input-horario-filtro">
+        </div>
+        <input type="submit" value="filtrar">
+    </form>
 </div>
+
+
 <div class="rels-div">
     {% for reserva in reservas %}
     <div class="rel-div">

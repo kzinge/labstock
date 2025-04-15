@@ -49,9 +49,13 @@ def filtrar_labs(form):
     filtro_especialidade = request.form['especialidades_filtro']
     filtro_nome = request.form['buscar_lab']
     filtro_data = request.form['data_filtro']
-    filtro_hora = request.form['hora_filtro']
-    if filtro_especialidade != 'todas':
-        pass
+    filtro_hora = request.form['horario_filtro']
+    # if filtro_especialidade == 'todas':
+    #     reservas = db.session.scalars(db.select(ReservaLab)).all()
+    # else:
+    esp_id = db.session.scalar(db.select(EspecialidadeLab.esp_id).filter(EspecialidadeLab.esp_nome == filtro_especialidade))
+    reservas = db.session.scalars(db.select(ReservaLab).join(ReservaLab.laboratorio).filter(Lab.lab_especialidade == esp_id)).all()
+    return reservas
     if filtro_nome:
         pass
 
