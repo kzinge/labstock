@@ -37,7 +37,6 @@ def edit_reagente(id):
 def remove_reagente(id):
     materialservice.remover_reagente(id)
 
-
 ##### MATERIAIS #####
 
 @materiais_bp.route('/novo_material', methods=['POST'])
@@ -48,4 +47,9 @@ def cadastro_material():
 def remove_material(id):
     materialservice.remover_material(id)
 
-#
+@materiais_bp.route('/reservar/<int:lab_id>', methods=['POST','GET'])
+def cadastrar_reserva(lab_id):
+    if request.method == 'GET':
+        return render_template('materiais/reservar_materiais.html')
+    else:
+        materialservice.criar_reserva(lab_id, request.form)

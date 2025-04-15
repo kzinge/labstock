@@ -137,9 +137,9 @@ def remove_reagente(id):
 
 
 
-@materiais_bp.route('/reservar', methods=['POST','GET'])
-def reservar():
-    return render_template('materiais/reservar_materiais.html')
+# @materiais_bp.route('/reservar', methods=['POST','GET'])
+# def reservar():
+#     return render_template('materiais/reservar_materiais.html')
 
 
 

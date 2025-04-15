@@ -96,7 +96,9 @@ class ReservaMaterial(db.Model):
     rem_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     rem_mat_id: Mapped[List["Material"]] = mapped_column(ForeignKey('tb_materiais.mat_id'), nullable=False)
     rem_rea_id: Mapped[List["Reagente"]] = mapped_column(ForeignKey('tb_reagentes.rgt_id'), nullable=False)
-    rem_mat_quantidade = db.Column(db.Integer, nullable=False) #obs: eu mexi aqui porque esta tava dando erro no codigo, qualquer coisa podem mudar 
+    rem_mat_quantidade = db.Column(db.Integer, nullable=False)
+    rem_rea_quantidade = db.Column(db.Integer, nullable=False) 
+    rem_rea_unidade: Mapped[str] = mapped_column(String(2), nullable=False)
     rem_rel_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_laboratorios.rel_id'), nullable=False)
 
     material = relationship('Material', back_populates='reservas_materiais', lazy=True)

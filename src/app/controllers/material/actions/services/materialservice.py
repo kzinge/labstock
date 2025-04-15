@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, flash, url_for
 from flask_login import current_user
-from .....models import Material, Reagente, CategoriaReagente, CategoriaMaterial, ReservaMaterial, Lab
+from .....models import Material, Reagente, CategoriaReagente, CategoriaMaterial, ReservaMaterial, Lab, ReservaLab
 from .....database import db
 from .....decorators.auth import role_required
 from datetime import datetime, date
@@ -164,3 +164,21 @@ def remover_material(id):
     db.session.delete(material)
     db.session.commit()
     return redirect(url_for('material.estoque'))
+
+
+def criar_reserva(reserva_id, form):
+    materiais = form.getlist['materiais']
+    reagentes = form.getlist['reagentes']
+
+    rgt_quantidade = form.getlist['rgt_quantidade']
+    mat_quantidade = form.getlist['mat_quantidade']
+    rgt_unidade = form.getlist['rgt_unidade']
+
+    rem_rel_id = reserva_id
+
+    nova_reserva = ReservaMaterial(materiais, reagentes, rgt_quantidade, mat_quantidade, rgt_unidade, rem_rel_id)
+    db.session.add(nova_reserva)
+    db.commit()
+    #return redirect(url_for(''))
+
+    
