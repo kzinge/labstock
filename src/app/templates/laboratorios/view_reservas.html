@@ -56,8 +56,8 @@
 <div class="filtros-div">
     <h2>Filtrar laboratórios</h2>
     <select name="especialidades_filtro" id="especialidades-select">
-        {% for especialidade in ['Química', 'Física', 'Biologia'] %}
-            <option value="{{especialidade}}" class="especialidade-option">{{especialidade}}</option>
+        {% for especialidade in especialidades %}
+            <option value="{{especialidade.esp_nome}}" class="especialidade-option">{{especialidade.esp_nome}}</option>
         {% endfor%}
     </select>
     <input type="search" name="buscar_lab" id="input-buscar-lab" placeholder="Buscar">

@@ -23,7 +23,8 @@ def cadastrar_lab():
 @lab_bp.route('/reservas')
 def reservas():
     reservas = labservice.carregar_reservas()
-    return render_template('laboratorios/view_reservas.html', reservas = reservas)
+    especialidades = labservice.listar_especialidades()
+    return render_template('laboratorios/view_reservas.html', reservas = reservas, especialidades = especialidades)
 
 @lab_bp.route('/reservar', methods=['GET', 'POST'])
 def reservar_lab():
