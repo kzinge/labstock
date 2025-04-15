@@ -53,32 +53,50 @@
 {% endblock %}
 
 {% block content %}
+<div class="labs-div">
+        <div class="lab-div">
+            <div class="lab-name-box">
+                <h2 class="lab-name">Novo Laboratório</h2>
+            </div>
+        </div>
+</div>
 <form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
-    <label for="nome_lab">Nome do laboratório:</label>
-    <input type="text" name="nome_lab" id="nome-lab" required>
+    <div class="container">
+        <h2>Laboratorio</h2>
+        <label for="nome_lab">Nome do laboratório *</label>
+        <input type="text" name="nome_lab" id="nome-lab" required>
 
-    <label for="especialidade_lab">Especialidade:</label>
-    <select id="especialidade_lab" name="especialidade_lab" required> 
-        {% for especialidade in especialidades %}
-            <option value="{{ especialidade.esp_id }}">{{ especialidade.esp_nome }}</option>
-        {% endfor %}
-    </select>
+        <!--Mofi, vou comentar isso, caso precise -->
 
-    <div class="local">
-        <label for="bloco_lab">Bloco/Corredor:</label>
-        <input type="text" name="bloco_lab" id="bloco-lab" required>
-        <label for="sala_lab">Sala:</label>
-        <input type="text" name="sala_lab" id="sala-lab" required>
-    </div>
+        <!-- <label for="especialidade_lab">Especialidade:</label>
+        <select id="especialidade_lab" name="especialidade_lab" required> 
+            {% for especialidade in especialidades %}
+                <option value="{{ especialidade.esp_id }}">{{ especialidade.esp_nome }}</option>
+            {% endfor %}
+        </select> -->
+        <label for="">Categoria do laboratorio *</label>
+        <select name="" id="">
+            <option value=""></option>
+        </select>
+        <span>ou<a href="">Cadastrar nova categoria</a></span>
+
+        <div class="local">
+            <h2>Localização</h2>
+            <label for="bloco_lab">Bloco/Corredor *</label>
+            <input type="text" name="bloco_lab" id="bloco-lab" required>
+            <label for="sala_lab">Sala *</label>
+            <input type="text" name="sala_lab" id="sala-lab" required>
+        </div>
 
 
+        <!-- <div class="conteiner-labels">
+            <label for="capacidade_lab">Capacidade:</label>
+        </div> -->
 
-    <div class="conteiner-labels">
-        <label for="capacidade_lab">Capacidade:</label>
-    </div>
-    <div class="conteiner-inputs">
-        <input type="number" name="capacidade_lab" min="1" id="capacidade-lab" required>
-        <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        <div class="conteiner-inputs">
+            <!-- <input type="number" name="capacidade_lab" min="1" id="capacidade-lab" required> -->
+            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        </div>
     </div>
 
 </form>

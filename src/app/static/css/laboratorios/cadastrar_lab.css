@@ -32,9 +32,48 @@ main {
     background-color: #fff;
     padding: 15px; 
     border-radius: 10px;
-    width: 100%;
-    max-width: 350px; 
+    width:30%;
+    height: 75%;
+    
 }
+
+.labs-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.lab-div {
+    background-color: #1D6D00;
+    color: white;
+    width: 18rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top:2.5rem;
+    margin-top: 1rem;
+}
+
+
+.lab-name-box {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 
 h1 {
     text-align: center;
@@ -43,14 +82,13 @@ h1 {
     color: black;
 }
 
-
-
 label {
     font-size: 0.9rem;
     color: black;
     margin-bottom: 8px;
     display: block;
 }
+
 #especialidade_lab{
     width: 100%;
     height: 40px;
