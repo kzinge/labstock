@@ -8,7 +8,7 @@
 
 <div class="estoque">
 
-    {% if reagentes %}
+    {% if reagentes or materiais %}
 
         <div class="Filtros">
 
@@ -60,6 +60,18 @@
                     <td><span>Fornecedor</span></td>
                     <td><span>Quantidade</span>{{ reagente.rgt_quantidade }} {{ reagente.rgt_unidade }}</td>
                     <td><span>Validade</span></td>
+                    <td>
+                        <a href="">Deletar</a>
+                        <a href="">Visualizar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for material in materiais %}
+                <tr>
+                    <td>{{ material.mat_nome }}</td>
+                    <td><span>Fornecedor</span>{{ material.mat_fornecedor }}</td>
+                    <td><span>Quantidade</span>{{ material.mat_quantidade }}</td>
+                    <td><span>Validade</span>{{ material.mat_validade }}</td>
                     <td>
                         <a href="">Deletar</a>
                         <a href="">Visualizar</a>
