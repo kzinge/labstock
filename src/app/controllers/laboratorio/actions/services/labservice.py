@@ -47,18 +47,38 @@ def carregar_reservas():
     return reservas
 
 def filtrar_labs(form):
-    filtro_especialidade = request.form['especialidades_filtro']
-    filtro_nome = request.form['buscar_lab']
-    filtro_data = request.form['data_filtro']
-    filtro_hora = request.form['horario_filtro']
-    # if filtro_especialidade == 'todas':
-    #     reservas = db.session.scalars(db.select(ReservaLab)).all()
-    # else:
-    esp_id = db.session.scalar(db.select(EspecialidadeLab.esp_id).filter(EspecialidadeLab.esp_nome == filtro_especialidade))
-    reservas = db.session.scalars(db.select(ReservaLab).join(ReservaLab.laboratorio).filter(Lab.lab_especialidade == esp_id)).all()
-    return reservas
+    filtro_especialidade = form.get('especialidades_filtro')
+    filtro_nome = form.get('buscar_lab')
+    filtro_data = form.get('data_filtro')
+    filtro_hora = form.get('horario_filtro')
+
+    query = db.select(Lab)
+
+    # Filtro de especialidade
+    if filtro_especialidade != 'todas':
+        esp_id = db.session.scalar(
+            db.select(EspecialidadeLab.esp_id).filter(EspecialidadeLab.esp_nome == filtro_especialidade)
+        )
+        if esp_id:
+            query = query.filter(Lab.lab_especialidade == esp_id)
+
+    # Filtro de nome
     if filtro_nome:
-        pass
+        query = query.filter(Lab.lab_nome.ilike(f"%{filtro_nome}%"))
+
+    # Filtro de disponibilidade em data e hora
+    if filtro_data and filtro_hora:
+        subquery = db.select(ReservaLab.rel_lab_id).filter(
+            db.func.date(ReservaLab.rel_horarioInicial) == filtro_data,
+            db.func.time(ReservaLab.rel_horarioInicial) <= filtro_hora,
+            db.func.time(ReservaLab.rel_horarioFinal) >= filtro_hora
+        ).subquery()
+
+        query = query.filter(~Lab.lab_id.in_(subquery))  # Exclui os laboratórios que já estão ocupados nesse horário
+
+    laboratorios_disponiveis = db.session.scalars(query).all()
+    return laboratorios_disponiveis
+
 
 
 def carregar_reserva(reserva_id):
