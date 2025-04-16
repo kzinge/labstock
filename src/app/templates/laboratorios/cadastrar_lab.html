@@ -58,11 +58,11 @@
         <label for="nome_lab">Nome do Laboratório<span class="asterisco">*</span></label>
         <input type="text" name="nome_lab" id="nome-lab" required>
 
-        <label for="categoria_lab">Categoria do Laboratório<span class="asterisco">*</span></label>
-        <select name="categoria_lab" id="categoria-lab" required>
+        <label for="especialidade_lab">Categoria do Laboratório<span class="asterisco">*</span></label>
+        <select name="especialidade_lab" id="categoria-lab" required>
             <option value="">Selecione</option>
-            {% for categoria in categorias %}
-                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% for categoria in especialidades %}
+                <option value="{{ categoria.esp_id }}">{{ categoria.esp_nome }}</option>
             {% endfor %}
         </select>
         <span>ou <a href="#">criar nova categoria</a></span>

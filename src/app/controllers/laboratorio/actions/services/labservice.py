@@ -13,10 +13,10 @@ def carregar_labs():
 def cadastrar_lab(form):
     try:
         nome_lab = form['nome_lab']
-        especialidade_lab = form['especialidade_lab']
         bloco_lab = form['bloco_lab']
         sala_lab = form['sala_lab'].upper()
         capacidade_lab = form['capacidade_lab']
+        especialidade_lab = form['especialidade_lab']
 
         laboratorio = Lab(nome_lab, bloco_lab, sala_lab, capacidade_lab, especialidade_lab)
         db.session.add(laboratorio)
@@ -25,6 +25,7 @@ def cadastrar_lab(form):
         return True, "Cadastro de laboratório realizado com sucesso!"
     except Exception as e:
         db.session.rollback()
+        print(f"Erro ao cadastrar laboratório: {e}")
         return False, f"Erro ao cadastrar laboratório: {e}"
 
 #Especialidade
