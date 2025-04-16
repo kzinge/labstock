@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, flash, url_for
 from flask_login import current_user
-from .....models import Material, Reagente, CategoriaReagente, CategoriaMaterial, ReservaMaterial, Lab, ReservaLab
+from .....models import Material, Reagente, CategoriaReagente, CategoriaMaterial, ReservaItens, Lab, ReservaLab, ReservaMaterial, ReservaReagente
 from .....database import db
 from .....decorators.auth import role_required
 from datetime import datetime, date
@@ -167,17 +167,24 @@ def remover_material(id):
 
 
 def criar_reserva(reserva_id, form):
-    materiais = form.getlist['materiais']
-    reagentes = form.getlist['reagentes']
+    # materiais = form.getlist['materiais']
+    # reagentes = form.getlist['reagentes']
 
-    rgt_quantidade = form.getlist['rgt_quantidade']
-    mat_quantidade = form.getlist['mat_quantidade']
-    rgt_unidade = form.getlist['rgt_unidade']
+    # rgt_quantidade = form.getlist['rgt_quantidade']
+    # mat_quantidade = form.getlist['mat_quantidade']
+    # rgt_unidade = form.getlist['rgt_unidade']
 
-    rem_rel_id = reserva_id
+    #rem_rel_id = reserva_id
 
-    nova_reserva = ReservaMaterial(materiais, reagentes, rgt_quantidade, mat_quantidade, rgt_unidade, rem_rel_id)
+    #nova_reserva = ReservaItens(materiais, reagentes, rgt_quantidade, mat_quantidade, rgt_unidade, rem_rel_id)
+    rem_rel_id = 1
+    reagentes = 1
+    nova_reserva = ReservaItens(rem_rel_id)
     db.session.add(nova_reserva)
+    db.session.flush()
+    #res_material = ReservaMaterial(material_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1)
+    res_reagente = ReservaReagente(reagente_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1, unidade = 'l')
+    db.session.add(res_reagente)
     db.commit()
     #return redirect(url_for(''))
 
