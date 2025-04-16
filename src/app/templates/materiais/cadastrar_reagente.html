@@ -1,0 +1,93 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_reagente.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li class="side-item">
+    <a href="{{url_for('dashboard')}}">
+        <i class="fa-solid fa-home"></i>
+        <span class="item-description">Início</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.index')}}">
+        <i class="fa-solid fa-microscope"></i>
+        <span class="item-description">Laboratórios</span>
+    </a>
+</li>
+<li class="side-item active">
+    <a href="{{url_for('lab.cadastrar_lab')}}">
+        <i class="fa-solid fa-square-plus"></i>
+        <span class="item-description">Novo Laboratório</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservar_lab')}}">
+        <i class="fa-solid fa-table"></i>
+        <span class="item-description">Nova Reserva</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservas')}}">
+        <i class="fa-solid fa-list"></i>
+        <span class="item-description">Reservas</span>
+    </a>
+</li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="labs-div">
+    <div class="lab-div">
+        <div class="lab-name-box">
+            <h2 class="lab-name">Novo Reagente</h2>
+        </div>
+    </div>
+</div>
+
+<form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
+    <div class="container">
+        <h2>Reagente</h2>
+
+        <label for="">Nome do reagente<span class="asterisco">*</span></label>
+        <input type="text" name="" id="" required>
+
+        <label for="">Categoria do reagentes<span class="asterisco">*</span></label>
+        <select name="" id="" required>
+            <option value="">Selecione</option>
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% endfor %}
+        </select>
+        <span>ou <a href="#">criar nova categoria</a></span>
+        
+        <div class="row-inputs">
+            <div class="col col_unidade">
+                <label for="">Quantidade<span class="asterisco">*</span></label>
+                <input type="number" name="" id="" required>
+            </div>
+            <div class="col">
+                <label for="sala_lab">Unidade de medida<span class="asterisco">*</span></label>
+                <select name="" id="" class="input_selecionar">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+
+        <label for="">Fornecedor<span class="asterisco">*</span></label>
+        <input type="text" name="" id="" required>
+
+        <label for="">Data de vencimento<span class="asterisco">*</span></label>
+        <input type="date" name="" id="">
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
