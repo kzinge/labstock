@@ -88,8 +88,6 @@ label {
     display: block;
 }
 
-
-
 input[type="date"]{
     width: 25%;
     height: 35px;
@@ -126,9 +124,6 @@ input[type="number"]{
     transition: 0.3s;
 }
 
-#descricao{
-    height: 80px;
-}
 
 input[type="text"], select {
     width: 100%;
@@ -150,28 +145,15 @@ select:focus {
     outline: none;
 }
 
-.column-inputs {
+.row-inputs {
     display: flex;
-    flex-direction: column;
+    gap: 10px;
     margin-bottom: 5px;
 }
 
-.column-inputs .col {
+.row-inputs .col {
     flex: 1;
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.column-row {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
-}
-
-.column-row .col {
-    flex: 1;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
 }

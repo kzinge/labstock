@@ -14,16 +14,16 @@ def estoque():
 
 
 @materiais_bp.route('/cadastro_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
-def cadastro_reagente():
+def cadastro():
     laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias()
-    return render_template('materiais/cadastrar_material.html' , categorias=categorias, laboratorios=laboratorios)
+    return render_template('materiais/cadastrar_reagente.html' , categorias=categorias, laboratorios=laboratorios)
 
 
 
-# @materiais_bp.route('/cadastro_reagent', methods=['POST'])
-# # @role_required('Técnico') #IMPORTAR ROLE_REQUIRED
-# def cadastro_reagente():
-#     materialservice.cadastrar_material()
+@materiais_bp.route('/cadastro_reagente', methods=['POST'])
+# @role_required('Técnico') #IMPORTAR ROLE_REQUIRED
+def cadastro_reagente():
+    materialservice.cadastrar_material()
 
 
 
@@ -37,10 +37,12 @@ def edit_reagente(id):
 def remove_reagente(id):
     materialservice.remover_reagente(id)
 
+
 ##### MATERIAIS #####
 
-@materiais_bp.route('/cadastro_material', methods=['POST'])
+@materiais_bp.route('/cadastrar_material', methods=['POST','GET'])
 def cadastro_material():
+    return render_template('materiais/cadastrar_material.html')
     materialservice.cadastrar_material(request.form)
 
 @materiais_bp.route('/delete_material/<int:id>', methods=['POST'])
@@ -49,7 +51,8 @@ def remove_material(id):
 
 @materiais_bp.route('/reservar/<int:lab_id>', methods=['POST','GET'])
 def cadastrar_reserva(lab_id):
+    materialservice.criar_reserva(lab_id, 1)#passar o request.form
     if request.method == 'GET':
         return render_template('materiais/reservar_materiais.html')
-    else:
-        materialservice.criar_reserva(lab_id, request.form)
+    #else:
+        #materialservice.criar_reserva(lab_id, request.form)

@@ -1,43 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar material</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_reagente.css') }}">
 </head>
 
 <body>
-    <form action="{{url_for('material.edit', id = material.rgt_id)}}" method="POST" id="form-material">
-        <label for="nome_material">Nome do material:</label>
-        <input type="text" name="nome_material" id="nome-material" value={{material.rgt_nome}}>
+    <form action="{{url_for('material.edit', id=material.rgt_id)}}" method="POST" id="form-lab">
+        <div class="container">
+            <h2>Editar Material</h2>
 
-        <label for="tipo_material">Tipo:</label>
-        <input type="text" name="tipo_material" id="tipo-material" value={{categoria}}>
+            <label for="nome_material">Nome do material<span class="asterisco">*</span></label>
+            <input type="text" name="nome_material" id="nome-material" value="{{material.rgt_nome}}" required>
 
-        <div class="conteiner-labels">
-            <label for="validade_material">Validade:</label>
-            <label for="quantidade_material">Quantidade:</label>
-            <label for="unidade" style="position:relative;right:-30px;">Medida:</label>
+            <label for="tipo_material">Tipo<span class="asterisco">*</span></label>
+            <input type="text" name="tipo_material" id="tipo-material" value="{{categoria}}" required>
+
+            <div class="row-inputs">
+                <div class="col">
+                    <label for="validade_material">Validade<span class="asterisco">*</span></label>
+                    <input type="date" name="validade_material" id="validade-material" value="{{material.rgt_validade}}" required>
+                </div>
+                <div class="col">
+                    <label for="quantidade_material">Quantidade<span class="asterisco">*</span></label>
+                    <input type="number" name="quantidade_material" id="quantidade-material" value="{{material.rgt_quantidade}}" required>
+                </div>
+                <div class="col">
+                    <label for="unidade">Unidade de medida<span class="asterisco">*</span></label>
+                    {% set opcoes = ["g", "l"] %}
+                    <select name="unidade" id="unidade" class="input_selecionar">
+                        {% for opcao in opcoes %}
+                            <option value="{{ opcao }}" {% if opcao == unidade %} selected {% endif %}>{{ opcao }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <label for="lab_nome">Laboratório<span class="asterisco">*</span></label>
+            <input type="text" name="lab_nome" value="{{laboratorio.lab_sala}}" required>
+
+            <label for="fornecedor">Fornecedor<span class="asterisco">*</span></label>
+            <input type="text" name="fornecedor" value="{{material.rgt_fornecedor}}" required>
+
+            <div class="botao_center">
+                <button type="submit" class="botao-cadastrar">Editar</button>
+            </div>
         </div>
-        <div class="conteiner-inputs">
-            <input type="date" name="validade_material" id="validade-material" value={{material.rgt_validade}}>
-            <input type="number" name="quantidade_material" id="quantidade-material" value={{material.rgt_quantidade}}>
-            {% set opcoes = ["g", "l"] %}
-            <select name="unidade">
-                {% for opcao in opcoes %}
-                <option value="{{ opcao }}" {% if opcao==unidade %} selected {% endif %}>{{ opcao }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <!-- AINDA VOU TROCAR POR UM SELECT -->
-        <label for="lab_nome">Lab</label> 
-        <input type="text" name="lab_nome" value={{laboratorio.lab_sala}}>
-        <label for="fornecedor">Fornecedor</label>
-        <input type="text" name="fornecedor" value={{material.rgt_fornecedor}}>
-
-        <button type="submit" class="botao-cadastrar">Editar</button>
     </form>
 </body>
 

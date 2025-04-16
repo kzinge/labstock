@@ -76,7 +76,7 @@ class Reagente(db.Model):
 
     laboratorio = relationship('Lab', back_populates='reagentes', lazy=True)
     categoria = relationship('CategoriaReagente', back_populates='reagentes', lazy=True)
-    reservas_materiais = relationship('ReservaMaterial', back_populates='reagentes', lazy=True)
+    reservas_reagentes = relationship('ReservaReagente', back_populates='reagente', lazy=True)
 
     def __repr__(self):
         return f'Reagente {self.rgt_nome} - Quantidade: {self.rgt_quantidade}'
@@ -90,24 +90,47 @@ class Reagente(db.Model):
         self.rgt_lab_id = lab_id
         self.rgt_cat_id = cat_id
 
+class ReservaItens(db.Model):
+    __tablename__ = 'tb_reservas_itens'
+
+    rei_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    rei_rel_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_laboratorios.rel_id'), nullable=False)
+
+    reserva_laboratorio = relationship('ReservaLab', back_populates='reserva_itens')
+    materiais_reservados = relationship('ReservaMaterial', back_populates='reserva_itens', lazy=True)
+    reagentes_reservados = relationship('ReservaReagente', back_populates='reserva_itens', lazy=True)
+
+    def __repr__(self):
+        return f"<ReservaItens id={self.rei_id} reserva_laboratorio_id={self.rei_rel_id}>"
+
+    def __init__(self, rel_id) -> None:
+        self.rei_rel_id = rel_id
+
 class ReservaMaterial(db.Model):
     __tablename__ = 'tb_reservas_materiais'
 
-    rem_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    rem_mat_id: Mapped[List["Material"]] = mapped_column(ForeignKey('tb_materiais.mat_id'), nullable=False)
-    rem_rea_id: Mapped[List["Reagente"]] = mapped_column(ForeignKey('tb_reagentes.rgt_id'), nullable=False)
-    rem_mat_quantidade = db.Column(db.Integer, nullable=False)
-    rem_rea_quantidade = db.Column(db.Integer, nullable=False) 
-    rem_rea_unidade: Mapped[str] = mapped_column(String(2), nullable=False)
-    rem_rel_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_laboratorios.rel_id'), nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    material_id: Mapped[int] = mapped_column(ForeignKey('tb_materiais.mat_id'), nullable=False)
+    reserva_itens_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_itens.rei_id'), nullable=False)
+    quantidade: Mapped[int] = mapped_column(Integer, nullable=False)
 
-    material = relationship('Material', back_populates='reservas_materiais', lazy=True)
-    reagentes = relationship('Reagente', back_populates='reservas_materiais', lazy=True)
-    reserva = relationship('ReservaLab', back_populates='reservas_materiais', lazy=True)
+    material = relationship('Material', back_populates='reservas_materiais')
+    reserva_itens = relationship('ReservaItens', back_populates='materiais_reservados')
 
     def __repr__(self):
-        return f'Reserva Material {self.rem_id} - Material ID: {self.rem_mat_id} - Reserva ID: {self.rem_rel_id}'
+        return f"<ReservaMaterial material_id={self.material_id} reserva_itens_id={self.reserva_itens_id}>"
 
-    def __init__(self, mat_id, rel_id) -> None:
-        self.rem_mat_id = mat_id
-        self.rem_rel_id = rel_id
+class ReservaReagente(db.Model):
+    __tablename__ = 'tb_reservas_reagentes'
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    reagente_id: Mapped[int] = mapped_column(ForeignKey('tb_reagentes.rgt_id'), nullable=False)
+    reserva_itens_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_itens.rei_id'), nullable=False)
+    quantidade: Mapped[int] = mapped_column(Integer, nullable=False)
+    unidade: Mapped[str] = mapped_column(String(2), nullable=False)
+
+    reagente = relationship('Reagente', back_populates='reservas_reagentes')
+    reserva_itens = relationship('ReservaItens', back_populates='reagentes_reservados')
+
+    def __repr__(self):
+        return f"<ReservaReagente reagente_id={self.reagente_id} reserva_itens_id={self.reserva_itens_id}>"

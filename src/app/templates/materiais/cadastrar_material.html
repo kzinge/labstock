@@ -11,109 +11,54 @@
 {% endblock %}
 
 {% block content %}
-<div id="escolha">
-    
-    <button onclick="change_menu('reagentes')">Reagentes</button> 
-    <button onclick="change_menu('materiais')">Materiais</button>
+<div class="labs-div">
+    <div class="lab-div">
+        <div class="lab-name-box">
+            <h2 class="lab-name">Novo Material</h2>
+        </div>
+    </div>
 </div>
 
-<!-- DIV DE CADASTRO DE REAGENTES -->
+<form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
+    <div class="container">
+        <h2>Material</h2>
 
-<div class="form" id="form_reagentes">
-    <form action="{{url_for('material.cadastro_reagente')}}" method="POST" id="form-material">
-        <label for="nome_reagente">Nome do reagente:</label>
-        <input type="text" name="nome_reagente" id="nome-material">
+        <label for="">Nome do Material<span class="asterisco">*</span></label>
+        <input type="text" name="" id="" required>
 
-        <label for="tipo_material">Categoria:</label>
-            <div id="cat_existente" {% if not categorias %}style="display: none;"{% endif %}>
-                <button type="button" onclick="change_menu('nova_categoria')">Criar nova categoria</button>
-                <label for="tipo_reagente">Nome da categoria:</label>
-                <select name="tipo_reagente" {% if categorias %}required{% endif %}>
-                    <option value="" disabled selected>Selecionar categoria</option>
-                        {% for categoria in categorias %}
-                            <option value={{categoria}}>{{categoria}}</option>
-                        {% endfor %}
-                </select>
+        <label for="">Categoria do laboratorio<span class="asterisco">*</span></label>
+        <select name="" id="" required>
+            <option value="">Selecione</option>
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% endfor %}
+        </select>
+        <span>ou <a href="#">criar nova categoria</a></span>
+        
+        <div class="column-inputs">
+            <div class="col">
+                <label for="">Descrição<span class="asterisco">*</span></label>
+                <input type="text" name="" id="descricao" required>
             </div>
-            <div id="nova_cat" {% if categorias %}style="display: none;"{% endif %}>
-                {% if not categorias %} <p>Nenhuma categoria cadastrada</p> {% endif %}
-                    <button type="button" onclick="change_menu('categoria_existente')" {% if not categorias %}style="display: none;"{% endif %}>Selecionar categoria existente</button>
-                <label for="tipo_reagente_novo">Nome da nova categoria:</label>
-                <input type="text" name="tipo_reagente_novo" {% if not categorias %}required{% endif %}>
+            <div class="col">
+                <label for="">Fornecedor<span class="asterisco">*</span></label>
+                <input type="text" name="" id="" required>
             </div>
-
-
-        <div class="conteiner-labels">
-            <label for="validade_reagente">Validade:</label>
-            <label for="quantidade_reagente">Quantidade:</label>
-            <label for="unidade">Medida:</label>
         </div>
 
-        <div class="conteiner-inputs">
-            <input type="date" name="validade_reagente" id="validade-material">
-            <input type="number" name="quantidade_reagente" id="quantidade-material">
-            <select name="unidade">
-                <option value="g">g</option>
-                <option value="l">L</option>
-            </select>
+        <div class="row-inputs">
+            <div class="col">
+                <label for="">Data de vencimento<span class="asterisco">*</span></label>
+                <input type="date" name="" id="" required>
+            </div>
+            <div class="col">
+                <label for="">Quantidade<span class="asterisco">*</span></label>
+                <input type="number" name="" id="" required>
+            </div>
         </div>
-
-        <label for="lab_nome">Lab:</label>
-        <select name="lab_local">
-            {% for lab in laboratorios %}
-                <option value={{lab.lab_sala}}>{{lab.lab_sala}}</option>
-            {% endfor %}
-        </select>
-
-        <label for="fornecedor">Fornecedor:</label>
-        <input type="text" name="fornecedor_reagente">
-
-        <button type="submit" class="botao-cadastrar">Cadastrar</button>
-    </form>
-</div>
-
-<!-- DIV DO FORM PARA O CADASTRO DE MATERIAIS -->
-
-<div class="form" id="form_materiais" style="display: none;">
-    <form action="{{url_for('material.cadastro_material')}}" method="post">
-        <label for="nome_material">Nome do material:</label>
-        <input type="text" name="nome_material">
-        <!-- Removi a palavra opcional, qualquer coisa adicione novamente -->
-        <!-- Se pa que no lugar da pra colocar aquele * vermelho que normalmente tem nos sites,
-         do front é vc que sabe patrão, pode tomar a decisão -->
-        <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao">
-
-        <label for="quantidade_material">Quantidade:</label>
-        <input type="number" name="quantidade_material">
-
-        <label for="fornecedor_material">Fornecedor:</label>
-        <input type="text" name="fornecedor_material">
-
-        <label for="validade_material">Validade:</label>
-        <input type="date" name="validade_material">
-
-        <label for="lab_material">Laboratorio:</label>
-        <select name="lab_material">
-            {% for lab in laboratorios %}
-                <option value={{lab.lab_sala}}>{{lab.lab_sala}}</option>
-            {% endfor %}
-        </select>
-
-        <label for="categoria_material">Categoria:</label>
-        <select name="categoria_material">
-            {% for cat in categorias %}
-                <option value={{cat.cat_nome}}>{{cat}}</option>
-            {% endfor %}
-        </select>
-
-        <button type="submit" class="botao-cadastrar">Cadastrar</button>
-    </form>
-</div>
-
-
-<script src="../../static/scripts/cadastro_materiais.js"></script>
-
-
-
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        </div>
+    </div>
+</form>
 {% endblock %}

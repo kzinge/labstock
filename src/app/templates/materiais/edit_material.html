@@ -1,15 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{url_for('material.edit_material')}}" method="post">
-        <input type="text" placeholder="nome" value={{material.nome}}>
-        
-    </form>
-</body>
-</html>
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_material.css') }}">
+{% endblock %}
+
+{% block headerlinks %}
+<li class="side-item">
+    <a href="{{url_for('dashboard')}}">
+        <i class="fa-solid fa-home"></i>
+        <span class="item-description">Início</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.index')}}">
+        <i class="fa-solid fa-microscope"></i>
+        <span class="item-description">Laboratórios</span>
+    </a>
+</li>
+<li class="side-item active">
+    <a href="{{url_for('lab.cadastrar_lab')}}">
+        <i class="fa-solid fa-square-plus"></i>
+        <span class="item-description">Novo Laboratório</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservar_lab')}}">
+        <i class="fa-solid fa-table"></i>
+        <span class="item-description">Nova Reserva</span>
+    </a>
+</li>
+<li class="side-item">
+    <a href="{{url_for('lab.reservas')}}">
+        <i class="fa-solid fa-list"></i>
+        <span class="item-description">Reservas</span>
+    </a>
+</li>
+{% endblock %}
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="labs-div">
+    <div class="lab-div">
+        <div class="lab-name-box">
+            <h2 class="lab-name">Editar Material</h2>
+        </div>
+    </div>
+</div>
+
+<form action="{{ url_for('lab.editar_material', id=material.id) }}" method="POST" id="form-lab">
+    <div class="container">
+        <h2>Material</h2>
+
+        <label for="nome_material">Nome do Material<span class="asterisco">*</span></label>
+        <input type="text" name="nome" id="nome_material" value="{{ material.nome }}" required>
+
+        <label for="categoria_material">Categoria do Material<span class="asterisco">*</span></label>
+        <select name="categoria_id" id="categoria_material" required>
+            <option value="">Selecione</option>
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}" {% if categoria.id == material.categoria_id %}selected{% endif %}>{{ categoria.nome }}</option>
+            {% endfor %}
+        </select>
+        <span>ou <a href="#">criar nova categoria</a></span>
+
+        <div class="row-inputs">
+            <div class="col">
+                <label for="descricao">Descrição<span class="asterisco">*</span></label>
+                <textarea name="descricao" id="descricao" rows="4" style="resize: none;" required>{{ material.descricao }}</textarea>
+            </div>
+            <div class="col">
+                <label for="fornecedor">Fornecedor<span class="asterisco">*</span></label>
+                <input type="text" name="fornecedor" id="fornecedor" value="{{ material.fornecedor }}" required>
+            </div>
+        </div>
+
+        <div class="row-inputs">
+            <div class="col">
+                <label for="data_vencimento">Data de vencimento<span class="asterisco">*</span></label>
+                <input type="date" name="data_vencimento" id="data_vencimento" value="{{ material.data_vencimento }}">
+            </div>
+            <div class="col">
+                <label for="quantidade">Quantidade<span class="asterisco">*</span></label>
+                <input type="number" name="quantidade" id="quantidade" value="{{ material.quantidade }}" required>
+            </div>
+        </div>
+
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Salvar Alterações</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
