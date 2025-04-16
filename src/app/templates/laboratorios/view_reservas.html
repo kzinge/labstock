@@ -81,6 +81,7 @@
             <p class="lab-name">{{ reserva.lab_nome }}</p>
         </div>
         <p><span>se localiza no bloco</span> {{reserva.lab_bloco}} <span>na sala</span> {{reserva.lab_sala}}</p>
+        <a href="{{ url_for('lab.reservar_lab') }}" class="btn-botao">Reservar</a>
     </div>
     {% endfor %}
 </div>
