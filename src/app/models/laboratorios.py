@@ -52,7 +52,7 @@ class ReservaLab(db.Model):
     
     laboratorio = relationship('Lab', back_populates='reservas', lazy=True)
     usuario = relationship('User', back_populates='reservas', lazy=True)
-    reservas_itens = relationship('ReservaItens', back_populates='reserva_lab', lazy=True)
+    reserva_itens = relationship('ReservaItens', back_populates='reserva_lab', lazy=True)
 
     def __repr__(self):
         return f'Reserva {self.rel_id} - Laboratório: {self.laboratorio} - Data Inicial: {self.rel_dataInicial} - até {self.rel_dataFinal} de {self.rel_horarioInicial} às {self.rel_horarioFinal}'
