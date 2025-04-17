@@ -96,7 +96,7 @@ class ReservaItens(db.Model):
     rei_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     rei_rel_id: Mapped[int] = mapped_column(ForeignKey('tb_reservas_laboratorios.rel_id'), nullable=False)
 
-    reserva_laboratorio = relationship('ReservaLab', back_populates='reserva_itens')
+    reserva_lab = relationship('ReservaLab', back_populates='reserva_itens')
     materiais_reservados = relationship('ReservaMaterial', back_populates='reserva_itens', lazy=True)
     reagentes_reservados = relationship('ReservaReagente', back_populates='reserva_itens', lazy=True)
 
