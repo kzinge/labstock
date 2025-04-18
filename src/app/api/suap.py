@@ -1,17 +1,21 @@
 #CASO ESTEJA USANDO DOCKER DESCONSIDERE ESSAS 3 LINHAS:
-from dotenv import load_dotenv
-from os import getenv
-load_dotenv()
+#from dotenv import load_dotenv
+#from os import getenv
+#load_dotenv()
 
-#def read_secret(secret_name):
-#    try:
-#        with open(f'/run/secrets/{secret_name}', 'r') as file:
-#            return file.read().strip()
-#    except FileNotFoundError:
-#        return None
+def read_secret(secret_name):
+    try:
+        with open(f'/run/secrets/{secret_name}', 'r') as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        return None
 #Se for usar o docker deve descomentar essas 2 linhas 
-#SUAP_KEY = read_secret('suap_key')
-#SUAP_SECRET = read_secret('suap_secret')
+SUAP_KEY = read_secret('suap_key')
+SUAP_SECRET = read_secret('suap_secret')
+
+#Sem docker:
+#SUAP_KEY = getenv('SUAP_KEY')
+#SUAP_SECRET = getenv('SUAP_SECRET')
 
 class SuapOAuth2():
     name = 'suap'
@@ -24,8 +28,8 @@ class SuapOAuth2():
     REDIRECT_STATE = True
     STATE_PARAMETER = True
     USER_DATA_URL = 'https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/'
-    SOCIAL_AUTH_SUAP_KEY = getenv('SUAP_KEY')
-    SOCIAL_AUTH_SUAP_SECRET = getenv('SUAP_SECRET')
+    SOCIAL_AUTH_SUAP_KEY =  SUAP_KEY
+    SOCIAL_AUTH_SUAP_SECRET = SUAP_SECRET
 
     
 

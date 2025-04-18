@@ -1,0 +1,49 @@
+
+services:
+  web: #Site
+    image: labstock_web:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+      MYSQL_USER: lab
+      MYSQL_PASSWORD: stock
+      MYSQL_HOST: db
+      MYSQL_DB: labstock
+    secrets: #Chaves Secretas 
+      - suap_key
+      - suap_secret
+    depends_on:
+      - db
+
+  db: #Container do Banco
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: megadificil
+      MYSQL_DATABASE: labstock
+      MYSQL_USER: lab
+      MYSQL_PASSWORD: stock
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    
+  nginx: #Nginx
+    image: nginx:alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+volumes:
+  mysql_data:
+
+secrets: #Usando Docker Secrets e Swarms
+  suap_key:
+    external: true
+  suap_secret:
+    external: true

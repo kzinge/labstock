@@ -27,7 +27,7 @@ def oauth2_authorize(provider):
     qs = urlencode({
         'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
 
-        'redirect_uri': 'http://localhost:3000/auth/callback/suap',
+        'redirect_uri': 'http://127.0.0.1:5000/auth/callback/suap',
 
         'response_type': 'code',
         'scope': 'email',

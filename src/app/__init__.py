@@ -23,9 +23,7 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ultramegadificil'
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:{mysqlsenha}@localhost/db_labstock'
-# Para Docker: descomente abaixo quando necessário
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://lab:stock@db/labstock'
 
 # Configuração do login
 login_manager = LoginManager()
