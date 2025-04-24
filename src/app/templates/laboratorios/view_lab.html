@@ -62,18 +62,18 @@
 
 {% block content %}
 <div class="labs-div">
-    {% for lab in laboratorios %}
+    {% for laboratorio in laboratorios %}
     <div class="lab-div">
         <div class="lab-name-box">
-            <p class="lab-name">{{ lab.lab_nome }}</p>
+            <p class="lab-name">{{ laboratorio.lab_nome }}</p>
         </div>
         <div class="lab-conteudo">
             <div class="lab-description">
-                Esse laboratório se localiza na sala {{lab.lab_sala}} do corredor {{lab.lab_bloco}}
+                Esse laboratório se localiza na sala {{laboratorio.lab_sala}} do corredor {{laboratorio.lab_bloco}}
             </div>
             <div class="lab-buttons">
-                <a href="">Ver Reservas</a>
-                <a href="">Reservar</a>
+                <a href="{{url_for('lab.reservas')}}">Ver Reservas</a>
+                <a href="{{url_for('lab.reservar_lab')}}">Reservar</a>
             </div>
         </div>
     </div>
