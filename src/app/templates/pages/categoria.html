@@ -1,0 +1,64 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/peges/categoria.css') }}">
+{% endblock %}
+
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="labs-div">
+    <div class="lab-div">
+        <div class="lab-name-box">
+            <h2 class="lab-name">Nova Categoria</h2>
+        </div>
+    </div>
+</div>
+
+<div class="forms-container">
+    <form action="{{ url_for('cadastrar_categoria') }}" method="POST" class="form-card">
+        <label>Para quem é a nova categoria?</label>
+        <div class="tipo-buttons">
+            <input type="radio" id="laboratorio" name="tipo" value="Laboratório">
+            <label for="laboratorio">Laboratório</label>
+
+            <input type="radio" id="material" name="tipo" value="Material">
+            <label for="material">Material</label>
+
+            <input type="radio" id="reagente" name="tipo" value="Reagente">
+            <label for="reagente">Reagente</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="nome_categoria" placeholder="Nova categoria" required>
+        </div>
+
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        </div>
+    </form>
+
+    <form action="{{ url_for('filtrar_categoria') }}" method="GET" class="form-card">
+        <h2 class="lab-name">Filtrar por</h2>
+        <div class="input-group">
+            <label for="filtro">Filtro</label>
+            <select name="filtro" id="filtro">
+                <option value="">Selecione</option>
+                <option value="Química">Química</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Medição">Medição</option>
+                <option value="Ácidos">Ácidos</option>
+            </select>
+        </div>
+
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Filtrar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
