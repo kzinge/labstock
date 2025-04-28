@@ -3,6 +3,18 @@ from ... import materiais_bp
 from ..services import materialservice
 #IMPORTAR ROLE_REQUIRED
 
+##### CATEGORIAS #####
+
+@materiais_bp.route('/categorias', methods=['POST','GET'])
+def cadastrar_categoria():
+    if request.method == 'GET':
+        return render_template('/pages/categoria.html')
+    else:
+        materialservice.nova_categoria(request.form)
+        flash('Categoria criada com sucesso!')
+        return redirect(url_for('material.cadastrar_categoria'))
+
+
 ##### REAGENTES #####
 
 @materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
@@ -15,7 +27,7 @@ def estoque():
 
 @materiais_bp.route('/cadastro_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
 def cadastro():
-    laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias()
+    laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias_reagentes()
     return render_template('materiais/cadastrar_reagente.html' , categorias=categorias, laboratorios=laboratorios)
 
 
@@ -51,8 +63,9 @@ def remove_material(id):
 
 @materiais_bp.route('/reservar/<int:lab_id>', methods=['POST','GET'])
 def cadastrar_reserva(lab_id):
-    materialservice.criar_reserva(lab_id, 1)#passar o request.form
+    materialservice.criar_reserva(lab_id, 1)
     if request.method == 'GET':
         return render_template('materiais/reservar_materiais.html')
-    #else:
-        #materialservice.criar_reserva(lab_id, request.form)
+    else:
+        materialservice.criar_reserva(lab_id, request.form)
+

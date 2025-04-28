@@ -20,7 +20,7 @@
 </div>
 
 <div class="forms-container">
-    <form action="{{ url_for('cadastrar_categoria') }}" method="POST" class="form-card">
+    <form action="{{ url_for('material.cadastrar_categoria') }}" method="POST" class="form-card">
         <label>Para quem é a nova categoria?</label>
         <div class="tipo-buttons">
             <input type="radio" id="laboratorio" name="tipo" value="Laboratório">
@@ -42,7 +42,7 @@
         </div>
     </form>
 
-    <form action="{{ url_for('filtrar_categoria') }}" method="GET" class="form-card">
+    <!-- <form action="{{ ('filtrar_categoria') }}" method="GET" class="form-card">
         <h2 class="lab-name">Filtrar por</h2>
         <div class="input-group">
             <label for="filtro">Filtro</label>
@@ -58,7 +58,7 @@
         <div class="botao_center">
             <button type="submit" class="botao-cadastrar">Filtrar</button>
         </div>
-    </form>
+    </form> -->
 </div>
 
 {% endblock %}

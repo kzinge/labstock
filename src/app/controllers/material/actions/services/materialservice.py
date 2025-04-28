@@ -22,9 +22,46 @@ def get_labs():
     labs = db.session.scalars(db.select(Lab)).all()
     return labs
 
-def get_categorias():
+def get_categorias_reagentes():
     categorias = db.session.scalars(db.select(CategoriaReagente)).all()
     return categorias
+
+def get_categorias_materiais():
+    categorias = db.session.scalars(db.select(CategoriaMaterial)).all()
+    return categorias
+
+
+def nova_categoria(form):
+    if form['tipo'] == "Material":
+        nome = form['nome_categoria']
+        categorias = get_categorias_materiais()
+        if categorias:
+            for categoria in categorias:
+                if nome == categoria.cat_nome:
+                    flash('Categoria já existe')
+                    return redirect(url_for('material.cadastrar_categoria'))
+                else:    
+                    nova_categoria = CategoriaMaterial(nome)
+        else:    
+            nova_categoria = CategoriaMaterial(nome)
+
+    elif form['tipo'] == "Reagente":
+        nome = form['nome_categoria']
+        categorias = get_categorias_reagentes()
+        if categorias:
+            for categoria in categorias:
+                print('ENTROU NO FOR')
+                if nome == categoria.cat_nome:
+                    print('CATEGORIA JA EXISTE')
+                    flash('Categoria já existe')
+                    return redirect(url_for('material.cadastrar_categoria'))
+                else:    
+                    nova_categoria = CategoriaReagente(form['nome_categoria'])
+        else:    
+            nova_categoria = CategoriaReagente(form['nome_categoria'])
+
+    db.session.add(nova_categoria)
+    db.session.commit()
 
 
 def cadastrar_material(form):
@@ -166,7 +203,7 @@ def remover_material(id):
     return redirect(url_for('material.estoque'))
 
 
-def criar_reserva(reserva_id, form):
+def criar_reserva(reserva_lab_id, form):
     # materiais = form.getlist['materiais']
     # reagentes = form.getlist['reagentes']
 
@@ -174,18 +211,16 @@ def criar_reserva(reserva_id, form):
     # mat_quantidade = form.getlist['mat_quantidade']
     # rgt_unidade = form.getlist['rgt_unidade']
 
-    #rem_rel_id = reserva_id
+    nova_reserva = ReservaItens(reserva_lab_id) #Primeiro cria a reserva itens
+    db.session.add(nova_reserva) #Coloca ela no banco
+    db.session.flush() #E da flush pra conseguir recuperar o id dela e ainda dar 1 commit só
 
-    #nova_reserva = ReservaItens(materiais, reagentes, rgt_quantidade, mat_quantidade, rgt_unidade, rem_rel_id)
-    rem_rel_id = 1
-    reagentes = 1
-    nova_reserva = ReservaItens(rem_rel_id)
-    db.session.add(nova_reserva)
-    db.session.flush()
-    #res_material = ReservaMaterial(material_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1)
+    #Aqui vai precisar de um for para criar as reservas dos materiais e reagentes.
+    res_material = ReservaMaterial(material_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1)
     res_reagente = ReservaReagente(reagente_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1, unidade = 'l')
     db.session.add(res_reagente)
-    db.commit()
+    db.session.add(res_material)
+    db.session.commit()
     #return redirect(url_for(''))
 
     
