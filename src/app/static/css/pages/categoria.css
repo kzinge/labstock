@@ -1,0 +1,222 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+}
+
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 35vh;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 1rem;
+    width: 40%;
+    margin-top: 2rem;
+}
+
+.form-filtro {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 25vh;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 1rem;
+    width: 40%;
+    margin-top: 6rem;
+}
+
+.labs-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.labs-div-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.lab-div {
+    background-color: #1D6D00;
+    color: white;
+    width: 18rem;
+    height: 4rem;
+    margin-right: 48rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 8rem;
+   
+}
+
+.lab-div-filtro {
+    background-color: #1D6D00;
+    color: white;
+    width: 18rem;
+    height: 4rem;
+    margin-left: 27.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 8rem;
+   
+}
+
+
+.lab-name-box {
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-name {
+    font-size: 1.5rem;
+
+}
+
+
+.lab-name-box-filtro {
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-name-filtro {
+    font-size: 1.5rem;
+
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.pergunta-categoria{
+    margin-top: 2rem;
+}
+
+
+.tipo-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.tipo-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    width: 140px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.tipo-btn.selected {
+    border: none;
+    background-color: #1D6D00;
+    color: white;
+}
+
+.input-group{
+  margin-top: 1rem;  
+}
+
+.input-group-filtro{
+    margin-top: 2rem;  
+  }
+  
+
+
+input[type="text"], select {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+    padding: 5px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #7ed957;
+    outline: none;
+}
+
+
+.botao_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-cadastrar {
+    background-color: #1D6D00;
+    color: white;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.botao-cadastrar:hover {
+    background-color: black;
+    color: #7ed957;
+}
+

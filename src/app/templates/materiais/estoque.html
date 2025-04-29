@@ -16,8 +16,8 @@
                 <h2>Filtrar estoque</h2>
 
                 <div class="botoes">
-                    <a href="" class="mat_reg">Materiais</a>
-                    <a href="" class="mat_reg">Reagentes</a>
+                    <a href="" class="tipo-btn">Materiais</a>
+                    <a href="" class="tipo-btn">Reagentes</a>
                 </div>
 
             </div>
@@ -86,5 +86,17 @@
     {% endif %}
 
 </div>
+
+<script>
+    const tipoBtns = document.querySelectorAll('.tipo-btn');
+
+    tipoBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // evita que o link recarregue a página
+            tipoBtns.forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+</script>
 
 {% endblock %}
