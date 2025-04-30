@@ -2,6 +2,12 @@
 
 {% block head_extras %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/categoria.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
 {% endblock %}
 
 
@@ -70,6 +76,41 @@
     </form> 
 </div>
 
+<div class="d-flex gap-4 flex-wrap justify-content-center mt-5">
+
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="fas fa-vial fs-1" style="font-size: 2.5rem;"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Química</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-lightning-charge-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Biologia</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-box-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Medição</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-droplet-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Ácidos</div>
+    </div>
+  
+  </div>
+
+
+
+  
 <script>
     const tipoBtns = document.querySelectorAll('.tipo-btn');
 
