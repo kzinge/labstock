@@ -29,6 +29,12 @@ body {
     background-color: var(--fundo-claro);
 }
 
+.saudacao{
+    position: relative;
+    margin-left: 5rem;
+}
+
+
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -52,6 +58,7 @@ body {
     height: 20rem;
     position: relative;
 }
+
 
 /* Tamanhos específicos */
 .card.maior {
