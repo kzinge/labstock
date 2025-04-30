@@ -3,18 +3,6 @@ from ... import materiais_bp
 from ..services import materialservice
 #IMPORTAR ROLE_REQUIRED
 
-##### CATEGORIAS #####
-
-@materiais_bp.route('/categorias', methods=['POST','GET'])
-def cadastrar_categoria():
-    if request.method == 'GET':
-        return render_template('/pages/categoria.html')
-    else:
-        materialservice.nova_categoria(request.form)
-        flash('Categoria criada com sucesso!')
-        return redirect(url_for('material.cadastrar_categoria'))
-
-
 ##### REAGENTES #####
 
 @materiais_bp.route('/', methods=['POST','GET']) # ROTA APENAS PARA TECNICO E PROFESSORES
