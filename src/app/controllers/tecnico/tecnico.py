@@ -18,7 +18,8 @@ def cadastrar_categoria():
     if request.method == 'GET':
         return render_template('/pages/categoria.html')
     else:
-    
         materialservice.nova_categoria(request.form)
         flash('Categoria criada com sucesso!')
         return redirect(url_for('tecnico.cadatrar_categoria'))
+
+
