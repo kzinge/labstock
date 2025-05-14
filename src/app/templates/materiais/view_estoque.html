@@ -5,14 +5,20 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
 
-    <a href="#" class="voltar">← Estoque</a>
+    <a href="{{url_for('material.estoque')}}" class="voltar">← Estoque</a>
+
+    <div class="labs-div">
+      <div class="lab-div">
+          <div class="lab-name-box">
+              <h2 class="lab-name">Termômetro</h2>
+          </div>
+      </div>
+    </div>
 
     <div class="card">
-      <div class="card-header verde">
-        <h2>Termômetro</h2>
-      </div>
       <div class="card-body">
         <p><strong>Descrição:</strong> Termômetro de ferro</p>
         <p><strong>Fornecedor:</strong> LabQuimicaLTDA</p>
@@ -27,11 +33,16 @@
         </div>
       </div>
     </div>
+
+    <div class="labs-div">
+      <div class="lab-div">
+          <div class="lab-name-box">
+              <h2 class="lab-name">Reservas relacionadas</h2>
+          </div>
+      </div>
+    </div>
   
     <div class="card">
-      <div class="card-header verde">
-        <h2>Reservas Relacionadas</h2>
-      </div>
       <div class="card-body">
         <div class="reserva">
           <span>Laboratório de Química Orgânica</span>

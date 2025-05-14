@@ -90,4 +90,39 @@ main {
   .reserva-id {
     color: #004400;
   }
+
+  .labs-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-div {
+  background-color: #1D6D00;
+  color: white;
+  width: 18rem;
+  height: 4rem;
+  bottom: -2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* REMOVE ISSO AQUI */
+  /* position: relative;
+  top: 5rem; */
+  margin-top: 2rem;
+}
+
+.lab-name-box {
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lab-name {
+    font-size: 1.5rem;
+}
+
   
