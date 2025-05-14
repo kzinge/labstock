@@ -51,8 +51,7 @@ def remove_material(id):
 
 @materiais_bp.route('/reservar/<int:lab_id>', methods=['POST','GET'])
 def cadastrar_reserva(lab_id):
-    materialservice.criar_reserva(lab_id, 1)#passar o request.form
     if request.method == 'GET':
         return render_template('materiais/reservar_materiais.html')
-    #else:
-        #materialservice.criar_reserva(lab_id, request.form)
+    else:
+        materialservice.criar_reserva(lab_id, request.form)
