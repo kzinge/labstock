@@ -1,0 +1,127 @@
+{% extends "modGeral.html" %}
+
+{% block head_extras %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/categoria.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+{% endblock %}
+
+
+{% block perfil %}
+<h1>Fulano</h1>
+<img src="../../static/assets/perfil.jpg" alt="perfil">
+{% endblock %}
+
+{% block content %}
+<div class="labs-div">
+    <div class="lab-div">
+        <div class="lab-name-box">
+            <h2 class="lab-name">Nova Categoria</h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="labs-div-filtro">
+    <div class="lab-div-filtro">
+        <div class="lab-name-box-filtro">
+            <h2 class="lab-name-filtro">Filtrar por</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="{{ url_for('tecnico.cadastrar_categoria') }}" method="POST" class="form-card">
+        <div class="pergunta-categoria">
+            <label>Para quem é a nova categoria?</label>
+        </div>
+
+        <div class="tipo-buttons">
+
+            <button class="tipo-btn">Laboratório</button>
+            <button class="tipo-btn">Material</button>
+            <button class="tipo-btn">Reagente</button>
+            
+        </div>
+
+        <div class="input-group">
+            <label for="">Nova categoria</label>
+            <input type="text" name="nome_categoria" required>
+        </div>
+
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        </div>
+    </form>
+    
+
+    <form action="{{ ('material.filtrar_categoria') }}" method="GET" class="form-filtro">
+        <div class="input-group-filtro">
+            <label for="filtro">Filtro</label>
+            <select name="filtro" id="filtro">
+                <option value="Química">Química</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Medição">Medição</option>
+                <option value="Ácidos">Ácidos</option>
+            </select>
+        </div>
+
+        <div class="botao_center">
+            <button type="submit" class="botao-cadastrar">Filtrar</button>
+        </div>
+    </form> 
+</div>
+
+<div class="d-flex gap-4 flex-wrap justify-content-center mt-5">
+
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="fas fa-vial fs-1" style="font-size: 2.5rem;"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Química</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-lightning-charge-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Biologia</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-box-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Medição</div>
+    </div>
+  
+    <div class="d-flex align-items-center shadow-sm overflow-hidden">
+      <div class="icone text-white px-3 py-2 d-flex align-items-center">
+        <i class="bi bi-droplet-fill fs-3"></i>
+      </div>
+      <div class="cor-verde bg-white px-3 py-2 fw-semibold texto-menor">Ácidos</div>
+    </div>
+  
+  </div>
+
+
+
+  
+<script>
+    const tipoBtns = document.querySelectorAll('.tipo-btn');
+
+    tipoBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // evita que o link recarregue a página
+            tipoBtns.forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+</script>
+
+
+{% endblock %}

@@ -18,9 +18,14 @@ body {
     background-color: #f0f0f0;
 }
 
-.rels-div {
+main {
     display: flex;
     flex-direction: column;
+}
+
+.rels-div {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap; 
     justify-content: center;
     gap: 15px; 

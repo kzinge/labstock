@@ -12,10 +12,18 @@ def estoque():
     return render_template('materiais/estoque.html', reagentes = reagentes, materiais = materiais)
 
 
+ 
+@materiais_bp.route('/visualizar_estoque', methods=['POST','GET']) #Amigo essa rota que eu criei seria referente a fucionalidade vizualizar da pagina de estoque
+def visualizar_estoque(): 
+    reagentes = materialservice.get_reagentes()
+    materiais = materialservice.get_materiais()
+    return render_template('materiais/view_estoque.html', reagentes=reagentes, materiais=materiais)
+
+
 
 @materiais_bp.route('/cadastro_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
 def cadastro():
-    laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias()
+    laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias_reagentes()
     return render_template('materiais/cadastrar_reagente.html' , categorias=categorias, laboratorios=laboratorios)
 
 
