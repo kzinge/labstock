@@ -10,51 +10,60 @@
 
     <a href="{{url_for('material.estoque')}}" class="voltar">← Estoque</a>
 
-    <div class="labs-div">
-      <div class="lab-div">
-          <div class="lab-name-box">
-              <h2 class="lab-name">Termômetro</h2>
-          </div>
-      </div>
+    <!-- CARD: Termômetro -->
+    <div class="card-wrapper">
+        <div class="lab-div">
+            <h2 class="lab-name">Termômetro</h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+              <div class="informacoes">
+
+                <div class="info_col">
+                  <p><span class="info-titulos">Descrição:</span> Termômetro de ferro</p>
+                  <p><span class="info-titulos">Fornecedor:</span> LabQuimicaLTDA</p>
+                  <p><span class="info-titulos">Validade:</span> 01/01/2030</p>
+                  <p><span class="info-titulos">Categoria:</span> <span class="categoria">Medição</span></p>
+                </div>
+
+              </div>
+
+              <div class="informacoes">
+                  <div class="info_col">
+                    <p><strong>Unidades em estoque:</strong> 8</p>
+                    <p><strong>Reservados:</strong> 2</p>
+                    <div class="botoes">
+                        <button class="btn">Deletar</button>
+                        <button class="btn">Editar</button>
+                    </div>
+                  </div>
+                  
+
+              </div>
+    
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-      <div class="card-body">
-        <p><strong>Descrição:</strong> Termômetro de ferro</p>
-        <p><strong>Fornecedor:</strong> LabQuimicaLTDA</p>
-        <p><strong>Validade:</strong> 01/01/2030</p>
-        <p><strong>Categoria:</strong> <span class="categoria">Medição</span></p>
-        <p><strong>Unidades em estoque:</strong> 8</p>
-        <p><strong>Reservados:</strong> 2</p>
-  
-        <div class="botoes">
-          <button class="btn">Deletar</button>
-          <button class="btn">Editar</button>
+    <!-- CARD: Reservas -->
+    <div class="card-wrapper">
+        <div class="lab-div">
+            <h2 class="lab-name">Reservas Relacionadas</h2>
         </div>
-      </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="reserva">
+                    <span>Laboratório de Química Orgânica</span>
+                    <span class="reserva-id">Reserva 11</span>
+                </div>
+                <div class="reserva">
+                    <span>Laboratório de Física I</span>
+                    <span class="reserva-id">Reserva 09</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="labs-div">
-      <div class="lab-div">
-          <div class="lab-name-box">
-              <h2 class="lab-name">Reservas relacionadas</h2>
-          </div>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="card-body">
-        <div class="reserva">
-          <span>Laboratório de Química Orgânica</span>
-          <span class="reserva-id">Reserva 11</span>
-        </div>
-        <div class="reserva">
-          <span>Laboratório de Física I</span>
-          <span class="reserva-id">Reserva 09</span>
-        </div>
-      </div>
-    </div>
-  
 </div>
-  
+
 {% endblock %}

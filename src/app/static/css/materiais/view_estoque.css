@@ -24,10 +24,11 @@ main {
 }
 
 .container {
-    font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 20px auto;
-  }
+  font-family: Arial, sans-serif;
+  max-width: 800px; 
+  margin: 20px auto;
+}
+
   
   .voltar {
     color: #004400;
@@ -49,10 +50,10 @@ main {
     background-color: #006400;
     color: white;
     padding: 10px;
-    text-align: center;
   }
   
   .card-body {
+    margin-top: 1rem;
     padding: 15px;
   }
   
@@ -74,7 +75,6 @@ main {
     padding: 6px 12px;
     margin-right: 10px;
     border-radius: 5px;
-    cursor: pointer;
   }
   
   .reserva {
@@ -91,28 +91,7 @@ main {
     color: #004400;
   }
 
-  .labs-div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
 
-.lab-div {
-  background-color: #1D6D00;
-  color: white;
-  width: 18rem;
-  height: 4rem;
-  bottom: -2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* REMOVE ISSO AQUI */
-  /* position: relative;
-  top: 5rem; */
-  margin-top: 2rem;
-}
 
 .lab-name-box {
     width: 15rem;
@@ -121,8 +100,50 @@ main {
     align-items: center;
 }
 
-.lab-name {
-    font-size: 1.5rem;
+.card-wrapper {
+  position: relative;
+  margin-top: 3rem;
 }
 
+.lab-div {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  margin-left: -15rem;
+  transform: translateX(-50%);
+  background-color: #1D6D00;
+  border-radius: 0.4rem;
+  color: white;
+  width: 275px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.lab-name {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.informacoes{
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
+.info_col{
+  display: flex;
+  gap: 5em;
   
+}
+
+.info_col p{
+  margin: 0px 10px;
+}
+
+.info-titulos {
+  display: block;
+  font-weight: bold;
+}
