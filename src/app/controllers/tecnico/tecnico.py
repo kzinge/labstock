@@ -20,6 +20,6 @@ def cadastrar_categoria():
     else:
         materialservice.nova_categoria(request.form)
         flash('Categoria criada com sucesso!')
-        return redirect(url_for('tecnico.cadatrar_categoria'))
+        return redirect(url_for('tecnico.cadastrar_categoria'))
 
 
