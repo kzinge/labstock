@@ -98,10 +98,11 @@
         </div>
 
         <div class="tipo-buttons">
+            <input type="hidden" name="tipo" value="">
 
-            <button class="tipo-btn">Laboratório</button>
-            <button class="tipo-btn">Material</button>
-            <button class="tipo-btn">Reagente</button>
+            <button name="tipo" value="lab" class="tipo-btn">Laboratório</button>
+            <button name="tipo" value="material" class="tipo-btn">Material</button>
+            <button name="tipo" value="reagente" class="tipo-btn">Reagente</button>
             
         </div>
 
@@ -170,12 +171,14 @@
   
 <script>
     const tipoBtns = document.querySelectorAll('.tipo-btn');
-
+    const tipo_select = document.querySelector('input[name="tipo"]');
     tipoBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault(); // evita que o link recarregue a página
             tipoBtns.forEach(b => b.classList.remove('selected'));
             this.classList.add('selected');
+            tipo_select.value = this.value; // define o valor do input hidden
+            console.log('Tipo selecionado:', this.value);
         });
     });
 </script>

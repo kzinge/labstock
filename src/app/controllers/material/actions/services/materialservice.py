@@ -31,39 +31,6 @@ def get_categorias_materiais():
     return categorias
 
 
-def nova_categoria(form):
-    if form['tipo'] == "Material":
-        nome = form['nome_categoria']
-        categorias = get_categorias_materiais()
-        if categorias:
-            for categoria in categorias:
-                if nome == categoria.cat_nome:
-                    flash('Categoria já existe')
-                    return redirect(url_for('material.cadastrar_categoria'))
-                else:    
-                    nova_categoria = CategoriaMaterial(nome)
-        else:    
-            nova_categoria = CategoriaMaterial(nome)
-
-    elif form['tipo'] == "Reagente":
-        nome = form['nome_categoria']
-        categorias = get_categorias_reagentes()
-        if categorias:
-            for categoria in categorias:
-                print('ENTROU NO FOR')
-                if nome == categoria.cat_nome:
-                    print('CATEGORIA JA EXISTE')
-                    flash('Categoria já existe')
-                    return redirect(url_for('material.cadastrar_categoria'))
-                else:    
-                    nova_categoria = CategoriaReagente(form['nome_categoria'])
-        else:    
-            nova_categoria = CategoriaReagente(form['nome_categoria'])
-
-    db.session.add(nova_categoria)
-    db.session.commit()
-
-
 def cadastrar_material(form):
     nome_reagente = request.form['nome_reagente']
 
