@@ -3,19 +3,19 @@
 
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
-<li class="side-item">
+<li class="side-item menu-toggle">
     <a href="#">
         <i class="fa-solid fa-box"></i>
-        <span class="item-description menu-toggle">
+        <span class="item-description">
             Estoque
         </span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Material</a>
+            <a href="/material/cadastrar_material" class="opt-subitem">Novo Material</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Reagente</a>
+            <a href="/material/cadastrar_reagente" class="opt-subitem">Novo Reagente</a>
         </li>
     </ul>
 </li>
@@ -28,10 +28,10 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Laboratórios</a>
+            <a href="/lab" class="opt-subitem">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Laboratório</a>
+            <a href="/lab/cadastrar" class="opt-subitem">Novo Laboratório</a>
         </li>
     </ul>
 </li>
@@ -39,12 +39,12 @@
     <a href="#">
         <i class="fa-solid fa-clock"></i>
         <span class="item-description menu-toggle">
-            Reservas
+            Reservas    
         </span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novas Reservas</a>
+            <a href="/lab/reservar" class="opt-subitem">Novas Reservas</a>
         </li>
     </ul>
 </li>

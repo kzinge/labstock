@@ -21,16 +21,16 @@ def visualizar_estoque():
 
 
 
-@materiais_bp.route('/cadastro_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
+@materiais_bp.route('/cadastrar_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
 def cadastro():
     laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias_reagentes()
     return render_template('materiais/cadastrar_reagente.html' , categorias=categorias, laboratorios=laboratorios)
 
 
 
-@materiais_bp.route('/cadastro_reagente', methods=['POST'])
+@materiais_bp.route('/cadastrar_reagente', methods=['POST'])
 # @role_required('Técnico') #IMPORTAR ROLE_REQUIRED
-def cadastro_reagente():
+def cadastrar_reagente():
     materialservice.cadastrar_material()
 
 

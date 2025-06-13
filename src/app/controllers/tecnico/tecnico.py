@@ -10,7 +10,11 @@ from ...models import CategoriaMaterial, CategoriaReagente, EspecialidadeLab
 tec_bp = Blueprint(name ='tecnico', 
                     import_name= __name__, 
                     url_prefix='/tecnico', 
-                    template_folder='pages')
+                    template_folder='templates/pages')
+
+@tec_bp.route('/')
+def index():
+    return render_template('inicioTecnico.html')
 
 def criar_categoria(form):
     if form['tipo'] == "material":
@@ -63,10 +67,6 @@ def criar_categoria(form):
         return "erro"
     db.session.add(nova_categoria)
     db.session.commit()
-
-@tec_bp.route('/')
-def home():
-    return 'teste'
 
 @tec_bp.route('/categorias', methods=['POST','GET'])
 def cadastrar_categoria():

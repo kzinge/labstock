@@ -20,8 +20,8 @@ from .. import materiais_bp
 #     categorias = db.session.scalars(db.select(CategoriaReagente)).all()
 #     return render_template('materiais/cadastrar_material.html' , categorias=categorias, laboratorios=laboratorios)
 
-# @materiais_bp.route('/cadastro_reagente', methods=['POST']) #####
-# def cadastro_reagente():
+# @materiais_bp.route('/cadastrar_reagente', methods=['POST']) #####
+# def cadastrar_reagente():
 #     if request.method == 'POST':
 #         nome_reagente = request.form['nome_reagente']
 
