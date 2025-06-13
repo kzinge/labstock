@@ -204,11 +204,11 @@ def remover_material(id):
 
 
 def criar_reserva(reserva_lab_id, form):
-    # materiais = form.getlist['materiais']
+    materiais = form.getlist['materiais']
     # reagentes = form.getlist['reagentes']
 
     # rgt_quantidade = form.getlist['rgt_quantidade']
-    # mat_quantidade = form.getlist['mat_quantidade']
+    mat_quantidade = form.getlist['mat_quantidade']
     # rgt_unidade = form.getlist['rgt_unidade']
 
     nova_reserva = ReservaItens(reserva_lab_id) #Primeiro cria a reserva itens
@@ -216,10 +216,17 @@ def criar_reserva(reserva_lab_id, form):
     db.session.flush() #E da flush pra conseguir recuperar o id dela e ainda dar 1 commit só
 
     #Aqui vai precisar de um for para criar as reservas dos materiais e reagentes.
-    res_material = ReservaMaterial(material_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1)
-    res_reagente = ReservaReagente(reagente_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = 1, unidade = 'l')
-    db.session.add(res_reagente)
-    db.session.add(res_material)
+    
+    for material, quantidade in zip(materiais,mat_quantidade): #pegando o reagente direto, sem select, lembrar de não pegar por id no form
+        res_material = ReservaMaterial(material_id = material.mat_id, reserva_itens_id = nova_reserva.rei_id, quantidade = quantidade) #Cria reserva
+        material.mat_quantidade = material.mat_quantidade - quantidade #Subtrair quantidade no banco
+        db.session.add(res_material)
+
+    for reagente, quantidade in zip(reagentes, rgt_quantidade): #pegando o reagente direto, sem select, lembrar de não pegar por id no form
+        res_reagente = ReservaReagente(reagente_id = 1, reserva_itens_id = nova_reserva.rei_id, quantidade = rgt_quantidade, unidade = reagente.rgt_unidade) #Cria reserva
+        reagente.rgt_quantidade = reagente.rgt_quantidade - quantidade #Subtrair quantidade no banco
+        db.session.add(res_reagente)
+
     db.session.commit()
     #return redirect(url_for(''))
 

@@ -51,7 +51,7 @@ def remove_reagente(id):
 @materiais_bp.route('/cadastrar_material', methods=['POST','GET'])
 def cadastro_material():
     return render_template('materiais/cadastrar_material.html')
-    materialservice.cadastrar_material(request.form)
+    #materialservice.cadastrar_material(request.form)
 
 @materiais_bp.route('/delete_material/<int:id>', methods=['POST'])
 def remove_material(id):
