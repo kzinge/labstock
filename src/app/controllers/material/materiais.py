@@ -182,3 +182,5 @@ def remove_material(id):
 @materiais_bp.route('/edit_material/<int:id>', methods=['GET','POST'])
 def edit_material(id):
     pass
+
+

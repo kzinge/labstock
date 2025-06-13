@@ -6,33 +6,56 @@
 
 {% block headerlinks %}
 <li class="side-item">
-    <a href="{{url_for('dashboard')}}">
-        <i class="fa-solid fa-home"></i>
-        <span class="item-description">Início</span>
+    <a href="#">
+        <i class="fa-solid fa-box"></i>
+        <span class="item-description menu-toggle">
+            Estoque
+        </span>
     </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novo Material</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novo Reagente</a>
+        </li>
+    </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.index')}}">
+    <a href="#">
         <i class="fa-solid fa-microscope"></i>
-        <span class="item-description">Laboratórios</span>
+        <span class="item-description menu-toggle">
+            Laboratórios
+        </span>
     </a>
-</li>
-<li class="side-item active">
-    <a href="{{url_for('lab.cadastrar_lab')}}">
-        <i class="fa-solid fa-square-plus"></i>
-        <span class="item-description">Novo Laboratório</span>
-    </a>
-</li>
-<li class="side-item">
-    <a href="{{url_for('lab.reservar_lab')}}">
-        <i class="fa-solid fa-table"></i>
-        <span class="item-description">Nova Reserva</span>
-    </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Laboratórios</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novo Laboratório</a>
+        </li>
+    </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.reservas')}}">
-        <i class="fa-solid fa-list"></i>
-        <span class="item-description">Reservas</span>
+    <a href="#">
+        <i class="fa-solid fa-clock"></i>
+        <span class="item-description menu-toggle">
+            Reservas
+        </span>
+    </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novas Reservas</a>
+        </li>
+    </ul>
+</li>
+<li class="side-item">
+    <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span class="item-description">
+            Notificações
+        </span>
     </a>
 </li>
 {% endblock %}

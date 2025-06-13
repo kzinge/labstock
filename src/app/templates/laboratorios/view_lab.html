@@ -6,15 +6,23 @@
 
 {% block headerlinks %}
 <li class="side-item">
-    <a href="{{url_for('dashboard')}}">
-        <i class="fa-solid fa-home"></i>
-        <span class="item-description">
-            Início
+    <a href="#">
+        <i class="fa-solid fa-box"></i>
+        <span class="item-description menu-toggle">
+            Estoque
         </span>
     </a>
+    <ul class="sub-menu">
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novo Material</a>
+        </li>
+        <li class="sub-item item-description">
+            <a href="#" class="opt-subitem">Novo Reagente</a>
+        </li>
+    </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.index')}}" class="active-menu">
+    <a href="#">
         <i class="fa-solid fa-microscope"></i>
         <span class="item-description menu-toggle">
             Laboratórios
@@ -22,26 +30,23 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.index')}}" class="active-item">Laboratórios</a>
+            <a href="#" class="opt-subitem">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Minhas Reservas</a>
+            <a href="#" class="opt-subitem">Novo Laboratório</a>
         </li>
     </ul>
 </li>
 <li class="side-item">
     <a href="#">
-        <i class="fa-solid fa-cubes"></i>
+        <i class="fa-solid fa-clock"></i>
         <span class="item-description menu-toggle">
-            Estoque
+            Reservas
         </span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.index')}}" class="opt-subitem">Materiais</a>
-        </li>
-        <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Grupos</a>
+            <a href="#" class="opt-subitem">Novas Reservas</a>
         </li>
     </ul>
 </li>
@@ -49,7 +54,7 @@
     <a href="#">
         <i class="fa-solid fa-bell"></i>
         <span class="item-description">
-            Aulas
+            Notificações
         </span>
     </a>
 </li>

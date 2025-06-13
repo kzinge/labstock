@@ -27,7 +27,7 @@ def oauth2_authorize(provider):
     qs = urlencode({
         'client_id': suap_data.SOCIAL_AUTH_SUAP_KEY,
 
-        'redirect_uri': 'http://127.0.0.1:3000/auth/callback/suap',
+        'redirect_uri': 'http://127.0.0.1:5000/auth/callback/suap',
 
         'response_type': 'code',
         'scope': 'email',
@@ -71,6 +71,9 @@ def oauth2_callback(provider):
 
     if not oauth2_token:
         abort(401)
+        
+    #Salvar Token na sessão
+    session['access_token'] = oauth2_token
 
     user_response = requests.get(
         suap_data.USER_DATA_URL,
