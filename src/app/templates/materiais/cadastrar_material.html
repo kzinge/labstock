@@ -6,7 +6,8 @@
 
 
 {% block headerlinks %}
-<li class="side-item">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
+<li class="side-item ">
     <a href="#">
         <i class="fa-solid fa-box"></i>
         <span class="item-description menu-toggle">
@@ -15,10 +16,10 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Material</a>
+            <a href="{{url_for('material.cadastro_material')}}" class="opt-subitem">Novo Material</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Reagente</a>
+            <a href="{{url_for('material.cadastrar_reagente')}}" class="opt-subitem">Novo Reagente</a>
         </li>
     </ul>
 </li>
@@ -31,10 +32,10 @@
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Laboratórios</a>
+            <a href="{{url_for('lab.index')}}" class="opt-subitem">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novo Laboratório</a>
+            <a href="{{url_for('lab.cadastrar_lab')}}" class="opt-subitem">Novo Laboratório</a>
         </li>
     </ul>
 </li>
@@ -42,12 +43,12 @@
     <a href="#">
         <i class="fa-solid fa-clock"></i>
         <span class="item-description menu-toggle">
-            Reservas
+            Reservas    
         </span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Novas Reservas</a>
+            <a href="{{url_for('lab.reservar_lab')}}" class="opt-subitem">Novas Reservas</a>
         </li>
     </ul>
 </li>
