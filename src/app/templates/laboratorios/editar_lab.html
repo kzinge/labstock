@@ -7,7 +7,7 @@
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
 <li class="side-item ">
-    <a href="#">
+    <a href="{{url_for('material.estoque')}}">
         <i class="fa-solid fa-box"></i>
         <span class="item-description menu-toggle">
             Estoque
@@ -23,7 +23,7 @@
     </ul>
 </li>
 <li class="side-item">
-    <a href="#">
+    <a href="{{url_for('lab.index')}}">
         <i class="fa-solid fa-microscope"></i>
         <span class="item-description menu-toggle">
             Laboratórios
@@ -39,7 +39,7 @@
     </ul>
 </li>
 <li class="side-item">
-    <a href="#">
+    <a href="{{url_for('lab.reservas')}}">
         <i class="fa-solid fa-clock"></i>
         <span class="item-description menu-toggle">
             Reservas    
