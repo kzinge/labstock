@@ -17,7 +17,8 @@ def index():
     num_labs = len(labservice.carregar_labs())
     num_mats = len(materialservice.get_materiais())
     num_reservas = len(labservice.carregar_reservas())
-    return render_template('pages/inicioTecnico.html', num_labs = num_labs, num_mats = num_mats, num_reservas = num_reservas)
+    num_novas_reservas = len(labservice.carregar_reservas_pendentes())
+    return render_template('pages/inicioTecnico.html', num_labs = num_labs, num_mats = num_mats, num_reservas = num_reservas, num_novas_reservas = num_novas_reservas)
 
 def criar_categoria(form):
     if form['tipo'] == "material":

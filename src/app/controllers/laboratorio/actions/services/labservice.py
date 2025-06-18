@@ -43,8 +43,11 @@ def listar_especialidades():
 
 def carregar_reservas():
     reservas = db.session.scalars(db.select(ReservaLab)).all()
-
     return reservas
+
+def carregar_reservas_pendentes():
+    reservas_pendentes = db.session.query(ReservaLab).filter(ReservaLab.rel_status == 'Pendente').all()
+    return reservas_pendentes
 
 def filtrar_labs(form):
     filtro_especialidade = form.get('especialidades_filtro')

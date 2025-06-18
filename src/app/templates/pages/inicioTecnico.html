@@ -74,8 +74,8 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="#">Labs</a>
-                    <a href="#">Novo Laboratório
+                    <a href="{{url_for('lab.index')}}">Labs</a>
+                    <a href="{{url_for('lab.cadastrar_lab')}}">Novo Laboratório
                         <div>+</div>  
                     </a>
                 </div>
@@ -96,11 +96,11 @@
                 </div>
                 
                 <div class="buttons">
-                    <a href="#">Estoque</a>
-                    <a href="#">Novo material 
+                    <a href="{{url_for('material.estoque')}}">Estoque</a>
+                    <a href="{{url_for('material.cadastro_material')}}">Novo material 
                         <div>+</div>  
                     </a>
-                    <a href="#">Novo Reagente 
+                    <a href="{{url_for('material.cadastrar_reagente')}}">Novo Reagente 
                         <div>+</div>  
                     </a>
                 </div>
@@ -123,12 +123,12 @@
                 </div>
                 <span>Veja aqui mais informações sobre suas reservas!</span>
                 <div class="buttons">
-                    <a href="#">Reservas</a>
+                    <a href="{{url_for('lab.reservas')}}">Reservas</a>
                 </div>
             </aside>
             <div class="side">
                 <div class="card-title">
-                    <h1>{1}</h1>
+                    <h1>{{num_novas_reservas}}</h1>
                     <span>Novas<br>Reservas</span>
                 </div>
                 <span>Veja aqui mais informações sobre suas reservas!</span>
