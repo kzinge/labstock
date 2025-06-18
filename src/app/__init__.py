@@ -89,7 +89,4 @@ def laboratorios():
 def visualizar_prof():
     return render_template('pages/inicioProfessor.html')
 
-@app.route('/tecdash')
-def visualizar_aluno():
-    return render_template('pages/inicioTecnico.html')
 

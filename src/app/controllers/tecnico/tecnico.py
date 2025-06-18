@@ -14,7 +14,10 @@ tec_bp = Blueprint(name ='tecnico',
 
 @tec_bp.route('/')
 def index():
-    return render_template('inicioTecnico.html')
+    num_labs = len(labservice.carregar_labs())
+    num_mats = len(materialservice.get_materiais())
+    num_reservas = len(labservice.carregar_reservas())
+    return render_template('pages/inicioTecnico.html', num_labs = num_labs, num_mats = num_mats, num_reservas = num_reservas)
 
 def criar_categoria(form):
     if form['tipo'] == "material":
@@ -76,3 +79,5 @@ def cadastrar_categoria():
         criar_categoria(request.form)
         flash('Categoria criada com sucesso!')
         return redirect(url_for('tecnico.cadastrar_categoria'))
+
+
