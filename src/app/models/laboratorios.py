@@ -67,3 +67,4 @@ class ReservaLab(db.Model):
         self.rel_tipo = tipo
         self.rel_lab_id = lab_id
         self.rel_usu_matricula = usu_matricula
+

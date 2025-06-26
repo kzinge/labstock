@@ -1,5 +1,5 @@
 from ... import prof_bp
-from ..services.user import find_user
+from ..services.user import find_user,reservas_usuario
 from flask import render_template, redirect, url_for
 from .....models import Material, Reagente, CategoriaReagente, CategoriaMaterial, ReservaItens, ReservaMaterial, ReservaReagente
 
@@ -9,10 +9,13 @@ def home():
     reagentes_cadastrados = Reagente.query.count()
     itens_cadastrados = materiais_cadastrados + reagentes_cadastrados
 
-    #Pegar reservas filtradas por id do usuário current_user
-    #Separar as reservas entre soliciadas, pendentes e confirmadas
     #Pegar quantidade de aulas cadastradas ( Fazer as aulas primeiro )
     
+    reservas = reservas_usuario()
+    total_reservas = reservas[0]
+    pendentes = reservas[1]
+    confirmadas = reservas[2]
 
     usuario = find_user()
-    return render_template('home.html', nome = usuario.usu_nome, quantidade_material = itens_cadastrados)
+    return render_template('home.html', nome = usuario.usu_nome, quantidade_material = itens_cadastrados,
+                            total_reservas = total_reservas, pendentes = pendentes, confirmadas = confirmadas)
