@@ -14,6 +14,7 @@ from .controllers.laboratorio import lab_bp
 from .controllers.material import materiais_bp
 from .controllers.professor import prof_bp
 from .controllers.tecnico import tec_bp
+from .controllers.aulas import aulas_bp
 
 load_dotenv('.env')
 
@@ -41,6 +42,7 @@ app.register_blueprint(materiais_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(prof_bp)
 app.register_blueprint(tec_bp)
+app.register_blueprint(aulas_bp)
 
 db.init_app(app)
 

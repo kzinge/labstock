@@ -1,0 +1,25 @@
+
+
+<form action="{{url_for('aulas.cadastrar_aula')}}" method="post">
+    <label for="titulo">Título da Aula:</label>
+    <input type="text" id="nome" name="titulo" required>
+    
+    <label for="desc">Descrição da Aula:</label>
+    <input type="text" name="desc" required>
+
+    <label for="data">Data da Aula:</label>
+    <input type="date" name="data" required>
+
+    <label for="hora">Horario da Aula:</label>
+    <input type="time" name="horarioInicio" required>
+    <input type="time" name="horarioTermino" required>
+
+    <label for="Lab">Laboratório:</label>
+    <select name="lab">
+        {% for lab in labs %}
+            <option value="{{ lab.lab_id }}">{{ lab.lab_sala }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Cadastrar</button>
+</form>

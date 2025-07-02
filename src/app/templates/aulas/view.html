@@ -1,0 +1,13 @@
+{% for aula in aulas %} 
+    <div class="aula">
+        <h2>{{ aula.aul_titulo }}</h2>
+        <p><strong>Descrição:</strong> {{ aula.aul_desc }}</p>
+        <p><strong>Data:</strong> {{ aula.aul_data }}</p>
+        <p><strong>Horário:</strong> {{ aula.aul_horarioInicio }} - {{ aula.aul_horarioTermino }}</p>
+        <p><strong>Laboratório:</strong> {{ aula.laboratorio.lab_sala }}</p>
+    </div>
+{% endfor %}
+
+{% if aulas|length == 0 %}
+    <p>Nenhuma aula cadastrada.</p>
+{% endif %}
