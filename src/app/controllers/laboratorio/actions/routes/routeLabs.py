@@ -29,6 +29,15 @@ def reservas():
     especialidades = labservice.listar_especialidades()
     return render_template('laboratorios/view_reservas.html', reservas = reservas, especialidades = especialidades)
 
+@lab_bp.route('/minhasreservas', methods=['GET', 'POST'])
+def minhas_reservas():
+    if request.method == 'POST':
+        reservas = labservice.filtrar_labs(request.form)
+    elif request.method == 'GET':
+        reservas = labservice.minhas_reservas()
+    especialidades = labservice.listar_especialidades()
+    return render_template('laboratorios/view_reservas.html', reservas = reservas, especialidades = especialidades)
+
 @lab_bp.route('/reservar', methods=['GET', 'POST'])
 def reservar_lab():
     if request.method == 'POST':

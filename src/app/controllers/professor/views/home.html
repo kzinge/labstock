@@ -23,7 +23,7 @@
             <a href="{{url_for('professor.labs')}}" class="opt-subitem">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
-            <a href="#" class="opt-subitem">Minhas Reservas</a>
+            <a href="{{url_for('lab.minhas_reservas')}}" class="opt-subitem">Minhas Reservas</a>
         </li>
     </ul>
 </li>
@@ -69,8 +69,8 @@
                 </div>
                 <span>Veja aqui mais informações sobre suas reservas!</span>
                 <div class="buttons">
-                    <a href="#">Reservas</a>
-                    <a href="#">Reservar
+                    <a href="{{url_for('lab.reservas')}}">Reservas</a>
+                    <a href="{{url_for('lab.reservar_lab')}}">Reservar
                         <div>+</div>    
                     </a>
                 </div>

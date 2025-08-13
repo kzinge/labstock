@@ -49,6 +49,14 @@ def carregar_reservas_pendentes():
     reservas_pendentes = db.session.query(ReservaLab).filter(ReservaLab.rel_status == 'Pendente').all()
     return reservas_pendentes
 
+def minhas_reservas():
+    reservas = db.session.query(ReservaLab).filter(ReservaLab.rel_usu_matricula == current_user.usu_matricula).all()
+    return reservas
+
+def minhas_reservas_pendentes():
+    reservas_pendentes = db.session.query(ReservaLab).filter(ReservaLab.rel_status == 'Pendente', ReservaLab.rel_usu_matricula == current_user.usu_matricula).all()
+    return reservas_pendentes
+
 def filtrar_labs(form):
     filtro_especialidade = form.get('especialidades_filtro')
     filtro_nome = form.get('buscar_lab')
