@@ -60,16 +60,3 @@ CREATE TABLE tb_reservas_materiais (
     FOREIGN KEY (rem_mat_id) REFERENCES tb_materiais(mat_id),
     FOREIGN KEY (rem_rel_id) REFERENCES tb_reservas_laboratorios(rel_id)
 );
-
-CREATE TABLE tb_aulas (
-    aul_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    aul_titulo VARCHAR(50) NOT NULL,
-    aul_desc VARCHAR(300) NOT NULL,
-    aul_horarioInicio TIME NOT NULL,
-    aul_horarioTermino TIME NOT NULL,
-    aul_data DATE NOT NULL,
-    aul_lab_id INT NOT NULL,
-    FOREIGN KEY (aul_lab_id) REFERENCES tb_laboratorios(lab_id),
-    aul_usu_id INT NOT NULL,
-    -- FOREIGN KEY (aul_usu_id) REFERENCES tb_usuarios (usu_id)
-);

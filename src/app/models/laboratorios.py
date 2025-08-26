@@ -25,7 +25,6 @@ class Lab(db.Model):
     reagentes = relationship('Reagente', back_populates='laboratorio', lazy=True)
     reservas = relationship('ReservaLab', back_populates='laboratorio', lazy=True)  
     especialidades = relationship('EspecialidadeLab', back_populates='laboratorio', lazy=True)
-    aulas = relationship('Aula', back_populates='laboratorio', lazy=True)
 
     def __repr__(self):
         return f'Lab {self.lab_nome} - {self.lab_local}'
