@@ -45,7 +45,7 @@ class ReservaLab(db.Model):
     rel_horarioInicial: Mapped[time] = mapped_column(Time, nullable=False)
     rel_horarioFinal: Mapped[time] = mapped_column(Time, nullable=False)
     rel_motivo: Mapped[str] = mapped_column(Text, nullable=False)
-    rel_tipo: Mapped[str] = mapped_column(Enum('Anual', 'Semestral', 'Extraordinária'), nullable=False)
+    # rel_tipo: Mapped[str] = mapped_column(Enum('Anual', 'Semestral', 'Extraordinária'), nullable=False)
     rel_status: Mapped[str] = mapped_column(Enum('Pendente', 'Confirmada', 'Rejeitada'), nullable=False, default='Pendente')
     rel_lab_id: Mapped[int] = mapped_column(ForeignKey('tb_laboratorios.lab_id'), nullable=False)
     rel_usu_matricula: Mapped[str] = mapped_column(String(20), ForeignKey('tb_usuarios.usu_matricula'), nullable=False)
@@ -57,13 +57,13 @@ class ReservaLab(db.Model):
     def __repr__(self):
         return f'Reserva {self.rel_id} - Laboratório: {self.laboratorio} - Data Inicial: {self.rel_dataInicial} - até {self.rel_dataFinal} de {self.rel_horarioInicial} às {self.rel_horarioFinal}'
 
-    def __init__(self, data_inicial, data_final, horario_inicial, horario_final, motivo, tipo, lab_id, usu_matricula) -> None:
+    def __init__(self, data_inicial, data_final, horario_inicial, horario_final, motivo, lab_id, usu_matricula) -> None: #excluí "tipo" logo após motivo
         self.rel_dataInicial = data_inicial
         self.rel_dataFinal = data_final
         self.rel_horarioInicial = horario_inicial
         self.rel_horarioFinal = horario_final
         self.rel_motivo = motivo
-        self.rel_tipo = tipo
+        # self.rel_tipo = tipo
         self.rel_lab_id = lab_id
         self.rel_usu_matricula = usu_matricula
 

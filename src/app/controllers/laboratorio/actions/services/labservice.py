@@ -100,7 +100,7 @@ def carregar_reserva(reserva_id):
 def reservar(form):
     nome_lab = request.form['nome_lab']
     lab_id = db.session.scalar(db.select(Lab.lab_id).filter(Lab.lab_nome == nome_lab))
-    tipo_reserva = request.form['tipo_reserva']
+    # tipo_reserva = request.form['tipo_reserva']
     motivo_reserva = request.form['motivo_reserva']
     horario_inicio = datetime.strptime(request.form['horario_inicio'], '%H:%M').time()
     horario_termino = datetime.strptime(request.form['horario_termino'], '%H:%M').time()
@@ -112,21 +112,22 @@ def reservar(form):
         print("Você não pode reservar para um horário que já passou!", "danger")
         return redirect(url_for('lab.reservar_lab'))
     
-    if tipo_reserva == 'extraordinaria':
-        data_final = data_inicio
-    else:
-        data_final = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
+    # if tipo_reserva == 'extraordinaria':
+    #     data_final = data_inicio
+    # else:
+    data_final = datetime.strptime(request.form['data_final'], '%Y-%m-%d').date()
     if data_final < data_inicio or horario_termino < horario_inicio:
         print("a data e/ou o horário final não pode ser antes do inicial") 
         flash("a data e/ou o horário final não pode ser antes do inicial") 
         return redirect(url_for('lab.reservar_lab'))
     reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id, ReservaLab.rel_status == 'Confirmada', ReservaLab.rel_dataFinal >= data_inicio, ReservaLab.rel_dataInicial <= data_final, ReservaLab.rel_horarioFinal >= horario_inicio, ReservaLab.rel_horarioInicial <= horario_termino))
+    matricula_atual = current_user.usu_matricula
     if reserva_existente:
         flash("Já existe uma reserva para esse período!", "danger")
         print("Já existe uma reserva para esse período!")
         return redirect(url_for('lab.reservar_lab'))
     else:
-        reserva = ReservaLab(data_inicio, data_final, horario_inicio, horario_termino, motivo_reserva, tipo_reserva, lab_id, current_user.usu_matricula)
+        reserva = ReservaLab(data_inicio, data_final, horario_inicio, horario_termino, motivo_reserva, lab_id, matricula_atual) #aqui excluí tipo reserva que estava logo dps de motivo
         db.session.add(reserva)
         db.session.commit()
         flash('solicitação de reserva de laboratório realizada!')
@@ -143,16 +144,16 @@ def atualizar_reserva(reserva_id, form):
     reserva.rel_lab_id = db.session.scalar(
         db.select(Lab.lab_id).filter(Lab.lab_nome == form['nome_lab'])
     )
-    reserva.rel_tipo = form['tipo_reserva']
+    # reserva.rel_tipo = form['tipo_reserva']
     reserva.rel_motivo = form['motivo_reserva']
     reserva.rel_horarioInicial = datetime.strptime(form['horario_inicio'], '%H:%M').time()
     reserva.rel_horarioFinal = datetime.strptime(form['horario_termino'], '%H:%M').time()
     reserva.rel_dataInicial = datetime.strptime(form['data_inicio'], '%Y-%m-%d').date()
 
-    if form['tipo_reserva'] == 'extraordinaria':
-        reserva.rel_dataFinal = reserva.rel_dataInicial
-    else:
-        reserva.rel_dataFinal = datetime.strptime(form['data_final'], '%Y-%m-%d').date()
+    # if form['tipo_reserva'] == 'extraordinaria':
+    #     reserva.rel_dataFinal = reserva.rel_dataInicial
+    # else:
+    reserva.rel_dataFinal = datetime.strptime(form['data_final'], '%Y-%m-%d').date()
 
     data_hoje = datetime.now().date()
     hora_agora = datetime.now().time()

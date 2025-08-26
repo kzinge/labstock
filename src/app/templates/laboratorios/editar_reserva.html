@@ -20,12 +20,12 @@
         {% endfor %}
     </datalist>
 
-    <label for="tipo_reserva">Tipo da reserva:</label>
+    <!-- <label for="tipo_reserva">Tipo da reserva:</label>
     <select name="tipo_reserva" id="tipo-reserva" onchange="alternardivData()" required>
         <option value="anual" {% if reserva.rel_tipo == 'anual' %}selected{% endif %}>Anual</option>
         <option value="semestral" {% if reserva.rel_tipo == 'semestral' %}selected{% endif %}>Semestral</option>
         <option value="extraordinaria" {% if reserva.rel_tipo == 'extraordinaria' %}selected{% endif %}>Extraordinária</option>
-    </select>
+    </select> -->
 
     <label for="motivo_reserva">Motivo da reserva:</label>
     <input type="text" name="motivo_reserva" value="{{ reserva.rel_motivo }}" required>
