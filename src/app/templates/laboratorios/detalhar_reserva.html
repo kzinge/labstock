@@ -38,7 +38,7 @@
     </div>
 
     <div class="acoes-reserva">
-        {% if reserva.rel_status != 'Pendente' %}  <!-- and if current_user.usu_tipo == 'TECNICO' --> 
+        {% if reserva.rel_status != 'ppppPendente' %}  <!-- and if current_user.usu_tipo == 'TECNICO' --> 
         <form action="{{ url_for('lab.confirmar_reserva', reserva_id=reserva.rel_id) }}" method="POST" >
             <button type="submit" class="btn-confirmar">Confirmar</button>
         </form>

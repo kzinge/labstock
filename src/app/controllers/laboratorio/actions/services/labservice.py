@@ -121,13 +121,12 @@ def reservar(form):
         flash("a data e/ou o horário final não pode ser antes do inicial") 
         return redirect(url_for('lab.reservar_lab'))
     reserva_existente = db.session.scalar(db.select(ReservaLab).filter(ReservaLab.rel_lab_id == lab_id, ReservaLab.rel_status == 'Confirmada', ReservaLab.rel_dataFinal >= data_inicio, ReservaLab.rel_dataInicial <= data_final, ReservaLab.rel_horarioFinal >= horario_inicio, ReservaLab.rel_horarioInicial <= horario_termino))
-    matricula_atual = current_user.usu_matricula
     if reserva_existente:
         flash("Já existe uma reserva para esse período!", "danger")
         print("Já existe uma reserva para esse período!")
         return redirect(url_for('lab.reservar_lab'))
     else:
-        reserva = ReservaLab(data_inicio, data_final, horario_inicio, horario_termino, motivo_reserva, lab_id, matricula_atual) #aqui excluí tipo reserva que estava logo dps de motivo
+        reserva = ReservaLab(data_inicio, data_final, horario_inicio, horario_termino, motivo_reserva, lab_id, current_user.usu_matricula) #aqui excluí tipo reserva que estava logo dps de motivo
         db.session.add(reserva)
         db.session.commit()
         flash('solicitação de reserva de laboratório realizada!')

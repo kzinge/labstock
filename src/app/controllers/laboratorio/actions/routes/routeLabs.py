@@ -69,7 +69,7 @@ def confirmar_reserva(reserva_id):
 
 @lab_bp.route('/rejeitar_reserva/<int:reserva_id>', methods=['POST'])
 def rejeitar_reserva(reserva_id):
-    return labservice.atualizar_status_reserva(reserva_id, 'Indeferida')
+    return labservice.atualizar_status_reserva(reserva_id, 'Rejeitada')
 
 @lab_bp.route('/detalhar_reserva/<int:reserva_id>')
 def detalhar_reserva(reserva_id):
