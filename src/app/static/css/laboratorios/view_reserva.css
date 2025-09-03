@@ -1,115 +1,227 @@
+/* view_reserva.css — arquivo completo atualizado */
+
+/* reset básico */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #f0f0f0;
+    color: #222;
 }
 
-main {
+/* container geral da área de filtros */
+.filtros-div {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 0;
 }
 
-.rels-div {
+/* título */
+h2 {
+    font-size: 20px;
+    color: #222;
+}
+
+/* cartão do formulário */
+.filtros-div form {
+    width: 1000px;
+    max-width: 95%;
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 15px; 
-    padding: 20px;
-    max-width: 1200px;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-.rel-div {
+/* título pequeno acima do cartão (se estiver usando .titulo) */
+.titulo {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: white; 
-    height: auto;
-    border-radius: 8px; 
-    width: 300px; 
-    text-align: center;
-    padding: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: -55px;
 }
 
-.rel-div:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+/* select de especialidade */
+#especialidades-select {
+    min-width: 220px;
+    height: 36px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6;
+    background: white;
+    font-weight: 600;
+    color: #222;
 }
 
-.lab-name{
-    font-size: 1.5rem;
+/* input de busca — largura reduzida e responsiva */
+#input-buscar-lab {
+    flex: 1 1 260px;    /* base 260px, pode crescer se houver espaço */
+    min-width: 160px;
+    max-width: 275px;
+    height: 36px;
+    padding: 6px 36px 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6;
+    background: #fff;
+    font-size: 14px;
+    color: #222;
 }
 
-form {
+/* ícone de busca via background SVG */
+#input-buscar-lab {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23666' d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+}
+
+/* --- AGRUPAMENTO DATA + HORA --- */
+/* empurra o bloco data/hora para a direita do form */
+.data_e_hora {
+    order: 2;
+    margin-left: 118px;      /* empurra o grupo inteiro para a direita */
     display: flex;
-    justify-content: center;
+    gap: 10px;              /* distância entre date e time */
+    align-items: center;
 }
 
-.btn-botao {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 5px;
+/* largura maior e proporcional: date maior que time */
+.data_e_hora input[type="date"] {
+    height: 36px;
+    width: 160px;           /* aumentado para 180px */
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6;
+    font-size: 13px;
+    color: #222;
+    background: #fff;
+}
+
+.data_e_hora input[type="time"] {
+    height: 36px;
+    width: 160px;           /* aumentado para 140px */
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6;
+    font-size: 13px;
+    color: #222;
+    background: #fff;
+}
+
+/* Opção A — botão com largura fixa maior (140px) e afastado para ficar proporcional */
+.filtros-div form input[type="submit"],
+.filtros-div form button[type="submit"] {
+    height: 36px;
+    width: 140px;           /* largura fixa (Opção A) */
+    padding: 6px 16px;
+    border-radius: 8px;
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    background-color: #7ed957;
-    color: white;
-    transition: 0.3s;
+    background-color: #1D6D00;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .18s ease, transform .08s ease;
+    flex: 0 0 auto;
+    order: 3;               /* garante botão após .data_e_hora */
+    margin-left: 22px;      /* espaço entre data/hora e botão */
 }
 
-.btn-botao:hover {
-    background-color: black;
-    color: #7ed957;
+/* hover do botão */
+.filtros-div form input[type="submit"]:hover {
+    background-color: #145000;
+    transform: translateY(-1px);
 }
 
-.lab-nome-box {
+/* item de lista de reservas: garante que fiquem abaixo do cartão e ocupem linha inteira */
+.rels-div {
+    width: 1000px;
+    max-width: 95%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #7ed957;
-    color: white;
-    height: 50px;
-    width: 100%;
-    gap:10px;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 18px;
     margin-bottom: 30px;
-    border-radius: 5px;
+    clear: both;
+    align-self: center;
 }
 
-.lab-nome {
+/* cada card ocupa largura completa do container */
+.rel-div {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
     display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+    width: 100%;
+    max-width: 100%;
+}
+
+/* título do lab */
+.lab-nome-box p.lab-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1D6D00;
+}
+
+.rel-div p span {
+    font-weight: 700;
+    margin-right: 6px;
+    color: #333;
+}
+
+.rel-div a.btn-botao,
+.rel-div button.btn-botao {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    color: white; 
+    text-decoration: none;
+    font-weight: 700;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background-color: #1D6D00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color .15s ease;
 }
 
-@media (max-width: 768px) {
-    .rels-div {
-        flex-direction: column;
-        align-items: center;
-    }
+.rel-div a.btn-botao:hover,
+.rel-div button.btn-botao:hover {
+    background-color: #145000;
+}
 
-    .rel-div {
-        width: 90%;
+p.nenhum-lab {
+    font-size: 1.1rem;
+    color: #111;
+    text-align: center;
+    padding: 14px 0;
+}
+
+/* responsividade: reduzimos larguras em telas menores */
+@media (max-width: 1024px) {
+    .filtros-div form {
+        gap: 10px;
+        padding: 12px;
     }
+    #especialidades-select { min-width: 160px; }
+    #input-buscar-lab { min-width: 140px; flex-basis: 180px; max-width: 320px; }
+    .data_e_hora { margin-left: 0; order: 2; gap: 10px; }
+    .data_e_hora input[type="date"] { width: 140px; }
+    .data_e_hora input[type="time"] { width: 110px; }
+    .filtros-div form input[type="submit"] { order: 4; margin-left: 0; width: 120px; }
 }
