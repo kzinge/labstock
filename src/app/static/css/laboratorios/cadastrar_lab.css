@@ -1,173 +1,262 @@
+/* ====== Reset básico (já herdado do geral) ====== */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
+    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
 
+/* ====== Layout principal ====== */
 main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    gap: 4rem;
+    align-items: flex-start;
+    padding: 2rem;
 }
 
+/* ====== Formulário ====== */
 #form-lab {
     display: flex;
-    flex-direction: column;
+    gap: 2rem;
     background-color: #fff;
-    padding: 20px;
+    padding: 2rem;
     border-radius: 10px;
-    width: 40%;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 70rem; /* largura maior que a de materiais */
+    position: relative;
+}
+
+/* Título no topo do formulário */
+#form-lab .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    background-color: #1D6D00;
+    border-radius: 5px;
+    position: absolute;
+    top: -1rem;
+    left: 20%;
+}
+
+#form-lab .titulo h1 {
+    color: white;
+    padding: 10px;
+    font-size: 1.6rem;
+}
+
+/* Blocos de inputs (duas colunas) */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     margin-top: 2rem;
 }
 
-.labs-div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.lab-div {
-    background-color: #1D6D00;
-    color: white;
-    width: 18rem;
-    height: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: 4rem;
-    margin-top: 1rem;
-   
-}
-
-.lab-name-box {
-    width: 15rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.lab-name {
-    font-size: 1.5rem;
-
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 20px;
-    
-}
-
-h2 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-label {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input[type="number"]{
-    width: 50%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5x;
-    transition: 0.3s;
-}
-
-
-input[type="text"], select {
-    width: 100%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5px;
-    transition: 0.3s;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-    border-color: #7ed957;
-    outline: none;
-}
-
-.row-inputs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.row-inputs .col {
+.info-lab-p1, .info-lab-p2 {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-span a {
+/* Labels */
+label {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    font-weight: 500;
+}
+
+.asterisco {
     color: #1D6D00;
+}
+
+/* Inputs e selects */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #1D6D00;
+    outline: none;
+    box-shadow: 0 0 5px rgba(29, 109, 0, 0.3);
+}
+
+.bloco-sala{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-prefixo.sala{
+    width: 20%;
+}
+
+.input-prefixo {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0px 10px;
+}
+
+.input-prefixo span {
+  color: #555;
+  font-weight: bold;
+}
+
+.input-prefixo input {
+  border: none;
+  outline: none;
+  flex: 1;
+  height: 100%;
+  margin: 0;
+}
+
+.input-prefixo input:focus {
+  box-shadow: none;
+
+}
+/* Link para criar nova categoria */
+.info-lab-p1 span {
     font-size: 0.9rem;
-    margin-left: 5px;
+    margin-bottom: 1rem;
+}
+
+.info-lab-p1 span a {
+    color: #1D6D00;
     text-decoration: none;
 }
 
-span a:hover {
+.info-lab-p1 span a:hover {
     text-decoration: underline;
 }
 
-.asterisco{
-    color: #1D6D00;
-}
-
-.botao_center{
+/* ====== Prévia ====== */
+.previa {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    margin-top: 3rem;
 }
 
-.botao-cadastrar {
+.previa h1.previa-titulo {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     background-color: #1D6D00;
+    padding: 10px 50px;
     color: white;
-    width: 120px;
-    height: 40px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-previa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    width: 22rem;
+    min-height: 15rem;
+    background-color: #fafafa;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card-previa.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.card-previa h1 {
+    position: absolute;
+    top: -1.5rem;
+    margin-bottom: 3rem;
+    background-color: rgb(29, 109, 0);
+    border-radius: 5px;
+    padding: 5px 20px;
+    height: auto; /* Permite que cresça se necessário */
+    min-width: 10rem;
+    max-width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    color: white;
+
+    /* Quebra de linha */
+    white-space: normal; /* Permite quebra */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Compatibilidade */
+}
+
+
+.info-card-previa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.prev-categoria{
+    text-align: left;
+}
+.prev-categoria h4{
+    padding: 0.5rem;
+    background-color: hsl(101, 67%, 13%);;
+    border-radius: 4px;
+    width: 70%;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.3rem;
+    color: white;
+}
+
+
+/* ====== Botão de cadastro ====== */
+
+.bnt-cadastrar {
+    background-color: #1D6D00;
+    color: #fff;
+    width: 14rem;
+    height: 2.5rem;
     border-radius: 5px;
     border: none;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease;
 }
 
-.botao-cadastrar:hover {
-    background-color: black;
-    color: #7ed957;
+.bnt-cadastrar:hover {
+    background-color: #113d00;
+    font-weight: bold;
+    transform: scale(1.05);
 }
 

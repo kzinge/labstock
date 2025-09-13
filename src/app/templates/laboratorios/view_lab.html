@@ -69,19 +69,61 @@
 {% block content %}
 <div class="labs-div">
     {% for laboratorio in laboratorios %}
-    <div class="lab-div">
-        <div class="lab-name-box">
-            <p class="lab-name">{{ laboratorio.lab_nome }}</p>
-        </div>
-        <div class="lab-conteudo">
-            <div class="lab-description">
-                Esse laboratório se localiza na sala {{laboratorio.lab_sala}} do corredor {{laboratorio.lab_bloco}}
+    <div class = "lab-card">
+        <section class="info-lab">
+            <div class="infos">
+                <h2>{{ laboratorio.lab_nome }}</h2>
+                <div class="reservas">
+                    <strong>Reservas Ativas:</strong>
+                    <span>{{ laboratorio.num_reservas }}</span>
+                    <a href="#" class="btn-icone">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Visualizar</span>
+                    </a>
+                </div>
+                <div class="capacidade">
+                    <strong>Capacidade:</strong>
+                    <span>{{ laboratorio.lab_capacidade }} pessoas</span>
+                </div>
+                <div class="localizacao">
+                    <strong>Localização:</strong>
+                    <span>bloco {{laboratorio.lab_bloco}}, sala {{laboratorio.lab_sala}}</span>
+                </div>
             </div>
-            <div class="lab-buttons">
-                <a href="{{url_for('lab.reservas')}}">Ver Reservas</a>
-                <a href="{{url_for('lab.reservar_lab')}}">Reservar</a>
+            <div class="botoes">
+            {# {% if tipo_usuario == 'Técnico' %} #}
+                <a href="#" class="btn-icone">
+                    <i class="fa-solid fa-pen"></i>
+                    <span>Editar</span>
+                </a>
+                <a href="#" class="btn-icone">
+                    <i class="fa-solid fa-trash"></i>
+                    <span>Excluir</span>
+                </a>
+            {# {% endif %} #}
+                <a href="{{ url_for('lab.reservar_lab', lab_id=laboratorio.lab_id) }}" class="btn-icone">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Reservar</span>
+                </a>
             </div>
-        </div>
+        </section>
+        <section class="especialização">
+            {%if laboratorio.lab_especialidade == 1 %}
+            <div class="especializacao-item">
+                <i class="fa-solid fa-flask"></i>
+            </div>
+            {% endif %}
+            {%if laboratorio.lab_especialidade == 2 %}
+            <div class="especializacao-item">
+                <i class="fa-solid fa-dna"></i>
+            </div>
+            {% endif %}
+            {%if laboratorio.lab_especialidade == 3 %}
+            <div class="especializacao-item">
+                <i class="fa-solid fa-atom"></i>
+            </div>
+            {% endif %}
+        </section>
     </div>
     {% endfor %}
 </div>

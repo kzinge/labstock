@@ -2,6 +2,7 @@
 
 {% block head_extras %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/laboratorios/cadastrar_lab.css') }}">
+<script src="{{ url_for('static', filename='scripts/previa-lab.js') }}"></script>
 {% endblock %}
 
 {% block headerlinks %}
@@ -61,53 +62,81 @@
 </li>
 {% endblock %}
 
-{% block perfil %}
-<h1>Fulano</h1>
-<img src="../../static/assets/perfil.jpg" alt="perfil">
-{% endblock %}
-
 {% block content %}
-<div class="labs-div">
-    <div class="lab-div">
-        <div class="lab-name-box">
-            <h2 class="lab-name">Novo Laboratório</h2>
-        </div>
-    </div>
-</div>
-
 <form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
-    <div class="container">
-        <h2>Laboratório</h2>
-
-        <label for="nome_lab">Nome do Laboratório<span class="asterisco">*</span></label>
-        <input type="text" name="nome_lab" id="nome-lab" required>
-
-        <label for="especialidade_lab">Categoria do Laboratório<span class="asterisco">*</span></label>
-        <select name="especialidade_lab" id="categoria-lab" required>
-            <option value="">Selecione</option>
-            {% for categoria in especialidades %}
-                <option value="{{ categoria.esp_id }}">{{ categoria.esp_nome }}</option>
-            {% endfor %}
-        </select>
-        <span>ou <a href="#">criar nova categoria</a></span>
-
-        <h2>Localização</h2>
-        <div class="row-inputs">
-            <div class="col">
-                <label for="bloco_lab">Bloco/Corredor<span class="asterisco">*</span></label>
-                <input type="text" name="bloco_lab" id="bloco-lab" required>
-            </div>
-            <div class="col">
-                <label for="sala_lab">Sala<span class="asterisco">*</span></label>
-                <input type="text" name="sala_lab" id="sala-lab" required>
-            </div>
+        <div class="titulo">
+            <h1>Novo Laboratório</h1>
         </div>
 
-        <label for="capacidade_lab">Capacidade de Alunos<span class="asterisco">*</span></label>
-        <input type="number" name="capacidade_lab" id="capacidade-lab" required>
-        <div class="botao_center">
-            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        <div class="container">
+            <div class="info-lab-p1">
+                <h2>Laboratório</h2>
+
+                <label for="">Nome do Laboratório<span class="asterisco">*</span></label>
+                <input type="text" name="nome" id="nome" required placeholder="Ex: Laboratório de Química Orgânica....">
+
+                <label for="">Categoria do Laboratório<span class="asterisco">*</span></label>
+                <select name="especialidade" id="especialidade" required>
+                    <option value="">Selecione</option>
+                        {% for categoria in especialidades %}
+                            <option value="{{ categoria.esp_id }}">{{ categoria.esp_nome }}</option>
+                        {% endfor %}
+                </select>
+                <span>ou <a href="/material/categorias">criar nova categoria</a></span>
+            </div>
+            <div class="info-lab-p2">
+                <h2>Localização</h2>
+                <div class="bloco-sala">
+                    <label for="bloco">Bloco<span class="asterisco">*</span></label>
+                    <div class="input-prefixo">
+                        <span>Bloco</span>
+                        <input type="text" id="bloco" name="bloco" required placeholder="Ex: A, B, C...">
+                    </div>
+                    <label for="sala" class="label-sala">Número da Sala<span class="asterisco">*</span></label>
+                    <div class="input-prefixo sala">
+                        <span id="prefixo-sala"></span>
+                        <input type="text" id="sala" name="sala" required placeholder="Ex: 101, 202...">
+                    </div>
+                </div>
+                <label for="">Capacidade (número de pessoas)<span class="asterisco">*</span></label>
+                <input type="number" name="capacidade" id="capacidade" required placeholder="Ex: 20, 30..." min="1">
+
+                <input type="submit" value="Cadastrar Laboratório" class="bnt-cadastrar">
+            </div>
         </div>
-    </div>
+        <div class="previa">
+            <h1 class="previa-titulo">Prévia</h1>
+            <div class="card-previa">
+                <h1 class="prev-nome"></h1>
+                <div class="info-card-previa">
+                    <span class="prev-categoria">
+                        <strong>Categoria:</strong>
+                        <h4></h4>
+                    </span>
+                    <span class="prev-bloco">
+                        <strong>Bloco:</strong>
+                        <span></span>
+                    </span>
+                    <div class="prev-sala">
+                        <strong>Sala:</strong>
+                        <span></span>
+                    </div>
+                    <div class="prev-capacidade">
+                        <strong>Capacidade:</strong>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
 </form>
+
+<script>
+const blocoInput = document.getElementById("bloco");
+const prefixoSala = document.getElementById("prefixo-sala");
+
+// Atualiza o prefixo da sala sempre que o usuário digitar no bloco
+blocoInput.addEventListener("input", () => {
+    const valorBloco = blocoInput.value.trim();
+    prefixoSala.textContent = valorBloco ? valorBloco + "-" : "";
+});
+</script>
 {% endblock %}

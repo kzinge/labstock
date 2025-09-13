@@ -10,13 +10,17 @@ def carregar_labs():
     
     return laboratorios
 
+def numero_reservas(lab_id):
+    count = db.session.scalar(db.select(db.func.count()).filter(ReservaLab.rel_lab_id == lab_id))
+    return count
+
 def cadastrar_lab(form):
     try:
-        nome_lab = form['nome_lab']
-        bloco_lab = form['bloco_lab']
-        sala_lab = form['sala_lab'].upper()
-        capacidade_lab = form['capacidade_lab']
-        especialidade_lab = form['especialidade_lab']
+        nome_lab = form['nome']
+        bloco_lab = form['bloco']
+        sala_lab = form['sala'].upper()
+        capacidade_lab = form['capacidade']
+        especialidade_lab = form['especialidade']
 
         laboratorio = Lab(nome_lab, bloco_lab, sala_lab, capacidade_lab, especialidade_lab)
         db.session.add(laboratorio)

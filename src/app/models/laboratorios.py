@@ -16,8 +16,8 @@ class Lab(db.Model):
 
     lab_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     lab_nome: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
-    lab_bloco: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
-    lab_sala: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
+    lab_bloco: Mapped[str] = mapped_column(String(50), nullable=False)
+    lab_sala: Mapped[str] = mapped_column(String(50), nullable=False)
     lab_capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
     lab_especialidade: Mapped[int] = mapped_column(Integer, ForeignKey('tb_especialidades_labs.esp_id'), nullable=False)
 

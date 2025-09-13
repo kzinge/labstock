@@ -124,24 +124,6 @@ main {
     color: white;
 }
 
-.prev-descricao{
-    max-width: 100%;
-    height: auto;
-}
-.prev-descricao p {
-    padding: 0.5rem;
-    border: solid 1px #1D6D00;;
-    border-radius: 5px;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    font-size: 1rem;
-    text-align: justify;
-    margin-top: 0.3rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
 
 /* Títulos */
 h1 {

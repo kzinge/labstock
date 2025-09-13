@@ -1,11 +1,16 @@
 from flask import render_template, request, redirect, url_for, flash
+from flask_login import current_user
 from ... import lab_bp
 from ..services import labservice
 
 @lab_bp.route('/')
 def index():
     laboratorios = labservice.carregar_labs()
-    return render_template('laboratorios/view_lab.html', laboratorios = laboratorios)
+    for lab in laboratorios:
+        lab.num_reservas = labservice.numero_reservas(lab.lab_id)
+
+    tipo_usuario = 'Técnino' if current_user.usu_tipo == 'Técninco' else 'Professor' 
+    return render_template('laboratorios/view_lab.html', laboratorios = laboratorios, tipo_usuario=tipo_usuario)
 
 @lab_bp.route('/cadastrar', methods=['POST', 'GET'])
 def cadastrar_lab():
