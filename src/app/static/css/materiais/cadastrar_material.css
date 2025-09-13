@@ -1,13 +1,12 @@
+/* Reset básico */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -16,56 +15,135 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Layout principal */
 main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    gap: 4rem; /* espaço entre form e prévia */
+    align-items: flex-start;
 }
 
+/* Formulário */
 #form-lab {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    width: 40%;
-    margin-top: 2rem;
+    width: auto;
+    margin-top: 3rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    gap: 3rem;
 }
 
-.labs-div {
+.formulario-cad-material {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    width: 70%;
 }
 
-.lab-div {
+/* Prévia */
+.previa {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.previa h1{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     background-color: #1D6D00;
+    padding: 10px 50px;
     color: white;
-    width: 18rem;
-    height: 4rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-previa{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: 4rem;
-    margin-top: 1rem;
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    margin-top: 5rem;
+    height: auto;
+    width: 20rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fafafa;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; 
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.lab-name-box {
-    width: 15rem;
+.card-previa.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.card-previa h1{
+    position: absolute;
+    top: -1.5rem;
+    margin-bottom: 3rem;
+    background-color: rgb(29, 109, 0);
+    border-radius: 5px;
+    padding: 5px 20px;
+    height: 3rem;
+    min-width: 10rem;
+    max-width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.info-card-previa {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    font-size: 0.9rem;
 }
 
-.lab-name {
-    font-size: 1.5rem;
+.prev-categoria{
+    text-align: left;
+}
+.prev-categoria h4{
+    padding: 0.5rem;
+    background-color: hsl(101, 67%, 13%);;
+    border-radius: 4px;
+    width: 70%;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.3rem;
+    color: white;
 }
 
+.prev-descricao{
+    max-width: 100%;
+    height: auto;
+}
+.prev-descricao p {
+    padding: 0.5rem;
+    border: solid 1px #1D6D00;;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    font-size: 1rem;
+    text-align: justify;
+    margin-top: 0.3rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Títulos */
 h1 {
     display: flex;
     justify-content: center;
@@ -80,14 +158,42 @@ h2 {
     font-size: 1.2rem;
 }
 
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    background-color: #1D6D00;
+    border-radius: 5px;
+    position: absolute;
+    top: -1rem;
+    left: 15%;
+}
+
+.titulo h1 {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Labels */
 label {
     font-size: 0.9rem;
     margin-bottom: 5px;
     display: block;
 }
 
-/* Estilo geral dos inputs */
-input[type="text"], input[type="number"], input[type="date"], select {
+.asterisco {
+    color: #1D6D00;
+}
+
+/* Inputs e selects */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
     width: 100%;
     height: 40px;
     border-radius: 6px;
@@ -100,18 +206,21 @@ input[type="text"], input[type="number"], input[type="date"], select {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
+input:focus,
 select:focus {
     border-color: #1D6D00;
     outline: none;
     box-shadow: 0 0 5px rgba(29, 109, 0, 0.3);
 }
 
-/* Estilo para o campo de descrição mais alto */
+/* Campo de descrição maior */
 #descricao {
     height: 80px;
+    resize: noen;
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 6px;
 }
 
 /* Inputs em colunas verticais */
@@ -128,14 +237,12 @@ select:focus {
     flex-direction: column;
 }
 
-/* Inputs lado a lado para data e quantidade */
+/* Inputs lado a lado (data e quantidade) */
 .row-inputs {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 .row-inputs .col {
@@ -144,7 +251,7 @@ select:focus {
     flex-direction: column;
 }
 
-/* Estilo do link para nova categoria */
+/* Links */
 span a {
     color: #1D6D00;
     font-size: 0.9rem;
@@ -156,10 +263,7 @@ span a:hover {
     text-decoration: underline;
 }
 
-.asterisco {
-    color: #1D6D00;
-}
-
+/* Botão */
 .botao_center {
     display: flex;
     justify-content: center;
@@ -168,7 +272,7 @@ span a:hover {
 
 .botao-cadastrar {
     background-color: #1D6D00;
-    color: white;
+    color: #fff;
     width: 120px;
     height: 40px;
     border-radius: 5px;

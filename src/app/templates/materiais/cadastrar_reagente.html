@@ -2,6 +2,8 @@
 
 {% block head_extras %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_reagente.css') }}">
+<script src="{{ url_for('static', filename='scripts/previa-rea.js') }}" defer></script>
+<script src="{{ url_for('static', filename='scripts/teste.js') }}" defer></script>
 {% endblock %}
 
 {% block headerlinks %}
@@ -69,51 +71,85 @@
 {% endblock %}
 
 {% block content %}
-<div class="labs-div">
-    <div class="lab-div">
-        <div class="lab-name-box">
-            <h2 class="lab-name">Novo Reagente</h2>
-        </div>
-    </div>
-</div>
 
 <form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
+    <div class="titulo">
+        <h1>Novo Reagente</h1>
+    </div>
     <div class="container">
         <h2>Reagente</h2>
 
-        <label for="">Nome do reagente<span class="asterisco">*</span></label>
-        <input type="text" name="" id="" required>
+        <label for="reagente">Nome do reagente<span class="asterisco">*</span></label>
+        <input type="text" name="" id="reagente" required placeholder="Ex: Ácido, Base...">
 
-        <label for="">Categoria do reagentes<span class="asterisco">*</span></label>
+        <label for="">Categoria do reagente<span class="asterisco">*</span></label>
         <select name="" id="" required>
             <option value="">Selecione</option>
             {% for categoria in categorias %}
                 <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
             {% endfor %}
         </select>
-        <span>ou <a href="#">criar nova categoria</a></span>
-        
+        <span>ou <a href="/material/categorias">criar nova categoria</a></span>
+
         <div class="row-inputs">
-            <div class="col col_unidade">
-                <label for="">Quantidade<span class="asterisco">*</span></label>
-                <input type="number" name="" id="" required>
-            </div>
+            <div class="qnt-uni">
             <div class="col">
-                <label for="sala_lab">Unidade de medida<span class="asterisco">*</span></label>
-                <select name="" id="" class="input_selecionar">
-                    <option value=""></option>
-                </select>
+                <label for="">Quantidade<span class="asterisco">*</span></label>
+                <input type="number" name="" id="quantidade-form" required laceholder="Ex: 5, 10..." min="1">
+            </div>
+                <div class="col">
+                    <label for="">Unidade<span class="asterisco">*</span></label>
+                    <select name="" id="" required>
+                        <option value="">Selecione</option>
+                        <option value="mL">mL</option>
+                        <option value="L">L</option>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
+                        <option value="un">un</option>
+                    </select>
+                </div>
+            </div>
+            <div class="for-dv">
+                <div class="col">
+                    <label for="">Fornecedor<span class="asterisco">*</span></label>
+                    <input type="text" name="" id="" required placeholder="Ex: Sigma-Aldrich, Amazon...">
+                </div>
+                <div class="col">
+                    <label for="">Data de vencimento<span class="asterisco">*</span></label>
+                    <input type="date" name="" id="data-vencimento" required>
+                </div>
+            </div>
+                </div>
+            <div class="botao_center">
+                <button type="submit" class="botao-cadastrar">Cadastrar</button>
             </div>
         </div>
+<div class="previa">
+    <h1 class="previa-titulo">Prévia</h1>
+    <div class="card-previa">
+        <h1 class="prev-nome"></h1>
 
-        <label for="">Fornecedor<span class="asterisco">*</span></label>
-        <input type="text" name="" id="" required>
-
-        <label for="">Data de vencimento<span class="asterisco">*</span></label>
-        <input type="date" name="" id="">
-        <div class="botao_center">
-            <button type="submit" class="botao-cadastrar">Cadastrar</button>
+        <div class="info-card-previa">
+            <div class="prev-categoria">
+                <strong>Categoria:</strong>
+                <h4></h4>
+            </div>
+            <div class="prev-quantidade-div">
+                <strong>Quantidade:</strong>
+                <span class="prev-quantidade"></span>
+                <span class="prev-unidade"></span>
+            </div>
+            <div class="prev-fornecedor">
+                <strong>Fornecedor:</strong>
+                <span></span>
+            </div>
+            <div class="prev-vencimento">
+                <strong>Data de Vencimento:</strong>
+                <span></span>
+            </div>
         </div>
     </div>
+</div>
 </form>
 {% endblock %}
+

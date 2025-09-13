@@ -2,120 +2,141 @@
 
 {% block head_extras %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais/cadastrar_material.css') }}">
+<script src="{{ url_for('static', filename='scripts/previa-mat.js') }}" defer></script>
 {% endblock %}
-
 
 {% block headerlinks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/inicio.css') }}">
-<li class="side-item ">
-    <a href="{{url_for('material.estoque')}}">
+<li class="side-item">
+    <a href="{{ url_for('material.estoque') }}">
         <i class="fa-solid fa-box"></i>
-        <span class="item-description menu-toggle">
-            Estoque
-        </span>
+        <span class="item-description menu-toggle">Estoque</span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('material.cadastro_material')}}" class="opt-subitem">Novo Material</a>
+            <a href="{{ url_for('material.cadastro_material') }}" class="opt-subitem">Novo Material</a>
         </li>
         <li class="sub-item item-description">
-            <a href="{{url_for('material.cadastrar_reagente')}}" class="opt-subitem">Novo Reagente</a>
+            <a href="{{ url_for('material.cadastrar_reagente') }}" class="opt-subitem">Novo Reagente</a>
         </li>
     </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.index')}}">
+    <a href="{{ url_for('lab.index') }}">
         <i class="fa-solid fa-microscope"></i>
-        <span class="item-description menu-toggle">
-            Laboratórios
-        </span>
+        <span class="item-description menu-toggle">Laboratórios</span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.index')}}" class="opt-subitem">Laboratórios</a>
+            <a href="{{ url_for('lab.index') }}" class="opt-subitem">Laboratórios</a>
         </li>
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.cadastrar_lab')}}" class="opt-subitem">Novo Laboratório</a>
+            <a href="{{ url_for('lab.cadastrar_lab') }}" class="opt-subitem">Novo Laboratório</a>
         </li>
     </ul>
 </li>
 <li class="side-item">
-    <a href="{{url_for('lab.reservas')}}">
+    <a href="{{ url_for('lab.reservas') }}">
         <i class="fa-solid fa-clock"></i>
-        <span class="item-description menu-toggle">
-            Reservas    
-        </span>
+        <span class="item-description menu-toggle">Reservas</span>
     </a>
     <ul class="sub-menu">
         <li class="sub-item item-description">
-            <a href="{{url_for('lab.reservar_lab')}}" class="opt-subitem">Novas Reservas</a>
+            <a href="{{ url_for('lab.reservar_lab') }}" class="opt-subitem">Novas Reservas</a>
         </li>
     </ul>
 </li>
 <li class="side-item">
     <a href="#">
         <i class="fa-solid fa-bell"></i>
-        <span class="item-description">
-            Notificações
-        </span>
+        <span class="item-description">Notificações</span>
     </a>
 </li>
 {% endblock %}
 
 {% block perfil %}
-<h1>Fulano</h1>
 <img src="../../static/assets/perfil.jpg" alt="perfil">
 {% endblock %}
 
 {% block content %}
-<div class="labs-div">
-    <div class="lab-div">
-        <div class="lab-name-box">
-            <h2 class="lab-name">Novo Material</h2>
+<div class="cad-material"></div>
+
+<div class="formulario-cad-material">
+    <form action="{{ url_for('lab.cadastrar_lab') }}" method="POST" id="form-lab">
+        <div class="titulo">
+            <h1>Novo material</h1>
         </div>
-    </div>
+
+        <div class="container">
+            <h2>Material</h2>
+
+            <label for="">Nome do Material<span class="asterisco">*</span></label>
+            <input type="text" name="" id="" required placeholder="Ex: Pipeta, Tubo de ensaio...">
+
+            <label for="">Categoria do Material<span class="asterisco">*</span></label>
+            <select name="" id="" required>
+                <option value="">Selecione</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                {% endfor %}
+            </select>
+            <span>ou <a href="/material/categorias">criar nova categoria</a></span>
+
+            <div class="column-inputs">
+                <div class="col">
+                    <label for="">Descrição<span class="asterisco">*</span></label>
+                    <textarea name="" id="descricao" required cols="3" placeholder="Pipeta de vidro, 5 mL"></textarea>
+                </div>
+                <div class="col">
+                    <label for="">Fornecedor<span class="asterisco">*</span></label>
+                    <input type="text" name="" id="" required placeholder="Ex: Sigma-Aldrich, Amazon...">
+                </div>
+            </div>
+
+            <div class="row-inputs">
+                <div class="col">
+                    <label for="">Data de vencimento<span class="asterisco">*</span></label>
+                    <input type="date" name="" id="" required>
+                </div>
+                <div class="col">
+                    <label for="">Quantidade<span class="asterisco">*</span></label>
+                    <input type="number" name="" id="quantidade-form" required placeholder="Ex: 5, 10..." min="1">
+                </div>
+            </div>
+
+            <div class="botao_center">
+                <button type="submit" class="botao-cadastrar">Cadastrar</button>
+            </div>
+        </div>
+
+        <div class="previa">
+            <h1 class="previa-titulo">Prévia</h1>
+            <div class="card-previa">
+                <h1 class="prev-nome"></h1>
+                <div class="info-card-previa">
+                    <span class="prev-categoria">
+                        <strong>Categoria:</strong>
+                        <h4></h4>
+                    </span>
+                    <span class="prev-descricao">
+                        <strong>Descrição:</strong>
+                        <p></p>
+                    </span>
+                    <div class="prev-fornecedor">
+                        <strong>Fornecedor:</strong>
+                        <span></span>
+                    </div>
+                    <div class="prev-vencimento">
+                        <strong>Data de Vencimento:</strong>
+                        <span></span>
+                    </div>
+                    <div class="prev-quantidade">
+                        <strong>Quantidade:</strong>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-
-<form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
-    <div class="container">
-        <h2>Material</h2>
-
-        <label for="">Nome do Material<span class="asterisco">*</span></label>
-        <input type="text" name="" id="" required>
-
-        <label for="">Categoria do Material<span class="asterisco">*</span></label>
-        <select name="" id="" required>
-            <option value="">Selecione</option>
-            {% for categoria in categorias %}
-                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
-            {% endfor %}
-        </select>
-        <span>ou <a href="/material/categorias">criar nova categoria</a></span>
-        
-        <div class="column-inputs">
-            <div class="col">
-                <label for="">Descrição<span class="asterisco">*</span></label>
-                <input type="text" name="" id="descricao" required>
-            </div>
-            <div class="col">
-                <label for="">Fornecedor<span class="asterisco">*</span></label>
-                <input type="text" name="" id="" required>
-            </div>
-        </div>
-
-        <div class="row-inputs">
-            <div class="col">
-                <label for="">Data de vencimento<span class="asterisco">*</span></label>
-                <input type="date" name="" id="" required>
-            </div>
-            <div class="col">
-                <label for="">Quantidade<span class="asterisco">*</span></label>
-                <input type="number" name="" id="" required>
-            </div>
-        </div>
-        <div class="botao_center">
-            <button type="submit" class="botao-cadastrar">Cadastrar</button>
-        </div>
-    </div>
-</form>
 {% endblock %}

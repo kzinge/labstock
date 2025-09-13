@@ -1,13 +1,12 @@
+/* Reset básico */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -16,64 +15,123 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Layout principal */
 main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    gap: 4rem; /* espaço entre form e prévia */
+    align-items: flex-start;
 }
 
+/* Formulário */
 #form-lab {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    width: 40%;
+    width: auto;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    gap: 3rem;
+}
+
+.formulario-cad-material {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+/* Prévia */
+
+.previa {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
 }
 
-.labs-div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.previa h1{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #1D6D00;
+    padding: 10px 50px;
+    color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.lab-div {
-    background-color: #1D6D00;
-    color: white;
-    width: 18rem;
-    height: 4rem;
+.card-previa{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: 4rem;
-    margin-top: 1rem;
-   
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    margin-top: 5rem;
+    height: auto;
+    width: 20rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fafafa;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; 
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.lab-name-box {
-    width: 15rem;
+.card-previa.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.card-previa h1{
+    position: absolute;
+    top: -1.5rem;
+    margin-bottom: 3rem;
+    background-color: rgb(29, 109, 0);
+    border-radius: 5px;
+    padding: 5px 20px;
+    height: 3rem;
+    min-width: 10rem;
+    max-width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.info-card-previa {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    font-size: 0.9rem;
 }
 
-.lab-name {
-    font-size: 1.5rem;
-
+.prev-categoria{
+    text-align: left;
 }
-
+.prev-categoria h4{
+    padding: 0.5rem;
+    background-color: hsl(101, 67%, 13%);;
+    border-radius: 4px;
+    width: 70%;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.3rem;
+    color: white;
+}
+/* Títulos */
 h1 {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
     font-size: 20px;
-    
 }
 
 h2 {
@@ -82,82 +140,100 @@ h2 {
     font-size: 1.2rem;
 }
 
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    background-color: #1D6D00;
+    border-radius: 5px;
+    position: absolute;
+    top: -1rem;
+    left: 15%;
+}
+
+.titulo h1 {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Labels */
 label {
     font-size: 0.9rem;
     margin-bottom: 5px;
     display: block;
 }
 
-input[type="date"]{
-    width: 25%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5x;
-    transition: 0.3s;
+.asterisco {
+    color: #1D6D00;
 }
 
-.input_selecionar {
-    height: 35px;
-    width: 50%;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5px;
-    transition: 0.3s;
-}
-
-input[type="number"]{
-    height: 35px;
-    width: 50%;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5px;
-    transition: 0.3s;
-}
-
-
-input[type="text"], select {
+/* Inputs e selects */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
     width: 100%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 0.9rem;
-    padding: 5px;
-    margin-bottom: 5px;
-    transition: 0.3s;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 0.95rem;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-input[type="date"]:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
+input:focus,
 select:focus {
-    border-color: #7ed957;
+    border-color: #1D6D00;
     outline: none;
+    box-shadow: 0 0 5px rgba(29, 109, 0, 0.3);
 }
 
-.row-inputs {
+/* Campo de descrição maior */
+#descricao {
+    height: 80px;
+    resize: noen;
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 6px;
+}
+
+/* Inputs em colunas verticais */
+.column-inputs {
     display: flex;
-    gap: 10px;
-    margin-bottom: 5px;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.row-inputs .col {
+.column-inputs .col {
     flex: 1;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
 }
 
+/* Inputs lado a lado (data e quantidade) */
+.row-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.row-inputs .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Links */
 span a {
     color: #1D6D00;
     font-size: 0.9rem;
@@ -169,11 +245,8 @@ span a:hover {
     text-decoration: underline;
 }
 
-.asterisco{
-    color: #1D6D00;
-}
-
-.botao_center{
+/* Botão */
+.botao_center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,7 +254,7 @@ span a:hover {
 
 .botao-cadastrar {
     background-color: #1D6D00;
-    color: white;
+    color: #fff;
     width: 120px;
     height: 40px;
     border-radius: 5px;
@@ -196,4 +269,3 @@ span a:hover {
     background-color: black;
     color: #7ed957;
 }
-
