@@ -31,54 +31,78 @@ def get_categorias_materiais():
     return categorias
 
 
-def cadastrar_material(form):
-    nome_reagente = request.form['nome_reagente']
+# materialservice.py
+def cadastrar_reagente(form):
+    try:
+        print(">>> Recebendo form:", dict(form))
 
-    try:  # Tenta pegar do select
-        tipo_reagente = request.form['tipo_reagente']
+        # Nome
+        nome_reagente = form.get('reagente')
+        print(">>> Nome:", nome_reagente)
 
-    except:  # Se der erro é por que ta com o input de criar uma categoria nova
-        tipo_reagente = request.form['tipo_reagente_novo']
-        categorias = db.session.scalars(db.select(CategoriaReagente)).all()
+        # Categoria (select ou nova)
+        tipo_reagente = form.get('tipo')
+        rgt_cat_id = None
 
-        if not categorias:  # caso não exista categoria ainda, ele cria a que a pessoa colocou
-            nova_cat = CategoriaReagente(nome=tipo_reagente)
-            db.session.add(nova_cat)
-            db.session.commit()
+        if tipo_reagente:  # veio do select → já é ID
+            rgt_cat_id = db.session.scalar(
+                db.select(CategoriaReagente.cat_id).filter(CategoriaReagente.cat_id == int(tipo_reagente))
+            )
+            print(">>> Categoria ID selecionada:", rgt_cat_id)
 
-        for categoria in categorias:
-            if tipo_reagente == categoria.cat_nome:
-                flash('CategoriaReagente já existe')
-                return redirect(url_for('material.cadastro'))
+        else:  # veio do input de nova categoria
+            tipo_reagente = form.get('tipo_reagente_novo')
+            print(">>> Nova categoria:", tipo_reagente)
+
+            existente = db.session.scalar(
+                db.select(CategoriaReagente).filter(CategoriaReagente.cat_nome == tipo_reagente)
+            )
+            if existente:
+                return False, "Categoria já existe"
             else:
                 nova_cat = CategoriaReagente(nome=tipo_reagente)
                 db.session.add(nova_cat)
                 db.session.commit()
-                break
+                rgt_cat_id = nova_cat.cat_id
+                print(">>> Nova categoria criada com ID:", rgt_cat_id)
 
-    rgt_unidade = request.form['unidade']
-    quantidade_reagente = request.form['quantidade_reagente']
-    validade_reagente = request.form['validade_reagente']
-    laboratorio = request.form['lab_local']
-    rgt_fornecedor = request.form['fornecedor_reagente']
+        if not rgt_cat_id:
+            return False, "Categoria inexistente"
 
-    rgt_cat_id = db.session.scalar(db.select(CategoriaReagente.cat_id).filter(
-        CategoriaReagente.cat_nome == tipo_reagente))
-    if not rgt_cat_id:  # ESSE IF NÃO PRECISA MAIS, TA SENDO PEGA POR SELECT
-        flash('CategoriaReagente inexistente')
-        return render_template('materiais/cadastrar_material.html')
-    rgt_lab_id = db.session.scalar(
-        db.select(Lab.lab_id).filter(Lab.lab_sala == laboratorio))
+        # Demais campos
+        rgt_unidade = form.get('unidade')
+        quantidade_reagente = form.get('quantidade')
+        validade_reagente = form.get('validade')
+        laboratorio = form.get('local')
+        rgt_fornecedor = form.get('fornecedor')
 
-    if not rgt_lab_id:  # ESSE IF NÃO PRECISA MAIS, TA SENDO PEGA POR SELECT
-        flash('Laboratório inexistente')
-        return render_template('materiais/cadastrar_material.html')
+        print(">>> Quantidade:", quantidade_reagente)
+        print(">>> Unidade:", rgt_unidade)
+        print(">>> Validade:", validade_reagente)
+        print(">>> Local (ID):", laboratorio)
+        print(">>> Fornecedor:", rgt_fornecedor)
 
-    novo_reagente = Reagente(nome_reagente, quantidade_reagente, rgt_unidade,
-                             rgt_fornecedor, validade_reagente, rgt_lab_id, rgt_cat_id)
-    db.session.add(novo_reagente)
-    db.session.commit()
-    return redirect(url_for('material.estoque'))
+        # Laboratório (sempre ID do select)
+        rgt_lab_id = db.session.scalar(
+            db.select(Lab.lab_id).filter(Lab.lab_id == int(laboratorio))
+        )
+        if not rgt_lab_id:
+            return False, "Laboratório inexistente"
+
+        # Cria reagente
+        novo_reagente = Reagente(
+            nome_reagente, quantidade_reagente, rgt_unidade,
+            rgt_fornecedor, validade_reagente, rgt_lab_id, rgt_cat_id
+        )
+        db.session.add(novo_reagente)
+        db.session.commit()
+
+        print(">>> Reagente cadastrado com sucesso!")
+        return True, "Reagente cadastrado com sucesso"
+
+    except Exception as e:
+        print(">>> ERRO AO CADASTRAR:", str(e))
+        return False, f"Erro ao cadastrar reagente: {str(e)}"
 
 
 def editar_reagente(id, method):

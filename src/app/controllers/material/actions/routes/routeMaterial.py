@@ -20,19 +20,22 @@ def visualizar_estoque():
     return render_template('materiais/view_estoque.html', reagentes=reagentes, materiais=materiais)
 
 
-
-@materiais_bp.route('/cadastrar_reagente', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO ######
-def cadastro():
-    laboratorios = materialservice.get_labs() ; categorias = materialservice.get_categorias_reagentes()
-    return render_template('materiais/cadastrar_reagente.html' , categorias=categorias, laboratorios=laboratorios)
-
-
-
-@materiais_bp.route('/cadastrar_reagente', methods=['POST'])
+@materiais_bp.route('/cadastrar_reagente', methods=['POST', 'GET'])
 # @role_required('Técnico') #IMPORTAR ROLE_REQUIRED
-def cadastrar_reagente():
-    materialservice.cadastrar_material()
 
+def cadastrar_reagente():
+    if request.method == 'POST':
+        sucesso, mensagem = materialservice.cadastrar_reagente(request.form)
+        flash(mensagem, 'success' if sucesso else 'danger')
+        if sucesso:
+            return redirect(url_for('material.estoque'))
+    categorias = materialservice.get_categorias_reagentes()
+    labs = materialservice.get_labs()
+    return render_template(
+        'materiais/cadastrar_reagente.html',
+        categorias=categorias,
+        labs=labs
+    )
 
 
 @materiais_bp.route('/edit_reagente/<int:id>', methods=['POST', 'GET']) # ROTA APENAS PARA TECNICO

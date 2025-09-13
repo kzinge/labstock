@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const unidadeSelect = document.querySelector('.qnt-uni select');
     const fornecedorInput = document.querySelector('.for-dv input[type="text"]');
     const dataInput = document.querySelector('.for-dv input[type="date"]');
-
+    const localSelect = document.querySelector('.local select');
     // Container da prévia
     const cardPrev = document.querySelector('.card-previa');
 
     // Campos da prévia
+    const prevLocal = document.querySelector('.prev-local span');
     const prevNome = document.querySelector('.prev-nome');
     const prevCategoria = document.querySelector('.prev-categoria h4');
     const prevQuantidade = document.querySelector('.prev-quantidade');
@@ -26,8 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
             quantidadeInput.value.trim() ||
             unidadeSelect.value.trim() ||
             fornecedorInput.value.trim() ||
-            dataInput.value.trim()
-        );
+            dataInput.value.trim() || 
+            localSelect.value.trim(
+        ));
     }
 
     // Atualiza a prévia
@@ -43,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         prevQuantidade.textContent = quantidadeInput.value || '';
         prevUnidade.textContent = unidadeSelect.value || '';
         prevFornecedor.textContent = fornecedorInput.value || '';
-
+        prevLocal.textContent = localSelect.options[localSelect.selectedIndex]?.text || '';
         // Formata a data para dd/mm/aaaa
         if (dataInput.value) {
             const [ano, mes, dia] = dataInput.value.split('-');

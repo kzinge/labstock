@@ -72,7 +72,7 @@
 
 {% block content %}
 
-<form action="{{url_for('lab.cadastrar_lab')}}" method="POST" id="form-lab">
+<form action="{{url_for('material.cadastrar_reagente')}}" method="POST" id="form-lab">
     <div class="titulo">
         <h1>Novo Reagente</h1>
     </div>
@@ -80,13 +80,13 @@
         <h2>Reagente</h2>
 
         <label for="reagente">Nome do reagente<span class="asterisco">*</span></label>
-        <input type="text" name="" id="reagente" required placeholder="Ex: Ácido, Base...">
+        <input type="text" name="reagente" id="reagente" required placeholder="Ex: Ácido, Base...">
 
         <label for="">Categoria do reagente<span class="asterisco">*</span></label>
-        <select name="" id="" required>
+        <select name="tipo" id="tipo" required>
             <option value="">Selecione</option>
             {% for categoria in categorias %}
-                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                <option value="{{ categoria.cat_id }}">{{ categoria.cat_nome }}</option>
             {% endfor %}
         </select>
         <span>ou <a href="/material/categorias">criar nova categoria</a></span>
@@ -95,11 +95,11 @@
             <div class="qnt-uni">
             <div class="col">
                 <label for="">Quantidade<span class="asterisco">*</span></label>
-                <input type="number" name="" id="quantidade-form" required laceholder="Ex: 5, 10..." min="1">
+                <input type="number" name="quantidade" id="quantidade-form" required laceholder="Ex: 5, 10..." min="1">
             </div>
                 <div class="col">
                     <label for="">Unidade<span class="asterisco">*</span></label>
-                    <select name="" id="" required>
+                    <select name="unidade" id="unidade" required>
                         <option value="">Selecione</option>
                         <option value="mL">mL</option>
                         <option value="L">L</option>
@@ -109,14 +109,23 @@
                     </select>
                 </div>
             </div>
+            <div class="local">
+                <label for="">Local</label>
+                <select name="local" id="local">
+                    <option value="">Selecione</option>
+                    {% for lab in labs %}
+                        <option value="{{ lab.lab_id }}">{{ lab.lab_nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <div class="for-dv">
                 <div class="col">
                     <label for="">Fornecedor<span class="asterisco">*</span></label>
-                    <input type="text" name="" id="" required placeholder="Ex: Sigma-Aldrich, Amazon...">
+                    <input type="text" name="fornecedor" id="fornecedor" required placeholder="Ex: Sigma-Aldrich, Amazon...">
                 </div>
                 <div class="col">
                     <label for="">Data de vencimento<span class="asterisco">*</span></label>
-                    <input type="date" name="" id="data-vencimento"required>
+                    <input type="date" name="validade" id="data-vencimento"required>
                 </div>
             </div>
                 </div>
@@ -138,6 +147,10 @@
                 <strong>Quantidade:</strong>
                 <span class="prev-quantidade"></span>
                 <span class="prev-unidade"></span>
+            </div>
+            <div class="prev-local">
+                <strong>Local:</strong>
+                <span></span>
             </div>
             <div class="prev-fornecedor">
                 <strong>Fornecedor:</strong>
