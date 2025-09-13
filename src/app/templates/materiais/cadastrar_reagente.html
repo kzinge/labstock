@@ -89,7 +89,7 @@
                 <option value="{{ categoria.cat_id }}">{{ categoria.cat_nome }}</option>
             {% endfor %}
         </select>
-        <span>ou <a href="/material/categorias">criar nova categoria</a></span>
+        <span>ou <a href="{{ url_for('tecnico.cadastrar_categoria') }}">criar nova categoria</a></span>
 
         <div class="row-inputs">
             <div class="qnt-uni">

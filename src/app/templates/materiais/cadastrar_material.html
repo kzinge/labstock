@@ -80,7 +80,7 @@
                     <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
                 {% endfor %}
             </select>
-            <span>ou <a href="/material/categorias">criar nova categoria</a></span>
+            <span>ou <a href="{{ url_for('tecnico.cadastrar_categoria') }}">criar nova categoria</a></span>
 
             <div class="column-inputs">
                 <div class="col">
