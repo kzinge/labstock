@@ -1,6 +1,6 @@
-# 💻 LabStock — Sistema de Gestão de Laboratórios
+# 💻 Sistema de Gestão de Laboratórios
 
-Bem-vindo ao **LabStock**!  
+Bem-vindo!  
 Este é um sistema de gerenciamento de reservas e controle de materiais para laboratórios acadêmicos. O projeto foi desenvolvido utilizando Python, Flask e MySQL, com deploy simplificado via Docker.
 
 ---
